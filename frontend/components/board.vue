@@ -1,15 +1,10 @@
 <template>
-  <home></home>
+  <h1>Aqui está o componente de board</h1>
 </template>
 
 <script>
 
-import home from '~/components/home.vue'
-
 export default {
-  components: {
-    home
-  },
   data () {
     return {}
   }

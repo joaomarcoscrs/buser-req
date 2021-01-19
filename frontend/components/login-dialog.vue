@@ -1,16 +1,16 @@
 <template>
   <v-dialog v-model="visible" max-width="500px">
     <v-card>
-        <v-card-title>Log in</v-card-title>
+        <v-card-title><h1 class="font-weight-thin texto-rosa">vamo lá?</h1></v-card-title>
         <v-card-text>
           <v-container fluid>
-            <v-text-field label="Username" required v-model="username"/>
-            <v-text-field label="Password" type="password" required v-model="password" @keyup.enter="login()"/>
-            <small style="color: red;" v-if="error">Wrong user or password</small>
+            <v-text-field label="Usuário" required v-model="username"/>
+            <v-text-field label="Senha" type="password" required v-model="password" @keyup.enter="login()"/>
+            <small style="color: red;" v-if="error">Senha e/ou usuário inválido(s)</small>
           </v-container>
         </v-card-text>
-        <v-btn class="blue--text darken-1" flat @click="close()">Cancel</v-btn>
-        <v-btn class="blue--text darken-1" flat @click="login()" :loading="loading" :disabled="loading">Login</v-btn>
+        <v-btn class="texto-rosa darken-1" flat @click="close()">Cancelar</v-btn>
+        <v-btn class="texto-rosa darken-1" flat @click="login()" :loading="loading" :disabled="loading">Entrar</v-btn>
     </v-card>
   </v-dialog>
 </template>
@@ -57,3 +57,9 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+  .texto-rosa {
+    color: #D81B60;
+  }
+</style>

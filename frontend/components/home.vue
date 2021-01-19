@@ -1,14 +1,14 @@
 <template>
-  <home></home>
+  <board></board>
 </template>
 
 <script>
 
-import home from '~/components/home.vue'
+import board from '~/components/board.vue'
 
 export default {
   components: {
-    home
+    board
   },
   data () {
     return {}
