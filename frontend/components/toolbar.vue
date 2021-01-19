@@ -39,7 +39,7 @@
         </v-list>
       </v-card>
     </v-menu>
-    <v-toolbar-side-icon @click.stop="state.drawerRight = !state.drawerRight"></v-toolbar-side-icon>
+    <!-- <v-toolbar-side-icon @click.stop="state.drawerRight = !state.drawerRight"></v-toolbar-side-icon> -->
     <login-dialog ref="login_dialog"/>
   </v-toolbar>
 </template>

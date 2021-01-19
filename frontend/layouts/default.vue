@@ -15,7 +15,7 @@
       v-model="snack.visible"
     >
       {{snack.text}}
-      <v-btn dark flat @click.native="snack.visible = false">Close</v-btn>
+      <v-btn dark flat @click.native="snack.visible = false">Fechar</v-btn>
     </v-snackbar>
   </v-app>
 </template>
@@ -23,13 +23,11 @@
 <script>
   import toolbar from '~/components/toolbar.vue'
   import sidenavLeft from '~/components/sidenav-left.vue'
-  import sidenavRight from '~/components/sidenav-right.vue'
   import footer from '~/components/footer.vue'
   export default {
     components: {
       toolbar,
       sidenavLeft,
-      sidenavRight,
       leFooter: footer
     },
     data: () => ({
