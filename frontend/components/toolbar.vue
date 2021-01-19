@@ -1,11 +1,36 @@
 <template>
-  <v-toolbar color="blue-grey" dark fixed app clipped-right>
-    <v-toolbar-side-icon @click.stop="state.drawer = !state.drawer"></v-toolbar-side-icon>
-    <v-toolbar-title>Toolbar</v-toolbar-title>
+  <v-toolbar color="white" dark fixed app clipped-right>
+    <v-toolbar-side-icon class="cinza-escuro" @click.stop="state.drawer = !state.drawer"></v-toolbar-side-icon>
+    <v-textarea 
+          light
+          background-color="#ECECEC"
+          color="#969696"
+          clearable
+          prepend-inner-icon="search"
+          label="busca textual"
+          rows="1"
+          rounded
+          filled
+          single-line
+          autofocus
+          no-resize
+          height="35px"
+        ></v-textarea>
     <v-spacer></v-spacer>
-    <v-btn v-if="!logged_user" flat dark ripple class="ma-0 ml-5"  @click="open_login_dialog($event)">Login</v-btn>
+    <v-spacer></v-spacer>
+    <v-spacer></v-spacer>
+    <v-spacer></v-spacer>
+    <v-spacer></v-spacer>
+    <v-spacer></v-spacer>
+    <v-spacer></v-spacer>
+    <v-spacer></v-spacer>
+    <v-spacer></v-spacer>
+    <v-spacer></v-spacer>
+    <v-spacer></v-spacer>
+    <v-spacer></v-spacer>
+    <v-btn v-if="!logged_user" flat dark ripple class="ma-0 ml-5 cinza-escuro"  @click="open_login_dialog($event)">Login</v-btn>
     <v-menu v-if="logged_user" offset-y>
-      <v-btn icon slot="activator" class="ma-0 ml-5">
+      <v-btn icon slot="activator" class="ma-0 ml-5 cinza-escuro">
         <v-avatar size="36px">
           <img src="https://graph.facebook.com/4/picture?width=300&height=300">
         </v-avatar>
@@ -74,3 +99,9 @@
     }
   }
 </script>
+
+<style scoped>
+.cinza-escuro {
+  color: #969696;
+}
+</style>
