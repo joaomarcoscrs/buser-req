@@ -27,7 +27,7 @@
 
       <v-list-tile @click.stop="state.left = !state.left">
         <v-list-tile-action>
-          <v-icon medium class="texto-branco">mdi-account</v-icon>
+          <v-icon medium class="texto-branco">mdi-account-multiple</v-icon>
         </v-list-tile-action>
         <v-list-tile-content>
           <v-list-tile-title><h1 class="font-weight-thin fonte-maior">usuários</h1></v-list-tile-title>
