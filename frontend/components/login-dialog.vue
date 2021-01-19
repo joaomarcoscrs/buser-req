@@ -1,6 +1,9 @@
 <template>
   <v-dialog v-model="visible" max-width="500px">
-    <v-card>
+    <v-card
+  elevation="4"
+  outlined
+  shaped>
         <v-card-title><h1 class="font-weight-thin texto-rosa">vamo lá?</h1></v-card-title>
         <v-card-text>
           <v-container fluid>
@@ -61,5 +64,8 @@ export default {
 <style scoped>
   .texto-rosa {
     color: #D81B60;
+  }
+  .rounded-card{
+      border-radius:30px;
   }
 </style>
