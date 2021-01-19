@@ -28,6 +28,7 @@
     <v-spacer></v-spacer>
     <v-spacer></v-spacer>
     <v-btn v-if="!logged_user" flat dark ripple class="ma-0 ml-5 cinza-escuro"  @click="open_login_dialog($event)"><v-icon>mdi-account-arrow-right</v-icon></v-btn>
+    <span v-if="logged_user" class="texto-bem-vindo font-weight-regular">olá {{logged_user.first_name}}, tudo bem?</span>
     <v-menu v-if="logged_user" offset-y>
       <v-btn icon slot="activator" class="ma-0 ml-5 cinza-escuro">
         <v-avatar size="36px">
@@ -50,14 +51,14 @@
         </v-list>
         <v-divider></v-divider>
         <v-list>
-          <v-list-tile @click="switchMode()">
+          <v-list-tile :to="{name: 'perfil'}">
             <v-list-tile-content>
-              <v-list-tile-title>Staff mode</v-list-tile-title>
+              <v-list-tile-title>Perfil</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
           <v-list-tile @click="logout()">
             <v-list-tile-content>
-              <v-list-tile-title>Log out</v-list-tile-title>
+              <v-list-tile-title>Sair</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
         </v-list>
@@ -106,5 +107,9 @@
 .search-box{
     border-radius: 40px;
     margin-top: 5px;
+}
+.texto-bem-vindo {
+  color: #969696;
+  font-size: 16px;
 }
 </style>
