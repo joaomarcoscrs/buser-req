@@ -21,10 +21,10 @@
   margin-top:10px;
 }
 img {
-  max-height: 17px;
+  max-height: 18px;
   width: auto;
   padding-left: 10px;
-  padding-right: 3px;
+  padding-right: 5px;
   margin-top: 10px;
 }
 </style>
