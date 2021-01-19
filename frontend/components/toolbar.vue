@@ -1,21 +1,20 @@
 <template>
   <v-toolbar color="white" dark fixed app clipped-right>
     <v-toolbar-side-icon class="cinza-escuro" @click.stop="state.drawer = !state.drawer"></v-toolbar-side-icon>
-    <v-textarea 
+    <v-flex class="search-box">
+      <v-text-field class="search-box"
           light
+          solo
+          outlined
+          shaped
           background-color="#ECECEC"
           color="#969696"
           clearable
           prepend-inner-icon="search"
-          label="busca textual"
-          rows="1"
-          rounded
-          filled
-          single-line
-          autofocus
-          no-resize
-          height="35px"
-        ></v-textarea>
+          placeholder="busca textual"
+          persistent-hint="tente buscar por 'notebooks'">
+      </v-text-field>
+    </v-flex>
     <v-spacer></v-spacer>
     <v-spacer></v-spacer>
     <v-spacer></v-spacer>
@@ -103,5 +102,9 @@
 <style scoped>
 .cinza-escuro {
   color: #969696;
+}
+.search-box{
+    border-radius: 40px;
+    margin-top: 5px;
 }
 </style>

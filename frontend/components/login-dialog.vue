@@ -4,7 +4,7 @@
   elevation="4"
   outlined
   shaped>
-        <v-card-title><h1 class="font-weight-thin texto-rosa">vamo lá?</h1></v-card-title>
+        <v-card-title><h1 class="font-weight-thin texto-rosa">vamo lá? 🙂 </h1></v-card-title>
         <v-card-text>
           <v-container fluid>
             <v-text-field label="Usuário" required v-model="username"/>
