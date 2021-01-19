@@ -18,7 +18,7 @@
 
       <v-list-tile @click.stop="state.left = !state.left">
         <v-list-tile-action>
-          <v-icon medium class="texto-branco">search</v-icon>
+          <v-icon medium class="texto-branco">mdi-text-box-check-outline</v-icon>
         </v-list-tile-action>
         <v-list-tile-content>
           <v-list-tile-title><h1 class="font-weight-thin fonte-maior">para análise</h1></v-list-tile-title>
