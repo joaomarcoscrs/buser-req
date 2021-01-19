@@ -7,30 +7,30 @@
         </v-list-tile-content>
       </v-list-tile>
 
-      <v-list-tile @click.stop="state.left = !state.left">
+      <v-list-tile :to="{name: 'index'}">
         <v-list-tile-action>
           <v-icon medium class="texto-branco">home</v-icon>
         </v-list-tile-action>
         <v-list-tile-content>
-          <v-list-tile-title><h1 class="font-weight-thin fonte-maior">solicitações</h1></v-list-tile-title>
+          <v-list-tile-title><h1 class="font-weight-thin fonte-maior texto-branco">solicitações</h1></v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>
 
-      <v-list-tile @click.stop="state.left = !state.left">
+      <v-list-tile :to="{name: 'analise'}">
         <v-list-tile-action>
           <v-icon medium class="texto-branco">mdi-text-box-check-outline</v-icon>
         </v-list-tile-action>
         <v-list-tile-content>
-          <v-list-tile-title><h1 class="font-weight-thin fonte-maior">para análise</h1></v-list-tile-title>
+          <v-list-tile-title><h1 class="font-weight-thin fonte-maior texto-branco">para análise</h1></v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>
 
-      <v-list-tile @click.stop="state.left = !state.left">
+      <v-list-tile :to="{name: 'usuarios'}">
         <v-list-tile-action>
           <v-icon medium class="texto-branco">mdi-account-multiple</v-icon>
         </v-list-tile-action>
         <v-list-tile-content>
-          <v-list-tile-title><h1 class="font-weight-thin fonte-maior">usuários</h1></v-list-tile-title>
+          <v-list-tile-title><h1 class="font-weight-thin fonte-maior texto-branco">usuários</h1></v-list-tile-title>
         </v-list-tile-content>
       </v-list-tile>
 
@@ -53,7 +53,7 @@
     background-color: #D81B60;
   }
   .texto-branco {
-  color: #ffffff;
+  color: #ffffff !important;
   }
   .fonte-maior {
     font-size: 24px;
