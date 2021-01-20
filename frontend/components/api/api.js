@@ -18,6 +18,15 @@ const api = {
     },
     list_todos(){
         return get('/api/list_todos');
+    },
+    list_users(){
+        return get('/api/list_users');
+    },
+    list_reqs(){
+        return get('/api/list_reqs');
+    },
+    list_statuses(){
+        return get('/api/list_statuses');
     }
 }
 export default api;

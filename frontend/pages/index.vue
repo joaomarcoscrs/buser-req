@@ -11,20 +11,19 @@ export default {
   components: {
     home
   },
+  asyncData() {
+    return AppApi.list_statuses().then(statusResult => {
+      return AppApi.list_reqs().then(reqsResult => {
+        return {
+          statuses: statusResult.data,
+          reqs: reqsResult.data
+          }
+      })
+    })
+  },
   data () {
     return {
-      reqs: [],
-      statuses: []
     }
-  },
-  mounted() {
-    const self = this
-    AppApi.list_reqs().then(function(result){
-      self.reqs = result.data
-    })
-    AppApi.list_statuses().then(function(result){
-      self.statuses = result.data
-    })
   }
 }
 </script>

@@ -11,16 +11,16 @@ export default {
   components: {
     user_list
   },
+  asyncData() {
+    return AppApi.list_users().then(result => {
+      return {
+        users: result.data
+        }
+    })
+  },
   data () {
     return {
-      users: []
     }
-  },
-  mounted() {
-    const self = this
-    AppApi.list_users().then(function(result){
-      self.users = result.data
-    })
   }
 }
 </script>
