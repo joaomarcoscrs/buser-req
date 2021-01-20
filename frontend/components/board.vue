@@ -54,6 +54,9 @@
                                           </span>
                                           <span v-if="req.link == null" class="texto-card-content padding-dentro-card" style="color: #DCDCDC">link</span>
                                        </div>
+                                       <v-btn icon class="padding-dentro-card tirar-margem-botao">
+                                        <v-icon medium color="grey" >mdi-archive-arrow-down</v-icon>
+                                      </v-btn>
                                     </div>
                                  </div>
                               </div>
@@ -68,12 +71,17 @@
       </v-card>
    </div>
 </template>
+
 <script>
    export default {
       props: ['reqs', 'statuses'],
     }
 </script>
+
 <style>
+   .tirar-margem-botao {
+     margin: 0px;
+   }
    .rounded-card{ 
    border-radius:20px;
    flex-basis: 100%;
@@ -87,7 +95,6 @@
    }
    .texto-board {
    text-align: center;
-   background-color: inherit;
    font-size: 34px;
    color: #ffffff;
    }
