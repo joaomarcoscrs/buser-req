@@ -22,17 +22,36 @@
         >
           <v-card  class="margin-card rounded-card">
             <v-card-title
-              class="headline titulo-tasks font-weight-medium"
+              class="headline titulo-tasks font-weight-regular esquerda direita"
               v-text="req.title"
             ></v-card-title>
+
               <div class="flex-box-content-card">
-                <div class="d-flex justify-space-around">
-                  <span>{{req.team}}</span>
-                  <span>{{req.priority}}</span>
+                <div class="flex-box-content-linha">
+                  <div class="d-flex align-center esquerda">
+                    <v-icon medium :color="req.team_color" class="padding-dentro-card">mdi-account-group</v-icon>
+                    <span class="texto-card-content padding-dentro-card" :style="{color: req.team_color}">{{req.team}}</span>
+                  </div>
+                  <div class="d-flex align-center direita">
+                    <v-icon medium :color="req.priority_color" class="padding-dentro-card">mdi-flag-variant</v-icon>
+                    <span class="texto-card-content padding-dentro-card" :style="{color: req.priority_color}">prioridade {{req.priority}}</span>
+                  </div>
                 </div>
-                <div class="d-flex justify-space-around">
-                  <span>{{req.category}}</span>
-                  <span>{{req.priority_color}}</span>
+
+                <div class="flex-box-content-linha">
+                  <div class="d-flex align-center esquerda">
+                    <v-icon medium color="#D81B60" class="padding-dentro-card">mdi-cart</v-icon>
+                    <span class="texto-card-content padding-dentro-card" style="color: #D81B60">{{req.category}}</span>
+                  </div>
+                  <div class="d-flex align-center direita">
+                    <v-icon v-if="req.link !== null" medium color="#367CDD" class="padding-dentro-card">mdi-open-in-new</v-icon>
+                    <v-icon v-if="req.link == null" medium color="#DCDCDC" class="padding-dentro-card">mdi-open-in-new</v-icon>
+                    <span v-if="req.link !== null" class="texto-card-content padding-dentro-card" style="color: #367CDD">
+                      <a target="_blank" :href="req.link">link</a>
+                    </span>
+                    <span v-if="req.link == null" class="texto-card-content padding-dentro-card" style="color: #DCDCDC">link</span>
+                    <v-icon medium color="#969696" class="padding-dentro-card margem-esquerda">mdi-text</v-icon>
+                  </div>
                 </div>
               </div>
           </v-card>
@@ -106,7 +125,7 @@ export default {
     border-radius:20px;
 }
 .margin-card {
-  margin: 10px;
+  margin: 15px;
   color: #ffffff;
 }
 .texto-board {
@@ -120,13 +139,35 @@ export default {
 }
 .titulo-tasks {
   color: #5B5B5B;
-  font-size: 18px !important;
+  font-size: 20px !important;
+  padding: 10px;
 }
 .flex-box-content-card {
   display:flex;
   flex-flow: column wrap;
   justify-content: space-between;
   margin: 10px;
-  height: 60px;
+}
+.flex-box-content-linha {
+  display: flex;
+  flex-flow: row no-wrap;
+  justify-content:space-between;
+}
+.texto-card-content {
+  font-size: 17px;
+}
+.esquerda {
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+.direita {
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+.padding-dentro-card {
+  padding: 3px;
+}
+.margem-esquerda {
+  margin-left: 28px;
 }
 </style>
