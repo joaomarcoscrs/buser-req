@@ -84,7 +84,6 @@
    }
    .rounded-card{ 
    border-radius:20px;
-   flex-basis: 100%;
    }
    .rounded-task-card{ 
    border-radius:10px;
