@@ -22,41 +22,45 @@
                   cols="12"
                   >
                   <div v-if="req.status == status.name">
-                     <v-card  class="margin-card rounded-task-card" elevation="2">
-                        <v-card-title
-                           class="headline titulo-tasks font-weight-regular"
-                           v-text="req.title"
-                           ></v-card-title>
-                        <div class="flex-box-content-card">
-                           <div class="flex-box-content-linha">
-                              <div class="esquerda">
-                                 <v-icon medium :color="req.team_color" class="padding-dentro-card">mdi-account-group</v-icon>
-                                 <span class="texto-card-content padding-dentro-card" :style="{color: req.team_color}">{{req.team}}</span>
-                              </div>
-                              <div class="direita">
-                                 <v-icon medium :color="req.priority_color" class="padding-dentro-card">mdi-flag-variant</v-icon>
-                                 <span class="texto-card-content padding-dentro-card" :style="{color: req.priority_color}">prioridade {{req.priority}}</span>
-                              </div>
-                           </div>
-                           <div class="flex-box-content-linha">
-                              <div class="esquerda">
-                                 <v-icon medium color="#D81B60" class="padding-dentro-card">mdi-cart</v-icon>
-                                 <span class="texto-card-content padding-dentro-card" style="color: #D81B60">{{req.category}}</span>
-                              </div>
-                              <div class="container-link">
-                                 <div class="direita">
-                                    <v-icon v-if="req.link !== null" medium color="#367CDD" class="padding-dentro-card">mdi-open-in-new</v-icon>
-                                    <v-icon v-if="req.link == null" medium color="#DCDCDC" class="padding-dentro-card">mdi-open-in-new</v-icon>
-                                    <span v-if="req.link !== null" class="texto-card-content padding-dentro-card" style="color: #367CDD">
-                                    <a target="_blank" :href="req.link">link</a>
-                                    </span>
-                                    <span v-if="req.link == null" class="texto-card-content padding-dentro-card" style="color: #DCDCDC">link</span>
+                     <v-tooltip bottom>
+                        <template v-slot:activator="{ on, attrs }">
+                           <v-card v-bind="attrs" v-on="on" class="margin-card rounded-task-card" elevation="2">
+                              <v-card-title
+                                 class="headline titulo-tasks font-weight-regular"
+                                 v-text="req.title"
+                                 ></v-card-title>
+                              <div class="flex-box-content-card">
+                                 <div class="flex-box-content-linha">
+                                    <div class="esquerda">
+                                       <v-icon medium :color="req.team_color" class="padding-dentro-card">mdi-account-group</v-icon>
+                                       <span class="texto-card-content padding-dentro-card" :style="{color: req.team_color}">{{req.team}}</span>
+                                    </div>
+                                    <div class="direita">
+                                       <v-icon medium :color="req.priority_color" class="padding-dentro-card">mdi-flag-variant</v-icon>
+                                       <span class="texto-card-content padding-dentro-card" :style="{color: req.priority_color}">prioridade {{req.priority}}</span>
+                                    </div>
                                  </div>
-                                 <v-icon medium color="#969696" class="padding-dentro-card">mdi-text</v-icon>
+                                 <div class="flex-box-content-linha">
+                                    <div class="esquerda">
+                                       <v-icon medium color="#D81B60" class="padding-dentro-card">mdi-cart</v-icon>
+                                       <span class="texto-card-content padding-dentro-card" style="color: #D81B60">{{req.category}}</span>
+                                    </div>
+                                    <div class="container-link">
+                                       <div class="direita">
+                                          <v-icon v-if="req.link !== null" medium color="#367CDD" class="padding-dentro-card">mdi-open-in-new</v-icon>
+                                          <v-icon v-if="req.link == null" medium color="#DCDCDC" class="padding-dentro-card">mdi-open-in-new</v-icon>
+                                          <span v-if="req.link !== null" class="texto-card-content padding-dentro-card" style="color: #367CDD">
+                                          <a target="_blank" :href="req.link">link</a>
+                                          </span>
+                                          <span v-if="req.link == null" class="texto-card-content padding-dentro-card" style="color: #DCDCDC">link</span>
+                                       </div>
+                                    </div>
+                                 </div>
                               </div>
-                           </div>
-                        </div>
-                     </v-card>
+                           </v-card>
+                        </template>
+                        <span>{{req.description}}</span>
+                     </v-tooltip>
                   </div>
                </v-col>
             </v-row>

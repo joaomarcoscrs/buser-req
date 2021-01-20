@@ -34,6 +34,15 @@
         </v-list-tile-content>
       </v-list-tile>
 
+      <v-list-tile :to="{name: 'arquivados'}">
+        <v-list-tile-action>
+          <v-icon medium class="texto-branco">mdi-archive</v-icon>
+        </v-list-tile-action>
+        <v-list-tile-content>
+          <v-list-tile-title><h1 class="font-weight-thin fonte-maior texto-branco">cards arquivados</h1></v-list-tile-title>
+        </v-list-tile-content>
+      </v-list-tile>
+
     </v-list>
   </v-navigation-drawer>
 </template>
