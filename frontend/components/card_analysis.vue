@@ -85,6 +85,7 @@
             <v-divider></v-divider>
             <div class="flex-box-botoes" style="background-color: #ECECEC">
             <v-btn icon fab class="padding-dentro-card-analise"><v-icon large color="#64A338">mdi-check</v-icon></v-btn>
+            <v-btn icon fab class="padding-dentro-card-analise"><img class="icone-slack" src="~/static/slack.png"></v-btn>
             <v-btn icon fab class="padding-dentro-card-analise"><v-icon large color="#E03B24">mdi-window-close</v-icon></v-btn>
             </div>
         </div>
@@ -99,6 +100,10 @@ export default {
 </script>
 
 <style scoped>
+.icone-slack {
+    height: 30px;
+    width: auto;
+}
 .texto-icone {
   font-size: 17px;
   margin-left: 2px;
