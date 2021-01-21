@@ -11,8 +11,7 @@
           color="#969696"
           clearable
           prepend-inner-icon="search"
-          placeholder="busca textual"
-          persistent-hint="tente buscar por 'notebooks'">
+          placeholder="busca textual">
       </v-text-field>
     </v-flex>
     <v-spacer></v-spacer>

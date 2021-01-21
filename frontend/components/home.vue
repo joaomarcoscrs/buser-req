@@ -12,7 +12,9 @@ export default {
     board
   },
   data () {
-    return {}
+    return {
+      
+    }
   }
 }
 </script>

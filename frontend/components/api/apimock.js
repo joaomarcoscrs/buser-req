@@ -8,6 +8,12 @@ function mockasync (data) {
   })
 }
 
+function mockasync_fast (data) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => resolve({data: data}), 200)
+  })
+}
+
 const api = {
     login(username, password){
         if(password){
@@ -47,7 +53,7 @@ const api = {
         });
     },
     list_users(){
-        return mockasync([
+        return mockasync_fast([
            {
              id: 1,
              username: 'tamireservila',
@@ -147,7 +153,7 @@ const api = {
          ])
     },
     list_statuses(){
-        return mockasync([
+        return mockasync_fast([
            {
              id: 1,
              name: 'backlog',
@@ -179,7 +185,77 @@ const api = {
              description: 'Tudo que está aqui já foi concluído e já foi entregue.'
            }
          ])
-    }
+    },
+    list_reqs_analysis(){
+        return mockasync([
+           {
+             id: 7,
+             status: 'em análise',
+             title: '20 Carros SUV',
+             team: 'operações',
+             team_color: '#49CB57',
+             priority: null,
+             category: 'compra',
+             link: 'https://www.ofertastlinejeep.com.br/comprar-veiculo-jeep-compass.html?m=&m=adwords&ad=441956994200&kw=%2Bcomprar%20%2Bjeep%20%2Bcompass&mt=b&nw=g&dev=c&pm=&tg=&ap=&gclid=CjwKCAiAxp-ABhALEiwAXm6IyXbQxGsEMThsjyN35Ogn9EAcVnx9N-K84IKOiaSoLwFsrC-yboGeNxoCazAQAvD_BwE',
+             description: 'Tá osso ir almoçar a pé, seria bom se tivessem uns carrinhos à disposição do pessoal'
+           },
+           {
+             id: 8,
+             status: 'em análise',
+             title: '13 Notebooks busercamp',
+             team: 'tecnologia',
+             team_color: '#49B4CB',
+             priority: null,
+             category: 'compra',
+             link: 'https://www.kabum.com.br/cgi-local/site/produtos/descricao_ofertas.cgi?codigo=114214&gclid=CjwKCAiAxp-ABhALEiwAXm6IyV1P92CsuObd50cTWDHzMJLgTWopOsm0z-4HRKEMkQgcV1LZ_-fAlhoCSAgQAvD_BwE',
+             description: 'Notebooks de presente pra galera do busercamp denovo'
+           },
+           {
+             id: 9,
+             status: 'em análise',
+             title: 'Escorregador para o térreo',
+             team: 'todos',
+             team_color: '#D81B60',
+             priority: null,
+             category: 'obra',
+             link: null,
+             description: 'Porque escorregar é muito mais legal que descer de elevador'
+           },
+           {
+             id: 10,
+             status: 'em análise',
+             title: 'Microondas 2º andar',
+             team: 'todos',
+             team_color: '#D81B60',
+             priority: null,
+             category: 'compra',
+             link: null,
+             description: 'Comprar um microondas pra colocar na copa do 2º andar'
+           },
+           {
+             id: 11,
+             status: 'em análise',
+             title: 'Elevador faz barulho feio quando sobe',
+             team: 'todos',
+             team_color: '#D81B60',
+             priority: null,
+             category: 'manutenção',
+             link: null,
+             description: 'Pessoal tá com medo de cair enquanto estiver subindo, principalmente logo depois do almoço que tá todo mundo mais pesado'
+           },
+           {
+             id: 12,
+             status: 'em análise',
+             title: 'Mesa digitalizadora',
+             team: 'marketing',
+             team_color: '#FF7A00',
+             priority: null,
+             category: 'compra',
+             link: 'https://www.amazon.com.br/Caneta-Tablet-Wacom-Tablets-Gr%C3%A1fico/dp/B01MTZ9CCD/ref=as_li_ss_tl?__mk_pt_BR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&keywords=Wacom+Intuos+Pro+PTH860&qid=1554747767&s=gateway&sr=8-1-fkmrnull&linkCode=sl1&tag=melhores-20&linkId=4afea1f9ed728091f59b72524b82f4af',
+             description: 'Time de mkt precisa de uma mesa digitalizadora'
+           },
+         ])
+    },
 };
 
 export default api;
