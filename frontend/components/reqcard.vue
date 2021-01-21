@@ -1,0 +1,134 @@
+<template>
+    <div v-if="req.status == status.name">
+                    <v-tooltip bottom>
+                        <template v-slot:activator="{ on, attrs }">
+                            <v-card v-bind="attrs" v-on="on" class="margin-card rounded-task-card" elevation="2">
+                                <v-card-title
+                                    class="headline titulo-tasks font-weight-regular"
+                                    v-text="req.title"
+                                    ></v-card-title>
+                                <div class="flex-box-content-card">
+                                    <div class="flex-box-content-linha">
+                                    <div class="esquerda">
+                                        <v-icon  :color="req.team_color" class="padding-dentro-card">mdi-account-group</v-icon>
+                                        <span class="texto-card-content padding-dentro-card" :style="{color: req.team_color}">{{req.team}}</span>
+                                    </div>
+                                    <div class="direita">
+                                        <v-icon  :color="req.priority_color" class="padding-dentro-card">mdi-flag-variant</v-icon>
+                                        <span class="texto-card-content padding-dentro-card" :style="{color: req.priority_color}">prioridade {{req.priority}}</span>
+                                    </div>
+                                    </div>
+                                    <div class="flex-box-content-linha">
+                                    <div class="esquerda">
+                                        <v-icon  color="#D81B60" class="padding-dentro-card">mdi-cart</v-icon>
+                                        <span class="texto-card-content padding-dentro-card" style="color: #D81B60">{{req.category}}</span>
+                                    </div>
+                                    <div class="container-link">
+                                        <div class="direita">
+                                            <v-icon v-if="req.link !== null"  color="#367CDD" class="padding-dentro-card">mdi-open-in-new</v-icon>
+                                            <v-icon v-if="req.link == null"  color="#DCDCDC" class="padding-dentro-card">mdi-open-in-new</v-icon>
+                                            <span v-if="req.link !== null" class="texto-card-content padding-dentro-card" style="color: #367CDD">
+                                            <a target="_blank" :href="req.link">link</a>
+                                            </span>
+                                            <span v-if="req.link == null" class="texto-card-content padding-dentro-card" style="color: #DCDCDC">link</span>
+                                        </div>
+                                        <v-btn icon class="padding-dentro-card tirar-margem-botao">
+                                        <v-icon  color="grey" >mdi-archive-arrow-down</v-icon>
+                                        </v-btn>
+                                    </div>
+                                    </div>
+                                </div>
+                            </v-card>
+                        </template>
+                    <span>{{req.description}}</span>
+                    </v-tooltip>
+                </div>
+</template>
+
+<script>
+export default {
+      props: ['req', 'status'],
+}
+</script>
+
+<style scoped>
+   .tirar-margem-botao {
+     margin: 0px;
+   }
+   .rounded-card{ 
+   border-radius:20px;
+   }
+   .rounded-task-card{ 
+   border-radius:10px;
+   }
+   .margin-card {
+   color: #ffffff;
+   }
+   .flex-box-barra {
+   justify-content: center;
+   }
+   .titulo-tasks {
+   color: #5B5B5B;
+   font-size: 20px !important;
+   padding: 10px;
+   margin-left: 15px;
+   }
+   .flex-box-content-card {
+   display:flex;
+   flex-flow: column wrap;
+   justify-content: center;
+   margin: 10px;
+   }
+   .flex-box-content-linha {
+   display: flex;
+   flex-flow: row no-wrap;
+   flex-grow: 1;
+   justify-content:space-between;
+   width: 280px;
+   }
+   .texto-card-content {
+   font-size: 14px;
+   }
+   .esquerda {
+   display: flex;
+   margin-left: 10px;
+   margin-bottom: 10px;
+   align-items: center;
+   justify-content: start;
+   width: 50%;
+   }
+   .direita {
+   display: flex;
+   margin-right: 10px;
+   margin-bottom: 10px;
+   justify-content: start;
+   align-items: center;
+   width: 50%;
+   }
+   .padding-dentro-card {
+   padding: 3px;
+   }
+   .container-link {
+   display: flex;
+   margin-right: 10px;
+   margin-bottom: 10px;
+   justify-content: space-between;
+   width: 50%;
+   align-items: start;
+   }
+   .boards-todos {
+   margin: 10px;
+   min-width: 360px;
+   }
+   .overflow {
+   overflow: auto;
+   display: flex;
+   position: relative;
+   flex-shrink: 0;
+   margin-right: 10px;
+   margin-left: 10px;
+   }
+   .height-tela {
+   height: 600px;
+   }
+</style>

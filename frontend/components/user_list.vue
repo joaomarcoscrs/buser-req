@@ -41,7 +41,7 @@
 
 <style scoped>
    .box{ 
-   max-width: 35%;
+   max-width: 37%;
    }
    .rounded-card{ 
    border-radius:20px;
