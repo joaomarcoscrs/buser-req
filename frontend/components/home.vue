@@ -1,5 +1,7 @@
 <template>
-  <board :reqs="reqs" :statuses="statuses"></board>
+  <no-ssr>
+    <board :reqs="reqs" :statuses="statuses"></board>
+  </no-ssr>
 </template>
 
 <script>
@@ -13,7 +15,7 @@ export default {
   },
   data () {
     return {
-      
+
     }
   }
 }
