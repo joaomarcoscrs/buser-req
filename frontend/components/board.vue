@@ -14,7 +14,7 @@
                <h1 class="font-weight-regular texto-board">{{status.name}}</h1>
             </span>
          </v-system-bar>
-         <v-container class="overflow" style="height: 750px">
+         <v-container class="overflow" style="min-height: 450px; max-height: 750px">
             <v-row dense>
                <v-col
                   v-for="req in reqs"
@@ -32,30 +32,30 @@
                               <div class="flex-box-content-card">
                                  <div class="flex-box-content-linha">
                                     <div class="esquerda">
-                                       <v-icon medium :color="req.team_color" class="padding-dentro-card">mdi-account-group</v-icon>
+                                       <v-icon  :color="req.team_color" class="padding-dentro-card">mdi-account-group</v-icon>
                                        <span class="texto-card-content padding-dentro-card" :style="{color: req.team_color}">{{req.team}}</span>
                                     </div>
                                     <div class="direita">
-                                       <v-icon medium :color="req.priority_color" class="padding-dentro-card">mdi-flag-variant</v-icon>
+                                       <v-icon  :color="req.priority_color" class="padding-dentro-card">mdi-flag-variant</v-icon>
                                        <span class="texto-card-content padding-dentro-card" :style="{color: req.priority_color}">prioridade {{req.priority}}</span>
                                     </div>
                                  </div>
                                  <div class="flex-box-content-linha">
                                     <div class="esquerda">
-                                       <v-icon medium color="#D81B60" class="padding-dentro-card">mdi-cart</v-icon>
+                                       <v-icon  color="#D81B60" class="padding-dentro-card">mdi-cart</v-icon>
                                        <span class="texto-card-content padding-dentro-card" style="color: #D81B60">{{req.category}}</span>
                                     </div>
                                     <div class="container-link">
                                        <div class="direita">
-                                          <v-icon v-if="req.link !== null" medium color="#367CDD" class="padding-dentro-card">mdi-open-in-new</v-icon>
-                                          <v-icon v-if="req.link == null" medium color="#DCDCDC" class="padding-dentro-card">mdi-open-in-new</v-icon>
+                                          <v-icon v-if="req.link !== null"  color="#367CDD" class="padding-dentro-card">mdi-open-in-new</v-icon>
+                                          <v-icon v-if="req.link == null"  color="#DCDCDC" class="padding-dentro-card">mdi-open-in-new</v-icon>
                                           <span v-if="req.link !== null" class="texto-card-content padding-dentro-card" style="color: #367CDD">
                                           <a target="_blank" :href="req.link">link</a>
                                           </span>
                                           <span v-if="req.link == null" class="texto-card-content padding-dentro-card" style="color: #DCDCDC">link</span>
                                        </div>
                                        <v-btn icon class="padding-dentro-card tirar-margem-botao">
-                                        <v-icon medium color="grey" >mdi-archive-arrow-down</v-icon>
+                                        <v-icon  color="grey" >mdi-archive-arrow-down</v-icon>
                                       </v-btn>
                                     </div>
                                  </div>
@@ -89,7 +89,6 @@
    border-radius:10px;
    }
    .margin-card {
-   margin: 5px;
    color: #ffffff;
    }
    .texto-board {
@@ -117,16 +116,16 @@
    flex-flow: row no-wrap;
    flex-grow: 1;
    justify-content:space-between;
-   width: 300px;
+   width: 280px;
    }
    .texto-card-content {
-   font-size: 17px;
+   font-size: 14px;
    }
    .esquerda {
    display: flex;
    margin-left: 10px;
    margin-bottom: 10px;
-   align-items: end;
+   align-items: center;
    justify-content: start;
    width: 50%;
    }
@@ -135,7 +134,7 @@
    margin-right: 10px;
    margin-bottom: 10px;
    justify-content: start;
-   align-items: end;
+   align-items: center;
    width: 50%;
    }
    .padding-dentro-card {
@@ -147,18 +146,21 @@
    margin-bottom: 10px;
    justify-content: space-between;
    width: 50%;
-   align-items: end;
+   align-items: start;
    }
    .boards-todos {
-   margin: 7px;
-   min-width: 400px;
+   margin: 10px;
+   min-width: 360px;
    }
    .overflow {
    overflow: auto;
    display: flex;
-   justify-content: start;
+   position: relative;
    flex-shrink: 0;
    margin-right: 10px;
    margin-left: 10px;
+   }
+   .height-tela {
+   height: 600px;
    }
 </style>

@@ -7,7 +7,6 @@
         <nuxt></nuxt>
       </v-container>
     </v-content>
-    <le-footer/>
     <v-snackbar
       :timeout="snack.timeout"
       :color="snack.color"
