@@ -18,6 +18,7 @@
     "babel-polyfill": "^6.26.0",
     "bluebird": "^3.5.1",
     "nuxt": "^1.0.0",
+    "vue-truncate": "^1.0.0",
     "vue2-filters": "^0.3.0",
     "vuetify": "^1.0.4"
   },

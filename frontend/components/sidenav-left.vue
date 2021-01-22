@@ -59,7 +59,7 @@
 
 <style scoped>
   .fundo-rosa {
-    background-color: #D81B60;
+    background-color: #FF3677;
   }
   .texto-branco {
   color: #ffffff !important;

@@ -30,6 +30,9 @@ const api = {
     },
     list_reqs_analysis(){
         return get('/api/list_reqs_analysis')
+    },
+    list_archived_reqs(){
+        return get('/api/list_reqs_analysis')
     }
 }
 export default api;
