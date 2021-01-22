@@ -13,7 +13,7 @@
             <h1 class="font-weight-regular texto-board">{{status.name}}</h1>
         </span>
         </v-system-bar>
-        <v-container class="overflow" style="min-height: 450px; max-height: 750px">
+        <v-container class="overflow" style="min-height: 550px; max-height: 750px">
             <v-row dense>
                 <reqcard v-for="req in reqs" :key="req.id" :req="req" :status="status"></reqcard>
             </v-row>

@@ -29,10 +29,13 @@ const api = {
         return get('/api/list_statuses');
     },
     list_reqs_analysis(){
-        return get('/api/list_reqs_analysis')
+        return get('/api/list_reqs_analysis');
     },
     list_archived_reqs(){
-        return get('/api/list_reqs_analysis')
+        return get('/api/list_reqs_analysis');
+    },
+    change_user_info(role, id, params){
+        return post('/api/change_user_info', {role: role, id: id, params: params});
     }
 }
 export default api;

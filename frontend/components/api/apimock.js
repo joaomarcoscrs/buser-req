@@ -319,6 +319,31 @@ const api = {
              description: 'Time de mkt precisa de uma mesa digitalizadora'
            },
          ])
+    },
+    user_info(username){
+        return mockasync_fast(
+           {
+             id: 254,
+             username: 'tamireservila',
+             name: 'Tamires Érvila Cunha de Sousa',
+             email: 'tamires.cunha@buser.com.br',
+             team: 'facilities',
+             is_admin: true,
+             category: 'compra',
+             link: 'https://www.ofertastlinejeep.com.br/comprar-veiculo-jeep-compass.html?m=&m=adwords&ad=441956994200&kw=%2Bcomprar%20%2Bjeep%20%2Bcompass&mt=b&nw=g&dev=c&pm=&tg=&ap=&gclid=CjwKCAiAxp-ABhALEiwAXm6IyXbQxGsEMThsjyN35Ogn9EAcVnx9N-K84IKOiaSoLwFsrC-yboGeNxoCazAQAvD_BwE',
+             description: 'Tá osso ir almoçar a pé, seria bom se tivessem uns carrinhos à disposição do pessoal'
+           })
+    },
+    change_user_info(id, role){
+      if (role == 'admin'){
+        changed = true;
+      }
+      else {
+        changed = false;
+      }
+      return mockasync({
+        changed
+      })
     }
 };
 

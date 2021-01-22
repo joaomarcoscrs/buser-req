@@ -5,8 +5,6 @@
       <v-text-field class="search-box"
           light
           solo
-          outlined
-          shaped
           background-color="#ECECEC"
           color="#969696"
           clearable

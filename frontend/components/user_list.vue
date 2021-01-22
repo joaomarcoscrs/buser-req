@@ -4,7 +4,7 @@
       <v-divider class="margin-divider"></v-divider>
 
       <template v-for="user in users">
-        <v-list-tile :key="user.id" class="flex-box-user" :to="{name: 'usuario-username', params: {username: user.username}}">
+        <v-list-tile :key="user.id" class="flex-box-user" @click="open_info_user($event)">
           <v-list-tile-avatar size="60" class="margin-avatar">
             <img :src="user.profile_picture">
           </v-list-tile-avatar>
@@ -28,15 +28,29 @@
         </v-list-tile>
         <v-divider :key="user.id" class="margin-divider"></v-divider>
       </template>
+  <info-usuario ref="info_usuario"/>
 
     </v-list>
   </v-card>
 </template>
 
 <script>
+
+  import Vuex from 'vuex'
+  import infoUsuario from '~/components/info-usuario.vue'
+
    export default {
-      props: ['users'],
+     components: {
+       infoUsuario
+     },
+    props: ['users'],
+    methods: {
+      open_info_user (evt) {
+        this.$refs.info_usuario.open();
+        evt.stopPropagation();
+      }
     }
+  }
 </script>
 
 <style scoped>

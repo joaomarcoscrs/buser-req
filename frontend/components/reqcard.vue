@@ -2,7 +2,7 @@
     <div v-if="req.status == status.name || req.archived">
         <v-tooltip bottom>
             <template v-slot:activator="{ on, attrs }">
-                <v-card v-bind="attrs" v-on="on" class="margin-card rounded-task-card" elevation="2">
+                <v-card v-bind="attrs" v-on="on" class="margin-card rounded-task-card" elevation="4">
                     <v-card-title
                         class="headline titulo-tasks font-weight-regular"
                         v-text="req.title"
@@ -50,7 +50,7 @@
                                 </template>
                                 <template v-else>
                                     <v-icon  color="#DCDCDC" class="padding-dentro-card">mdi-flag-variant</v-icon>
-                                    <span class="texto-card-content padding-dentro-card" style="color: #DCDCDC">sem prioridade</span>
+                                    <span class="texto-card-content padding-dentro-card" style="color: #DCDCDC">prioridade -</span>
                                 </template>
                             </div>
                         </div>
@@ -81,7 +81,8 @@
                                     </template>
                                 </div>
                                 <v-btn icon class="padding-dentro-card tirar-margem-botao">
-                                <v-icon  color="grey" >mdi-archive-arrow-down</v-icon>
+                                    <v-icon  v-if="req.archived" color="#FF3677" >mdi-archive-arrow-up</v-icon>
+                                    <v-icon  v-else color="grey" >mdi-archive-arrow-down</v-icon>
                                 </v-btn>
                             </div>
                         </div>
@@ -102,6 +103,7 @@ export default {
 <style scoped>
    .tirar-margem-botao {
      margin: 0px;
+     margin-right:10px;
    }
    .rounded-task-card{ 
    border-radius:10px;
@@ -161,7 +163,7 @@ export default {
    margin-bottom: 10px;
    justify-content: space-between;
    width: 50%;
-   align-items: start;
+   align-items: flex-start;
    }
    .boards-todos {
    margin: 10px;
