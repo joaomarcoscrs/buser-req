@@ -7,7 +7,7 @@
         elevation="3"
         >
         <v-system-bar class="flex-box-barra"
-        color="#000000"
+        color="#969696"
         height="50"
         >
         <span>
@@ -41,11 +41,11 @@
         elevation="3"
         >
         <v-system-bar class="flex-box-barra"
-        color="#000000"
+        color="#F6C500"
         height="50"
         >
         <span>
-            <h1 class="font-weight-regular texto-board">pending</h1>
+            <h1 class="font-weight-regular texto-board">pendente</h1>
         </span>
         </v-system-bar>
         <v-container class="overflow-vert box-alinhar-card-botao" style="min-height: 550px; max-height: 750px">
@@ -75,11 +75,11 @@
         elevation="3"
         >
         <v-system-bar class="flex-box-barra"
-        color="#000000"
+        color="#64A338"
         height="50"
         >
         <span>
-            <h1 class="font-weight-regular texto-board">ongoing</h1>
+            <h1 class="font-weight-regular texto-board">em andamento</h1>
         </span>
         </v-system-bar>
         <v-container class="overflow-vert box-alinhar-card-botao" style="min-height: 550px; max-height: 750px">
@@ -109,11 +109,11 @@
         elevation="3"
         >
         <v-system-bar class="flex-box-barra"
-        color="#000000"
+        color="#3865A3"
         height="50"
         >
         <span>
-            <h1 class="font-weight-regular texto-board">done</h1>
+            <h1 class="font-weight-regular texto-board">concluído</h1>
         </span>
         </v-system-bar>
         <v-container class="overflow-vert box-alinhar-card-botao" style="min-height: 550px; max-height: 750px">
@@ -143,11 +143,11 @@
         elevation="3"
         >
         <v-system-bar class="flex-box-barra"
-        color="#000000"
+        color="#3795CA"
         height="50"
         >
         <span>
-            <h1 class="font-weight-regular texto-board">delivered</h1>
+            <h1 class="font-weight-regular texto-board">entregue</h1>
         </span>
         </v-system-bar>
         <v-container class="overflow-vert box-alinhar-card-botao" style="min-height: 550px; max-height: 750px">
@@ -190,7 +190,9 @@ export default {
             group: "board",
             disabled: false,
             ghostClass: "ghost",
-            swapThreshold: 1
+            swapThreshold: 1,
+            touchStartThreshold: 5,
+            fallbackTolerance: 5
         };
         }
     },
@@ -228,7 +230,8 @@ export default {
    justify-content: center;
 }
 .teste-botao {
-   min-height: 160px;
+   min-height: 100px;
+   margin-top:20px;
    color: #5B5B5B;
 }
    .flex-add {
@@ -254,7 +257,7 @@ export default {
    justify-content: center;
    }
    .rounded-card{ 
-   border-radius:20px;
+   border-radius:10px;
    }
    .boards-todos {
    margin: 10px;
@@ -268,4 +271,7 @@ export default {
    .min-altura-draggable {
       min-height: 400px !important;
    }
+   .ghost {
+  opacity: 1;
+}
 </style>

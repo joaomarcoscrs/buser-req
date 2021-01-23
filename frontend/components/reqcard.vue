@@ -109,7 +109,7 @@ export default {
      margin-right:10px;
    }
    .rounded-task-card{ 
-   border-radius:10px;
+   border-radius:6px;
    }
    .margin-card {
    color: #ffffff;

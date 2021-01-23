@@ -58,7 +58,7 @@
    max-width: 37%;
    }
    .rounded-card{ 
-   border-radius:20px;
+   border-radius:8px;
    }
    .nome{ 
    font-size: 20px;
