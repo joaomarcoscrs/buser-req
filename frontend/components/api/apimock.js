@@ -117,17 +117,6 @@ const api = {
 
          ],
          ongoing: [
-           {
-             id: 102,
-             is_ghost: true,
-             title: 'ghost card',
-             archived: false,
-             team: null,
-             priority: null,
-             category: null,
-             link: null,
-             description: 'Card para evitar que listas fiquem vazias e o componente draggable dê pau'
-           },
          ],
          done: [
            {

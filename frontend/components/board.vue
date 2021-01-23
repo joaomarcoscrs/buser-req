@@ -14,22 +14,22 @@
             <h1 class="font-weight-regular texto-board">backlog</h1>
         </span>
         </v-system-bar>
-        <v-container class="overflow" style="min-height: 550px; max-height: 750px">
-            <v-row dense>
+        <v-container class="overflow-vert box-alinhar-card-botao" style="min-height: 550px; max-height: 750px">
+            <v-row class="width-total">
                 <draggable v-model="backlog"
                      :componentData="componentData"
                      tag="transition-group"
-                     :animation="300"
-                     :empty-insert-threshold="400"
+                     :animation="400"
+                     :empty-insert-threshold="80"
                      group="board"
                      v-bind="dragOptions"
                      @start="drag = true"
                      @end="drag = false">
                      <reqcard v-for="req in reqs.backlog" :key="req.id" :req="req"></reqcard>
-                     <div key="footer" slot="footer" role="group" class="flex-add">
-                           <v-button icon depressed large @click="add('backlog')"><v-icon color="#FF3677" large>mdi-plus</v-icon></v-button>
-                     </div>
                 </draggable>
+                     <div key="footer" slot="footer" role="group" class="flex-add">
+                           <v-btn text raised block depressed color="#ECECEC" class="teste-botao" @click="add('backlog')">Adicionar card</v-btn>
+                     </div>
             </v-row>
         </v-container>
     </v-card>
@@ -48,22 +48,22 @@
             <h1 class="font-weight-regular texto-board">pending</h1>
         </span>
         </v-system-bar>
-        <v-container class="overflow" style="min-height: 550px; max-height: 750px">
-            <v-row dense>
+        <v-container class="overflow-vert box-alinhar-card-botao" style="min-height: 550px; max-height: 750px">
+            <v-row dense class="width-total">
                 <draggable v-model="pending"
                      :componentData="componentData"
                      tag="transition-group"
-                     :animation="300"
-                     :empty-insert-threshold="400"
+                     :animation="400"
+                     :empty-insert-threshold="80"
                      group="board"
                      v-bind="dragOptions"
                      @start="drag = true"
                      @end="drag = false">
                      <reqcard v-for="req in reqs.pending" :key="req.id" :req="req"></reqcard>
-                     <div key="footer" slot="footer" role="group" class="flex-add">
-                           <v-button icon depressed large @click="add('pending')"><v-icon color="#FF3677" large>mdi-plus</v-icon></v-button>
-                     </div>
                 </draggable>
+                     <div key="footer" slot="footer" role="group" class="flex-add">
+                           <v-btn text raised block depressed color="#ECECEC" class="teste-botao" @click="add('pending')">Adicionar card</v-btn>
+                     </div>
             </v-row>
         </v-container>
     </v-card>
@@ -82,22 +82,22 @@
             <h1 class="font-weight-regular texto-board">ongoing</h1>
         </span>
         </v-system-bar>
-        <v-container class="overflow" style="min-height: 550px; max-height: 750px">
-            <v-row dense>
+        <v-container class="overflow-vert box-alinhar-card-botao" style="min-height: 550px; max-height: 750px">
+            <v-row dense class="width-total">
                 <draggable v-model="ongoing"
                      :componentData="componentData"
                      tag="transition-group"
-                     :animation="300"
-                     :empty-insert-threshold="400"
+                     :animation="400"
+                     :empty-insert-threshold="80"
                      group="board"
                      v-bind="dragOptions"
                      @start="drag = true"
                      @end="drag = false">
                      <reqcard v-for="req in reqs.ongoing" :key="req.id" :req="req"></reqcard>
-                     <div key="footer" slot="footer" role="group">
-                           <v-button icon depressed large @click="add('ongoing')"><v-icon color="#FF3677" large>mdi-plus</v-icon></v-button>
-                     </div>
                 </draggable>
+                     <div key="footer" slot="footer" role="group">
+                           <v-btn text raised block depressed color="#ECECEC" class="teste-botao" @click="add('ongoing')">Adicionar card</v-btn>
+                     </div>
             </v-row>
         </v-container>
     </v-card>
@@ -116,22 +116,22 @@
             <h1 class="font-weight-regular texto-board">done</h1>
         </span>
         </v-system-bar>
-        <v-container class="overflow" style="min-height: 550px; max-height: 750px">
-            <v-row dense>
+        <v-container class="overflow-vert box-alinhar-card-botao" style="min-height: 550px; max-height: 750px">
+            <v-row dense class="width-total">
                 <draggable v-model="done"
                      :componentData="componentData"
                      tag="transition-group"
-                     :animation="300"
-                     :empty-insert-threshold="400"
+                     :animation="400"
+                     :empty-insert-threshold="80"
                      group="board"
                      v-bind="dragOptions"
                      @start="drag = true"
                      @end="drag = false">
                      <reqcard v-for="req in reqs.done" :key="req.id" :req="req"></reqcard>
-                     <div key="footer" slot="footer" role="group" class="flex-add">
-                           <v-button icon depressed large @click="add('done')"><v-icon color="#FF3677" large>mdi-plus</v-icon></v-button>
-                     </div>
                 </draggable>
+                     <div key="footer" slot="footer" role="group" class="flex-add">
+                           <v-btn text raised block depressed color="#ECECEC" class="teste-botao" @click="add('done')">Adicionar card</v-btn>
+                     </div>
             </v-row>
         </v-container>
     </v-card>
@@ -150,22 +150,22 @@
             <h1 class="font-weight-regular texto-board">delivered</h1>
         </span>
         </v-system-bar>
-        <v-container class="overflow" style="min-height: 550px; max-height: 750px">
-            <v-row dense>
+        <v-container class="overflow-vert box-alinhar-card-botao" style="min-height: 550px; max-height: 750px">
+            <v-row dense class="width-total">
                 <draggable v-model="delivered"
                      :componentData="componentData"
                      tag="transition-group"
-                     :animation="300"
-                     :empty-insert-threshold="400"
+                     :animation="400"
+                     :empty-insert-threshold="80"
                      group="board"
                      v-bind="dragOptions"
                      @start="drag = true"
                      @end="drag = false">
                      <reqcard v-for="req in reqs.delivered" :key="req.id" :req="req"></reqcard>
-                     <div key="footer" slot="footer" role="group" class="flex-add">
-                        <v-button icon depressed large @click="add('delivered')"><v-icon color="#FF3677" large>mdi-plus</v-icon></v-button>
-                     </div>
                 </draggable>
+                     <div key="footer" slot="footer" role="group" class="flex-add">
+                           <v-btn text raised block depressed color="#ECECEC" class="teste-botao" @click="add('delivered')">Adicionar card</v-btn>
+                     </div>
             </v-row>
         </v-container>
     </v-card>
@@ -189,7 +189,8 @@ export default {
         return {
             group: "board",
             disabled: false,
-            ghostClass: "ghost"
+            ghostClass: "ghost",
+            swapThreshold: 1
         };
         }
     },
@@ -219,6 +220,17 @@ export default {
 </script>
 
 <style scoped>
+.width-total {
+   width: 100%;
+}
+.box-alinhar-card-botao {
+   display:flex;
+   justify-content: center;
+}
+.teste-botao {
+   min-height: 160px;
+   color: #5B5B5B;
+}
    .flex-add {
       display: flex;
       justify-content: center;
@@ -226,15 +238,17 @@ export default {
       align-items: flex-start;
       border-radius: 20px;
       order: 1000;
-      margin: 15px;
+      width: 100%;
    }
    .overflow {
    overflow: auto;
    display: flex;
    position: relative;
    flex-shrink: 0;
-   margin-right: 10px;
-   margin-left: 10px;
+   }
+   .overflow-vert {
+      overflow-y: auto;
+      overflow-x: hidden;
    }
    .flex-box-barra {
    justify-content: center;

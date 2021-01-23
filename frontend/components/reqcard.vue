@@ -180,9 +180,6 @@ export default {
    margin-right: 10px;
    margin-left: 10px;
    }
-   .height-tela {
-   height: 600px;
-   }
    .ghost-card {
        min-height: 10px;
        height:10px;
