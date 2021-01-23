@@ -20,6 +20,7 @@
     "nuxt": "^1.0.0",
     "vue-truncate": "^1.0.0",
     "vue2-filters": "^0.3.0",
+    "vuedraggable": "^2.24.3",
     "vuetify": "^1.0.4"
   },
   "devDependencies": {

@@ -77,10 +77,11 @@ const api = {
          ])
     },
     list_reqs(){
-        return mockasync([
+        return mockasync({
+          backlog: [
            {
              id: 1,
-             status: 'backlog',
+             is_ghost: false,
              title: '20 Celulares ops',
              archived: false,
              team: 'operações',
@@ -90,8 +91,48 @@ const api = {
              description: 'Atualizando os modelos de telefone da galera'
            },
            {
+             id: 3,
+             is_ghost: false,
+             title: 'Ar-condicionado térreo',
+             archived: false,
+             team: 'todos',
+             priority: 0,
+             category: 'obra',
+             link: null,
+             description: 'Arrumar o arcond do térreo para o pessoal começar a trabalhar lá'
+           },
+         ],
+         pending: [
+           {
+             id: 4,
+             is_ghost: false,
+             title: 'Microondas 1º andar',
+             archived: false,
+             team: null,
+             priority: 3,
+             category: 'compra',
+             link: null,
+             description: 'Comprar um microondas pra colocar na copa do 1º andar'
+           },
+
+         ],
+         ongoing: [
+           {
+             id: 102,
+             is_ghost: true,
+             title: 'ghost card',
+             archived: false,
+             team: null,
+             priority: null,
+             category: null,
+             link: null,
+             description: 'Card para evitar que listas fiquem vazias e o componente draggable dê pau'
+           },
+         ],
+         done: [
+           {
              id: 2,
-             status: 'concluído',
+             is_ghost: false,
              title: '13 Notebooks busercamp',
              archived: false,
              team: 'tecnologia',
@@ -101,41 +142,8 @@ const api = {
              description: 'Notebooks de presente pra galera do busercamp'
            },
            {
-             id: 3,
-             status: 'backlog',
-             title: 'Ar-condicionado térreo',
-             archived: false,
-             team: 'todos',
-             priority: 0,
-             category: 'obra',
-             link: null,
-             description: 'Arrumar o arcond do térreo para o pessoal começar a trabalhar lá'
-           },
-           {
-             id: 4,
-             status: 'pendente',
-             title: 'Microondas 1º andar',
-             archived: false,
-             team: null,
-             priority: 3,
-             category: 'compra',
-             link: null,
-             description: 'Comprar um microondas pra colocar na copa do 1º andar'
-           },
-           {
-             id: 5,
-             status: 'entregue',
-             title: 'Portão elétrico abre sozinho',
-             archived: false,
-             team: null,
-             priority: 2,
-             category: 'manutenção',
-             link: null,
-             description: 'Portão tá abrindo sozinho, precisa arrumar'
-           },
-           {
              id: 6,
-             status: 'concluído',
+             is_ghost: false,
              title: 'Macbook pro',
              archived: false,
              team: 'marketing',
@@ -144,7 +152,23 @@ const api = {
              link: 'https://www.kabum.com.br/produto/114218/macbook-pro-retina-apple-intel-core-i5-8gb-ssd-512gb-macos-13-3-cinza-espacial-mxk52bz-a?gclid=CjwKCAiAxp-ABhALEiwAXm6IyQrA5dnuxsSnQ4ry_49e83QpgAHglUXXeT12Kb9RMUzT4mJ4hv4U9hoC1tYQAvD_BwE',
              description: 'Time de mkt precisa de um novo macbook para viagens'
            },
-         ])
+
+         ],
+         delivered: [
+           {
+             id: 5,
+             is_ghost: false,
+             title: 'Portão elétrico abre sozinho',
+             archived: false,
+             team: null,
+             priority: 2,
+             category: 'manutenção',
+             link: null,
+             description: 'Portão tá abrindo sozinho, precisa arrumar'
+           },
+
+         ],
+        })
     },
     list_statuses(){
         return mockasync_fast([
@@ -184,7 +208,6 @@ const api = {
         return mockasync([
            {
              id: 7,
-             status: 'em análise',
              title: '20 Carros SUV',
              archived: false,
              team: 'operações',
@@ -195,7 +218,6 @@ const api = {
            },
            {
              id: 8,
-             status: 'em análise',
              title: '13 Notebooks busercamp',
              archived: false,
              team: 'tecnologia',
@@ -206,7 +228,6 @@ const api = {
            },
            {
              id: 9,
-             status: 'em análise',
              title: 'Escorregador para o térreo',
              archived: false,
              team: null,
@@ -217,7 +238,6 @@ const api = {
            },
            {
              id: 10,
-             status: 'em análise',
              title: 'Microondas 2º andar',
              archived: false,
              team: null,
@@ -228,7 +248,6 @@ const api = {
            },
            {
              id: 11,
-             status: 'em análise',
              title: 'Elevador faz barulho feio quando sobe',
              archived: false,
              team: null,
@@ -239,7 +258,6 @@ const api = {
            },
            {
              id: 12,
-             status: 'em análise',
              title: 'Mesa digitalizadora',
              archived: false,
              team: 'marketing',
@@ -254,7 +272,6 @@ const api = {
         return mockasync([
            {
              id: 13,
-             status: 'backlog',
              title: '20 Carros SUV',
              archived: true,
              team: 'operações',
@@ -265,7 +282,6 @@ const api = {
            },
            {
              id: 14,
-             status: 'entregue',
              title: '13 Notebooks busercamp',
              archived: true,
              team: 'tecnologia',
@@ -276,7 +292,6 @@ const api = {
            },
            {
              id: 15,
-             status: 'backlog',
              title: 'Escorregador para o térreo',
              archived: true,
              team: null,
@@ -287,7 +302,6 @@ const api = {
            },
            {
              id: 16,
-             status: 'em análise',
              title: 'Microondas 2º andar',
              archived: true,
              team: null,
@@ -298,7 +312,6 @@ const api = {
            },
            {
              id: 17,
-             status: 'entregue',
              title: 'Elevador faz barulho feio quando sobe',
              archived: true,
              team: null,
@@ -309,7 +322,6 @@ const api = {
            },
            {
              id: 18,
-             status: 'em análise',
              title: 'Mesa digitalizadora',
              archived: true,
              team: 'marketing',

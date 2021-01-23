@@ -15,7 +15,12 @@
         </v-system-bar>
         <v-container class="overflow" style="min-height: 550px; max-height: 750px">
             <v-row dense>
-                <reqcard v-for="req in reqs" :key="req.id" :req="req" :status="status"></reqcard>
+                <draggable v-model="reqs"
+                        v-bind="dragOptions"
+                        @start="drag = true"
+                        @end="drag = false">
+                        <reqcard v-for="req in reqs" :key="req.id" :req="req" :status="status"></reqcard>
+                </draggable>
             </v-row>
         </v-container>
     </v-card>
@@ -24,12 +29,24 @@
 <script>
 
 import reqcard from '~/components/reqcard.vue'
+import draggable from 'vuedraggable'
 
 export default {
     components: {
-        reqcard
+        reqcard,
+        draggable
     },
-      props: ['reqs', 'status'],
+    props: ['reqs', 'status'],
+    computed: {
+        dragOptions() {
+        return {
+            animation: 200,
+            group: "status",
+            disabled: false,
+            ghostClass: "ghost"
+        };
+        }
+    }
 }
 </script>
 

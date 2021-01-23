@@ -1,5 +1,7 @@
 <template>
-    <div v-if="req.status == status.name || req.archived">
+<div>
+    <div v-if="req.is_ghost" class="ghost-card">teste</div>
+    <div v-if="!req.is_ghost">
         <v-tooltip bottom>
             <template v-slot:activator="{ on, attrs }">
                 <v-card v-bind="attrs" v-on="on" class="margin-card rounded-task-card" elevation="4">
@@ -92,6 +94,7 @@
         <span>{{req.description}}</span>
         </v-tooltip>
     </div>
+    </div>
 </template>
 
 <script>
@@ -179,5 +182,11 @@ export default {
    }
    .height-tela {
    height: 600px;
+   }
+   .ghost-card {
+       min-height: 10px;
+       height:10px;
+       content: '.';
+       visibility: hidden;
    }
 </style>
