@@ -1,7 +1,5 @@
 <template>
-<div>
-    <div v-if="req.is_ghost" class="ghost-card">teste</div>
-    <div v-if="!req.is_ghost">
+    <div>
         <v-tooltip bottom>
             <template v-slot:activator="{ on, attrs }">
                 <v-card v-bind="attrs" v-on="on" class="margin-card rounded-task-card" elevation="4">
@@ -82,10 +80,7 @@
                                         <span class="texto-card-content padding-dentro-card" style="color: #DCDCDC">vazio</span>
                                     </template>
                                 </div>
-                                <v-btn icon class="padding-dentro-card tirar-margem-botao">
-                                    <v-icon  v-if="req.archived" color="#FF3677" >mdi-archive-arrow-up</v-icon>
-                                    <v-icon  v-else color="grey" >mdi-archive-arrow-down</v-icon>
-                                </v-btn>
+                                <botaoeditarcard style="margin-right: -20px" :archived="req.archived"></botaoeditarcard>
                             </div>
                         </div>
                     </div>
@@ -93,13 +88,18 @@
             </template>
         <span>{{req.description}}</span>
         </v-tooltip>
-    </div>
-    </div>
-</template>
+        </div>
+        </template>
 
 <script>
+
+import botaoeditarcard from '~/components/botaoeditarcard.vue'
+
 export default {
       props: ['req', 'status'],
+      components: {
+          botaoeditarcard
+      }
 }
 </script>
 
@@ -136,7 +136,7 @@ export default {
    flex-flow: row no-wrap;
    flex-grow: 1;
    justify-content:space-between;
-   width: 280px;
+   min-width: 280px;
    }
    .texto-card-content {
    font-size: 14px;
@@ -163,14 +163,9 @@ export default {
    .container-link {
    display: flex;
    margin-right: 10px;
-   margin-bottom: 10px;
    justify-content: space-between;
    width: 50%;
-   align-items: flex-start;
-   }
-   .boards-todos {
-   margin: 10px;
-   min-width: 360px;
+   align-items: flex-center;
    }
    .overflow {
    overflow: auto;

@@ -32,6 +32,7 @@ export default {
   }
 .margem-arquivados {
     margin: 5px;
-    max-width: 280px;
+    min-width: 340px;
+    max-width: 340px;
 }
 </style>
