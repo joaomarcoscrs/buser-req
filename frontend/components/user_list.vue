@@ -4,7 +4,7 @@
       <v-divider class="margin-divider"></v-divider>
 
       <template v-for="user in users">
-        <v-list-tile :key="user.id" class="flex-box-user" @click="open_info_user($event)">
+        <v-list-tile :key="user.id" class="flex-box-user" @click="open_info_user($event, user)">
           <v-list-tile-avatar size="60" class="margin-avatar">
             <img :src="user.profile_picture">
           </v-list-tile-avatar>
@@ -45,8 +45,8 @@
      },
     props: ['users'],
     methods: {
-      open_info_user (evt) {
-        this.$refs.info_usuario.open();
+      open_info_user (evt, user) {
+        this.$refs.info_usuario.open(user);
         evt.stopPropagation();
       }
     }

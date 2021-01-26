@@ -149,17 +149,6 @@ const api = {
              link: '-',
              description: 'Portão tá abrindo sozinho, precisa arrumar'
            },
-           {
-             id: 6,
-             title: 'Mesa de ping-pong quebrada',
-             archived: true,
-             team: '-',
-             priority: 2,
-             category: 'manutenção',
-             link: '-',
-             description: 'Portão tá abrindo sozinho, precisa arrumar'
-           },
-
          ],
         })
     },

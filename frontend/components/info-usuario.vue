@@ -1,19 +1,44 @@
 <template>
-  <v-dialog v-model="visible" max-width="500px">
-    <v-card
+  <v-dialog v-model="visible" max-width="800px">
+    <v-card 
   elevation="4"
   outlined
   shaped>
         <v-card-title><h1 class="font-weight-thin texto-rosa">detalhes do usuário </h1></v-card-title>
+        <v-container class="flex-linha">
+        <v-avatar style="margin:10px 10px 20px 35px;" size="200"><img :src="user.profile_picture"></v-avatar>
         <v-card-text>
-          <v-container fluid>
-            <v-text-field label="Usuário" required v-model="username"/>
-            <v-text-field label="Senha" type="password" required v-model="password" @keyup.enter="login()"/>
-            <small style="color: red;" v-if="error">Senha e/ou usuário inválido(s)</small>
+          <v-container fluid class="flex-texto">
+            
+            <div class="infos_linhas">
+              <div class="user-key"><v-icon large class="texto-rosa">mdi-account</v-icon>&nbsp;&nbsp;</div>
+              <div class="user-value">{{user.username}}</div>
+            </div>
+
+            <div class="infos_linhas">
+              <div class="user-key"><v-icon large class="texto-rosa">mdi-format-letter-case</v-icon>&nbsp;&nbsp;</div>
+              <div class="user-value">{{user.first_name}} {{user.last_name}}</div>
+            </div>
+
+            <div class="infos_linhas">
+              <div class="user-key"><v-icon large class="texto-rosa">mdi-at</v-icon>&nbsp;&nbsp;</div>
+              <div class="user-value">{{user.email}}</div>
+            </div>
+
+            <div class="infos_linhas">
+              <div class="user-key"><v-icon large class="texto-rosa">mdi-account-group</v-icon>&nbsp;&nbsp;</div>
+              <div class="user-value">{{user.team}}</div>
+            </div>
+
+            <div class="infos_linhas">
+              <div v-if="user.role == 'admin'" class="user-key"><v-icon large class="texto-rosa">mdi-shield-account</v-icon>&nbsp;&nbsp;</div>
+              <div v-else class="user-key"><v-icon large class="texto-rosa">mdi-eye</v-icon>&nbsp;&nbsp;</div>
+              <div class="user-value">{{user.role}}</div>
+            </div>
           </v-container>
         </v-card-text>
-        <v-btn class="texto-rosa darken-1" flat @click="close()">Cancelar</v-btn>
-        <v-btn class="texto-rosa darken-1" flat @click="change_info('admin')" :loading="loading" :disabled="loading">Alterar informações</v-btn>
+        </v-container>
+        <v-btn class="texto-rosa darken-1" flat @click="close()">Fechar</v-btn>
     </v-card>
   </v-dialog>
 </template>
@@ -27,15 +52,14 @@ export default {
     console.log('data');
     return {
       visible: false,
-      loading: false,
-      username: '',
-      password: '',
       error: false,
+      user: {}
     };
   },
   methods: {
-    open(){
+    open(user){
       this.visible = true;
+      this.user = user;
       console.log('Open');
     },
     close(){
@@ -49,14 +73,40 @@ export default {
         var deu_certo = result.data;
         this.loading = false;
       });
-    },
-  },
+    }
+  }
 }
 </script>
 
 <style scoped>
+.user-value {
+  color: #5B5B5B;
+  font-weight: 200;
+  font-size: 20px;
+}
+.user-key {
+  color: #FF3677;
+}
+.infos_linhas {
+  display: flex;
+  margin: 10px;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+.flex-linha {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flex-texto {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: flex-start;
+}
   .texto-rosa {
-    color: #D81B60;
+    color: #FF3677;
   }
   .rounded-card{
       border-radius:30px;
