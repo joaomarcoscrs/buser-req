@@ -3,54 +3,57 @@
         <v-tooltip bottom>
             <template v-slot:activator="{ on, attrs }">
                 <v-card v-bind="attrs" v-on="on" class="margin-card rounded-task-card" elevation="4">
-                    <v-card-title
+                    <v-card-title style="color: #5B5B5B" contenteditable v-text="req.title" @blur="onEdit($event,'title')"
                         class="headline titulo-tasks font-weight-regular"
-                        v-text="req.title"
                         ></v-card-title>
                     <div class="flex-box-content-card">
                         <div class="flex-box-content-linha">
                         <div class="esquerda">
                             <template v-if="req.team == 'operações'">
                                 <v-icon color="#49CB57" class="padding-dentro-card">mdi-account-group</v-icon>
-                                <span class="texto-card-content padding-dentro-card" style="color: #49CB57">{{req.team}}</span>
+                                <span class="texto-card-content padding-dentro-card" style="color: #49CB57"></span><div style="color: #49CB57" contenteditable v-text="req.team" @blur="onEdit($event,'team')"></div>
                             </template>
                             <template v-else-if="req.team == 'tecnologia'">
                                 <v-icon color="#49B4CB" class="padding-dentro-card">mdi-account-group</v-icon>
-                                <span class="texto-card-content padding-dentro-card" style="color: #49B4CB">{{req.team}}</span>
+                                <span class="texto-card-content padding-dentro-card" style="color: #49B4CB"></span><div style="color: #49B4CB" contenteditable v-text="req.team" @blur="onEdit($event,'team')"></div>
                             </template>
                             <template v-else-if="req.team == 'marketing'">
                                 <v-icon color="#FF7A00" class="padding-dentro-card">mdi-account-group</v-icon>
-                                <span class="texto-card-content padding-dentro-card" style="color: #FF7A00">{{req.team}}</span>
+                                <span class="texto-card-content padding-dentro-card" style="color: #FF7A00"></span><div style="color: #FF7A00" contenteditable v-text="req.team" @blur="onEdit($event,'team')"></div>
                             </template>
                             <template v-else-if="req.team == 'people'">
                                 <v-icon color="#B80F74" class="padding-dentro-card">mdi-account-group</v-icon>
-                                <span class="texto-card-content padding-dentro-card" style="color: #B80F74">{{req.team}}</span>
+                                <span class="texto-card-content padding-dentro-card" style="color: #B80F74"></span><div style="color: #B80F74" contenteditable v-text="req.team" @blur="onEdit($event,'team')"></div>
+                            </template>
+                            <template v-else-if="req.team == '-'">
+                                <v-icon color="#DCDCDC" class="padding-dentro-card">mdi-account-group</v-icon>
+                                <span class="texto-card-content padding-dentro-card" style="color: #DCDCDC"></span><div style="color: #DCDCDC" contenteditable v-text="req.team" @blur="onEdit($event,'team')"></div>
                             </template>
                             <template v-else>
                                 <v-icon color="#5B5B5B" class="padding-dentro-card">mdi-account-group</v-icon>
-                                <span class="texto-card-content padding-dentro-card" style="color: #5B5B5B">todos</span>
+                                <span class="texto-card-content padding-dentro-card" style="color: #5B5B5B"></span><div style="color: #5B5B5B" contenteditable v-text="req.team" @blur="onEdit($event,'team')"></div>
                             </template>
                         </div>
                             <div class="direita">
                                 <template v-if="req.priority == 0">
                                     <v-icon  color="#E03B24" class="padding-dentro-card">mdi-flag-variant</v-icon>
-                                    <span class="texto-card-content padding-dentro-card" style="color: #E03B24">prioridade {{req.priority}}</span>
+                                    <span class="texto-card-content padding-dentro-card" style="color: #E03B24">prioridade</span><div style="color: #E03B24" contenteditable v-text="req.priority" @blur="onEdit($event,'priority')"></div>
                                 </template>
                                 <template v-else-if="req.priority == 1">
                                     <v-icon  color="#F16500" class="padding-dentro-card">mdi-flag-variant</v-icon>
-                                    <span class="texto-card-content padding-dentro-card" style="color: #F16500">prioridade {{req.priority}}</span>
+                                    <span class="texto-card-content padding-dentro-card" style="color: #F16500">prioridade</span><div style="color: #F16500" contenteditable v-text="req.priority" @blur="onEdit($event,'priority')"></div>
                                 </template>
                                 <template v-else-if="req.priority == 2">
                                     <v-icon  color="#FDCB01" class="padding-dentro-card">mdi-flag-variant</v-icon>
-                                    <span class="texto-card-content padding-dentro-card" style="color: #FDCB01">prioridade {{req.priority}}</span>
+                                    <span class="texto-card-content padding-dentro-card" style="color: #FDCB01">prioridade</span><div style="color: #FDCB01" contenteditable v-text="req.priority" @blur="onEdit($event,'priority')"></div>
                                 </template>
                                 <template v-else-if="req.priority == 3">
                                     <v-icon  color="#57D71B" class="padding-dentro-card">mdi-flag-variant</v-icon>
-                                    <span class="texto-card-content padding-dentro-card" style="color: #57D71B">prioridade {{req.priority}}</span>
+                                    <span class="texto-card-content padding-dentro-card" style="color: #57D71B">prioridade</span><div style="color: #57D71B" contenteditable v-text="req.priority" @blur="onEdit($event,'priority')"></div>
                                 </template>
                                 <template v-else>
                                     <v-icon  color="#DCDCDC" class="padding-dentro-card">mdi-flag-variant</v-icon>
-                                    <span class="texto-card-content padding-dentro-card" style="color: #DCDCDC">prioridade -</span>
+                                    <span class="texto-card-content padding-dentro-card" style="color: #DCDCDC">prioridade</span><div style="color: #DCDCDC" contenteditable v-text="req.priority" @blur="onEdit($event,'priority')"></div>
                                 </template>
                             </div>
                         </div>
@@ -59,17 +62,20 @@
                                 <template v-if="req.category == 'compra'">
                                     <v-icon  color="#FF3677" class="padding-dentro-card">mdi-cart</v-icon>
                                 </template>
-                                <template v-if="req.category == 'obra'">
+                                <template v-else-if="req.category == 'obra'">
                                     <v-icon  color="#FF3677" class="padding-dentro-card">mdi-account-hard-hat</v-icon>
                                 </template>
-                                <template v-if="req.category == 'manutenção'">
+                                <template v-else-if="req.category == 'manutenção'">
                                     <v-icon  color="#FF3677" class="padding-dentro-card">mdi-hammer-wrench</v-icon>
                                 </template>
-                                <span class="texto-card-content padding-dentro-card" style="color: #FF3677">{{req.category}}</span>
+                                <template v-else>
+                                    <v-icon  color="#FF3677" class="padding-dentro-card">mdi-new-box</v-icon>
+                                </template>
+                                <span class="texto-card-content padding-dentro-card" style="color: #FF3677"></span><div style="color: #FF3677" contenteditable v-text="req.category" @blur="onEdit($event,'category')"></div>
                             </div>
                             <div class="container-link">
                                 <div class="direita">
-                                    <template v-if="req.link !== null">
+                                    <template v-if="req.link !== '-'">
                                         <v-icon color="#367CDD" class="padding-dentro-card">mdi-open-in-new</v-icon>
                                         <span class="texto-card-content padding-dentro-card" style="color: #367CDD">
                                         <a target="_blank" :href="req.link">link</a>
@@ -77,50 +83,16 @@
                                     </template>
                                     <template v-else>
                                         <v-icon  color="#DCDCDC" class="padding-dentro-card">mdi-open-in-new</v-icon>
-                                        <span class="texto-card-content padding-dentro-card" style="color: #DCDCDC">vazio</span>
+                                        <span class="texto-card-content padding-dentro-card" style="color: #DCDCDC">-</span>
                                     </template>
                                 </div>
-    <v-speed-dial
-      v-if="!cardedit"
-      v-model="fab"
-      :direction="direction"
-      :open-on-hover="hover"
-      :transition="transition"
-    >
-      <template v-slot:activator>
-        <v-btn
-          v-model="fab"
-          depressed
-          icon
-          medium
-        >
-          <v-icon color="#5B5B5B" v-if="fab">
-            mdi-close
-          </v-icon>
-          <v-icon color="#5B5B5B" v-else>
-            mdi-dots-horizontal
-          </v-icon>
-        </v-btn>
-      </template>
       <v-btn
         icon
-        medium
+        style="margin: 0px 0px 10px 0px;"
       >
-        <v-icon color="#5B5B5B" v-model="cardedit" @click="$emit('update:cardedit',!cardedit)">mdi-pencil</v-icon>
+        <v-icon color="#969696" v-if="!req.archived">mdi-delete</v-icon>
+        <v-icon color="#367CDD" v-else>mdi-delete-restore</v-icon>
       </v-btn>
-      <v-btn
-        icon
-        medium
-      >
-        <v-icon color="#E03B24" v-if="!archived">mdi-delete</v-icon>
-        <v-icon color="#3865A3" v-else>mdi-delete-restore</v-icon>
-      </v-btn>
-    </v-speed-dial>
-        <v-btn icon depressed medium v-else v-model="cardedit" @click="$emit('update:cardedit',!cardedit)">
-          <v-icon color="#64A338">
-            mdi-check
-          </v-icon>
-        </v-btn>
                             </div>
                         </div>
                     </div>
@@ -148,11 +120,36 @@ export default {
       bottom: true,
       left: false,
       transition: 'slide-y-reverse-transition',
-    })
+      items: [0, 1, 2, 3],
+    }),
+    methods:{
+        onEdit(evt, campo){
+            var src = evt.target.innerText
+            if (src.length > 0){
+                if (campo == 'link'){
+                    this.req[campo]= 'http://' + src
+                }
+                else {
+                    this.req[campo] = src
+                }
+            }
+            else{
+                this.req[campo]='-'
+            }
+            
+        }
+    }
 }
 </script>
 
 <style scoped>
+    [contenteditable]:active, [contenteditable]:focus {
+        border: none;
+        outline: none;
+    }
+    [contenteditable]:focus {
+        font-weight: 700 !important;
+    }
    .tirar-margem-botao {
      margin: 0px;
      margin-right:10px;

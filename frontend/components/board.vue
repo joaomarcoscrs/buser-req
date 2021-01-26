@@ -19,7 +19,6 @@
             <v-row class="width-total">
                 <draggable v-model="backlog"
                      :componentData="componentData"
-                     :disabled="cardedit"
                      tag="transition-group"
                      :animation="400"
                      :empty-insert-threshold="80"
@@ -27,7 +26,7 @@
                      v-bind="dragOptions"
                      @start="drag = true"
                      @end="drag = false">
-                     <reqcard :cardedit.sync="cardedit" v-for="req in reqs.backlog" :key="req.id" :req="req"></reqcard>
+                     <reqcard v-for="req in reqs.backlog" :key="req.id" :req="req" v-if="!req.archived"></reqcard>
                 </draggable>
                 <div key="footer" slot="footer" role="group" class="flex-add">
                   <v-btn text raised block depressed color="#ECECEC" class="teste-botao" @click="add('backlog')">Adicionar card</v-btn>
@@ -54,7 +53,6 @@
             <v-row dense class="width-total">
                 <draggable v-model="pending"
                      :componentData="componentData"
-                     :disabled="cardedit"
                      tag="transition-group"
                      :animation="400"
                      :empty-insert-threshold="80"
@@ -62,7 +60,7 @@
                      v-bind="dragOptions"
                      @start="drag = true"
                      @end="drag = false">
-                     <reqcard v-for="req in reqs.pending" :key="req.id" :req="req"></reqcard>
+                     <reqcard v-for="req in reqs.pending" :key="req.id" :req="req" v-if="!req.archived"></reqcard>
                 </draggable>
                      <div key="footer" slot="footer" role="group" class="flex-add">
                            <v-btn text raised block depressed color="#ECECEC" class="teste-botao" @click="add('pending')">Adicionar card</v-btn>
@@ -89,7 +87,6 @@
             <v-row dense class="width-total">
                 <draggable v-model="ongoing"
                      :componentData="componentData"
-                     :disabled="cardedit"
                      tag="transition-group"
                      :animation="400"
                      :empty-insert-threshold="80"
@@ -97,7 +94,7 @@
                      v-bind="dragOptions"
                      @start="drag = true"
                      @end="drag = false">
-                     <reqcard v-for="req in reqs.ongoing" :key="req.id" :req="req"></reqcard>
+                     <reqcard v-for="req in reqs.ongoing" :key="req.id" :req="req" v-if="!req.archived"></reqcard>
                 </draggable>
                      <div key="footer" slot="footer" role="group">
                            <v-btn text raised block depressed color="#ECECEC" class="teste-botao" @click="add('ongoing')">Adicionar card</v-btn>
@@ -124,7 +121,6 @@
             <v-row dense class="width-total">
                 <draggable v-model="done"
                      :componentData="componentData"
-                     :disabled="cardedit"
                      tag="transition-group"
                      :animation="400"
                      :empty-insert-threshold="80"
@@ -132,7 +128,7 @@
                      v-bind="dragOptions"
                      @start="drag = true"
                      @end="drag = false">
-                     <reqcard v-for="req in reqs.done" :key="req.id" :req="req"></reqcard>
+                     <reqcard v-for="req in reqs.done" :key="req.id" :req="req" v-if="!req.archived"></reqcard>
                 </draggable>
                      <div key="footer" slot="footer" role="group" class="flex-add">
                            <v-btn text raised block depressed color="#ECECEC" class="teste-botao" @click="add('done')">Adicionar card</v-btn>
@@ -159,7 +155,6 @@
             <v-row dense class="width-total">
                 <draggable v-model="delivered"
                      :componentData="componentData"
-                     :disabled="cardedit"
                      tag="transition-group"
                      :animation="400"
                      :empty-insert-threshold="80"
@@ -167,7 +162,7 @@
                      v-bind="dragOptions"
                      @start="drag = true"
                      @end="drag = false">
-                     <reqcard v-for="req in reqs.delivered" :key="req.id" :req="req"></reqcard>
+                     <reqcard v-for="req in reqs.delivered" :key="req.id" :req="req" v-if="!req.archived"></reqcard>
                 </draggable>
                      <div key="footer" slot="footer" role="group" class="flex-add">
                            <v-btn text raised block depressed color="#ECECEC" class="teste-botao" @click="add('delivered')">Adicionar card</v-btn>
@@ -215,14 +210,13 @@ export default {
    add: function(status) {
       this.reqs[status].push({
          id: 100,
-         is_ghost: false,
          title: 'Card novo',
          archived: false,
-         team: null,
-         priority: null,
-         category: null,
-         link: null,
-         description: null
+         team: '-',
+         priority: '-',
+         category: '-',
+         link: '-',
+         description: 'Sem descrição'
       });
     }
   }

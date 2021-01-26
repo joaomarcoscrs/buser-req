@@ -81,7 +81,6 @@ const api = {
           backlog: [
            {
              id: 1,
-             is_ghost: false,
              title: '20 Celulares ops',
              archived: false,
              team: 'operações',
@@ -92,26 +91,24 @@ const api = {
            },
            {
              id: 3,
-             is_ghost: false,
              title: 'Ar-condicionado térreo',
              archived: false,
              team: 'todos',
              priority: 0,
              category: 'obra',
-             link: null,
+             link: '-',
              description: 'Arrumar o arcond do térreo para o pessoal começar a trabalhar lá'
            },
          ],
          pending: [
            {
              id: 4,
-             is_ghost: false,
              title: 'Microondas 1º andar',
              archived: false,
-             team: null,
+             team: '-',
              priority: 3,
              category: 'compra',
-             link: null,
+             link: '-',
              description: 'Comprar um microondas pra colocar na copa do 1º andar'
            },
 
@@ -121,7 +118,6 @@ const api = {
          done: [
            {
              id: 2,
-             is_ghost: false,
              title: '13 Notebooks busercamp',
              archived: false,
              team: 'tecnologia',
@@ -132,7 +128,6 @@ const api = {
            },
            {
              id: 6,
-             is_ghost: false,
              title: 'Macbook pro',
              archived: false,
              team: 'marketing',
@@ -146,13 +141,22 @@ const api = {
          delivered: [
            {
              id: 5,
-             is_ghost: false,
              title: 'Portão elétrico abre sozinho',
              archived: false,
-             team: null,
+             team: '-',
              priority: 2,
              category: 'manutenção',
-             link: null,
+             link: '-',
+             description: 'Portão tá abrindo sozinho, precisa arrumar'
+           },
+           {
+             id: 6,
+             title: 'Mesa de ping-pong quebrada',
+             archived: true,
+             team: '-',
+             priority: 2,
+             category: 'manutenção',
+             link: '-',
              description: 'Portão tá abrindo sozinho, precisa arrumar'
            },
 
