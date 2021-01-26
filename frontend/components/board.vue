@@ -1,6 +1,7 @@
 <template>
    <div class="overflow">
     <v-card 
+        v-model="cardedit"
         width="400"
         class="rounded-card boards-todos"
         color="#ECECEC"
@@ -18,6 +19,7 @@
             <v-row class="width-total">
                 <draggable v-model="backlog"
                      :componentData="componentData"
+                     :disabled="cardedit"
                      tag="transition-group"
                      :animation="400"
                      :empty-insert-threshold="80"
@@ -25,11 +27,11 @@
                      v-bind="dragOptions"
                      @start="drag = true"
                      @end="drag = false">
-                     <reqcard v-for="req in reqs.backlog" :key="req.id" :req="req"></reqcard>
+                     <reqcard :cardedit.sync="cardedit" v-for="req in reqs.backlog" :key="req.id" :req="req"></reqcard>
                 </draggable>
-                     <div key="footer" slot="footer" role="group" class="flex-add">
-                           <v-btn text raised block depressed color="#ECECEC" class="teste-botao" @click="add('backlog')">Adicionar card</v-btn>
-                     </div>
+                <div key="footer" slot="footer" role="group" class="flex-add">
+                  <v-btn text raised block depressed color="#ECECEC" class="teste-botao" @click="add('backlog')">Adicionar card</v-btn>
+                </div>
             </v-row>
         </v-container>
     </v-card>
@@ -52,6 +54,7 @@
             <v-row dense class="width-total">
                 <draggable v-model="pending"
                      :componentData="componentData"
+                     :disabled="cardedit"
                      tag="transition-group"
                      :animation="400"
                      :empty-insert-threshold="80"
@@ -86,6 +89,7 @@
             <v-row dense class="width-total">
                 <draggable v-model="ongoing"
                      :componentData="componentData"
+                     :disabled="cardedit"
                      tag="transition-group"
                      :animation="400"
                      :empty-insert-threshold="80"
@@ -120,6 +124,7 @@
             <v-row dense class="width-total">
                 <draggable v-model="done"
                      :componentData="componentData"
+                     :disabled="cardedit"
                      tag="transition-group"
                      :animation="400"
                      :empty-insert-threshold="80"
@@ -154,6 +159,7 @@
             <v-row dense class="width-total">
                 <draggable v-model="delivered"
                      :componentData="componentData"
+                     :disabled="cardedit"
                      tag="transition-group"
                      :animation="400"
                      :empty-insert-threshold="80"
@@ -179,6 +185,9 @@ import reqcard from '~/components/reqcard.vue'
 import draggable from 'vuedraggable'
 
 export default {
+    data: () => ({
+      cardedit: false,
+    }),
     components: {
         reqcard,
         draggable
@@ -188,7 +197,6 @@ export default {
         dragOptions() {
         return {
             group: "board",
-            disabled: false,
             ghostClass: "ghost",
             swapThreshold: 1,
             touchStartThreshold: 5,

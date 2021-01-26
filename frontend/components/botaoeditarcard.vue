@@ -1,5 +1,6 @@
 <template>
     <v-speed-dial
+      v-if="!cardedit"
       v-model="fab"
       :direction="direction"
       :open-on-hover="hover"
@@ -24,7 +25,7 @@
         icon
         medium
       >
-        <v-icon color="#5B5B5B">mdi-pencil</v-icon>
+        <v-icon color="#5B5B5B" v-model="cardedit" @click="$emit('update:cardedit',!cardedit)">mdi-pencil</v-icon>
       </v-btn>
       <v-btn
         icon
@@ -34,11 +35,16 @@
         <v-icon color="#3865A3" v-else>mdi-delete-restore</v-icon>
       </v-btn>
     </v-speed-dial>
+        <v-btn icon depressed medium v-else v-model="cardedit" @click="$emit('update:cardedit',!cardedit)">
+          <v-icon color="#64A338">
+            mdi-check
+          </v-icon>
+        </v-btn>
 </template>
 
 <script>
   export default {
-    props: ['archived'],
+    props: ['archived','cardedit'],
     data: () => ({
       direction: 'top',
       fab: false,
@@ -50,24 +56,7 @@
       bottom: true,
       left: false,
       transition: 'slide-y-reverse-transition',
-    }),
-
-    computed: {
-    watch: {
-      top (val) {
-        this.bottom = !val
-      },
-      right (val) {
-        this.left = !val
-      },
-      bottom (val) {
-        this.top = !val
-      },
-      left (val) {
-        this.right = !val
-      },
-    }
-  }
+    })
   }
 </script>
 
