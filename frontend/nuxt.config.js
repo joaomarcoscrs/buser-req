@@ -18,7 +18,7 @@ module.exports = {
   css: [
     { src: '~/assets/css/main.styl', lang: 'styl' },
   ],
-  loading: { color: '#3B8070' },
+  loading: { color: '#FF3677' },
   router: {
     middleware: ['fwdcookies', 'auth'],
   },

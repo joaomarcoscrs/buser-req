@@ -187,7 +187,7 @@ export default {
         reqcard,
         draggable
     },
-    props: ['reqs', 'statuses'],
+    props: ['reqs'],
     computed: {
         dragOptions() {
         return {

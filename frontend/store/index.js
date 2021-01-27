@@ -3,7 +3,7 @@ import Vuex from 'vuex'
 const store = () => new Vuex.Store({
 
   state: {
-    logged_user: null,
+    logged_user: undefined,
     snack: {}
   },
   mutations: {

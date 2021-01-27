@@ -26,6 +26,11 @@
             </div>
 
             <div class="infos_linhas">
+              <div class="user-key"><v-icon large class="texto-rosa">mdi-calendar</v-icon>&nbsp;&nbsp;</div>
+              <div class="user-value">último login {{user.last_login | timeago}}</div>
+            </div>
+
+            <div class="infos_linhas">
               <div class="user-key"><v-icon large class="texto-rosa">mdi-account-group</v-icon>&nbsp;&nbsp;</div>
               <div class="user-value">{{user.team}}</div>
             </div>

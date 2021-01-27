@@ -1,5 +1,5 @@
 <template>
-  <home :reqs="reqs" :statuses="statuses"></home>
+  <home :reqs="reqs"></home>
 </template>
 
 <script>
@@ -12,14 +12,11 @@ export default {
     home
   },
   asyncData() {
-    return AppApi.list_statuses().then(statusResult => {
       return AppApi.list_reqs().then(reqsResult => {
         return {
-          statuses: statusResult.data,
           reqs: reqsResult.data
           }
       })
-    })
   },
   data () {
     return {

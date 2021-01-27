@@ -63,7 +63,7 @@ export default {
 
 <style scoped>
   .texto-rosa {
-    color: #D81B60;
+    color: #FF3677;
   }
   .rounded-card{
       border-radius:30px;

@@ -1,6 +1,6 @@
 <template>
   <no-ssr>
-    <board :reqs="reqs" :statuses="statuses"></board>
+    <board :reqs="reqs"></board>
   </no-ssr>
 </template>
 
@@ -9,7 +9,7 @@
 import board from '~/components/board.vue'
 
 export default {
-  props: ['reqs', 'statuses'],
+  props: ['reqs'],
   components: {
     board
   },
