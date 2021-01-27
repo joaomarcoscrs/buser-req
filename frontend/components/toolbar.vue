@@ -89,7 +89,7 @@
       logout(){
         AppApi.logout().then(()=>{
           this.$store.commit('SET_LOGGED_USER', null);
-          Snacks.show(this.$store, {text: 'Até logo!'})
+          Snacks.show(this.$store, {text: 'Até logo!', color:"#5B5B5B"})
         });
       }
     }
