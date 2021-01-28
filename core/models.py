@@ -66,6 +66,7 @@ class Requisition(models.Model):
     link = models.URLField(blank=True, max_length=400)
     description = models.TextField(blank=True)
     is_trash = models.BooleanField(default=False)
+    index = models.IntegerField(null=True)
 
     def delete(self):
         self.is_trash = True

@@ -54,7 +54,6 @@ import AppApi from '~apijs'
 
 export default {
   data () {
-    console.log('data');
     return {
       visible: false,
       error: false,
@@ -65,11 +64,9 @@ export default {
     open(user){
       this.visible = true;
       this.user = user;
-      console.log('Open');
     },
     close(){
       this.visible = false;
-      console.log('Close');
     },
     change_info(role){
       this.loading = true;

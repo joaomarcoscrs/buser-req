@@ -108,7 +108,7 @@
 import botaoeditarcard from '~/components/botaoeditarcard.vue'
 
 export default {
-      props: ['req', 'status', 'cardedit'],
+      props: ['req'],
       data: () => ({
       direction: 'top',
       fab: false,

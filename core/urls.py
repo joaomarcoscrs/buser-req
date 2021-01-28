@@ -8,6 +8,11 @@ urlpatterns = [
     url(r'^api/whoami$', views.whoami),
     url(r'^api/list_users$', views.list_users),
     url(r'^api/list_reqs$', views.list_reqs),
-    url(r'^api/update_reqs$', views.update_reqs),
+    url(r'^api/archive_req$', views.archive_req),
+    url(r'^api/unarchive_req$', views.unarchive_req),
+    url(r'^api/analyze_req$', views.analyze_req),
+    url(r'^api/delete_req$', views.delete_req),
     url(r'^api/create_req$', views.create_req),
+    url(r'^api/change_status$', views.change_status),
+    url(r'^api/update_req_index$', views.update_req_index),
 ]

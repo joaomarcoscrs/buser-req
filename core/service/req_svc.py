@@ -16,17 +16,37 @@ def archive_req(id):
     r = Requisition.objects.get(id=id)
     r.archived = True
     r.save()
+    return {'status': r.status, 'id': r.id}
 
 
-def analyze_req(id, requisition_passed):
+def unarchive_req(id):
     r = Requisition.objects.get(id=id)
-    if requisition_passed:
-        r.analysis = False
-        r.status = 'backlog'
-        r.save()
-    else:
-        r.delete()
+    r.archived = False
+    r.save()
+    return {'id': r.id}
 
 
-def update_reqs():
-    pass
+def analyze_req(id):
+    r = Requisition.objects.get(id=id)
+    r.analysis = False
+    r.status = 'backlog'
+    r.save()
+    return {'id': r.id}
+
+
+def delete_req(id):
+    r = Requisition.objects.get(id=id)
+    r.delete()
+    return {'id': r.id}
+
+
+def change_status(id, status):
+    r = Requisition.objects.get(id=id)
+    r.status = status
+    return {'id': r.id, 'status': r.status}
+
+
+def update_req_index(id, index):
+    r = Requisition.objects.get(id=id)
+    r.index = index
+    return {'id': r.id, 'index': r.index}

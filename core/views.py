@@ -6,7 +6,7 @@ from commons.django_model_utils import get_or_none
 from commons.django_views_utils import ajax_login_required
 from core.service import log_svc, req_svc
 from django.views.decorators.csrf import csrf_exempt
-from core.service import *
+from core.models import Requisition
 
 
 def dapau(request):
@@ -74,9 +74,39 @@ def list_reqs(request):
 
 
 @ajax_login_required
-def update_reqs(request):
-    req_svc.update_reqs()
-    return JsonResponse({})
+def delete_req(request, id):
+    r = req_svc.delete_req(id)
+    return JsonResponse(r)
+
+
+@ajax_login_required
+def archive_req(request, id):
+    r = req_svc.archive_req(id)
+    return JsonResponse(r)
+
+
+@ajax_login_required
+def analyze_req(request, id):
+    r = req_svc.analyze_req(id)
+    return JsonResponse(r)
+
+
+@ajax_login_required
+def unarchive_req(request, id):
+    r = req_svc.unarchive_req(id)
+    return JsonResponse(r)
+
+
+@ajax_login_required
+def change_status(request, id, status):
+    r = req_svc.change_status(id, status)
+    return JsonResponse(r)
+
+
+@ajax_login_required
+def update_req_index(request, id, index):
+    r = req_svc.update_req_index(id, index)
+    return JsonResponse(r)
 
 
 @ajax_login_required

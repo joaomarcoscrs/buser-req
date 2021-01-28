@@ -17,7 +17,7 @@
         </v-system-bar>
         <v-container class="overflow-vert box-alinhar-card-botao" style="min-height: 550px; max-height: 750px">
             <v-row class="width-total">
-                <draggable v-model="backlog"
+                <draggable v-model="reqs_board.backlog"
                      :componentData="componentData"
                      tag="transition-group"
                      :animation="400"
@@ -51,7 +51,7 @@
         </v-system-bar>
         <v-container class="overflow-vert box-alinhar-card-botao" style="min-height: 550px; max-height: 750px">
             <v-row dense class="width-total">
-                <draggable v-model="pending"
+                <draggable v-model="reqs_board.pending"
                      :componentData="componentData"
                      tag="transition-group"
                      :animation="400"
@@ -85,7 +85,7 @@
         </v-system-bar>
         <v-container class="overflow-vert box-alinhar-card-botao" style="min-height: 550px; max-height: 750px">
             <v-row dense class="width-total">
-                <draggable v-model="ongoing"
+                <draggable v-model="reqs_board.ongoing"
                      :componentData="componentData"
                      tag="transition-group"
                      :animation="400"
@@ -119,7 +119,7 @@
         </v-system-bar>
         <v-container class="overflow-vert box-alinhar-card-botao" style="min-height: 550px; max-height: 750px">
             <v-row dense class="width-total">
-                <draggable v-model="done"
+                <draggable v-model="reqs_board.done"
                      :componentData="componentData"
                      tag="transition-group"
                      :animation="400"
@@ -153,7 +153,7 @@
         </v-system-bar>
         <v-container class="overflow-vert box-alinhar-card-botao" style="min-height: 550px; max-height: 750px">
             <v-row dense class="width-total">
-                <draggable v-model="delivered"
+                <draggable v-model="reqs_board.delivered"
                      :componentData="componentData"
                      tag="transition-group"
                      :animation="400"
@@ -218,7 +218,7 @@ export default {
    delete: function(status, id) {
 
     },
-   move_forward: function(status, id) {
+   update_list: function(status, id) {
 
     }
   }

@@ -31,23 +31,22 @@ const store = () => new Vuex.Store({
               delivered: board_delivered}
     },
     SET_ARCHIVE(state, reqs) {
-      let archived_backlog = state.reqs['backlog'].filter(req => req.archived)
-      let archived_pending = state.reqs['pending'].filter(req => req.archived)
-      let archived_ongoing = state.reqs['ongoing'].filter(req => req.archived)
-      let archived_done = state.reqs['done'].filter(req => req.archived)
-      let archived_delivered = state.reqs['delivered'].filter(req => req.archived)
+      let archived_backlog = reqs['backlog'].filter(req => req.archived)
+      let archived_pending = reqs['pending'].filter(req => req.archived)
+      let archived_ongoing = reqs['ongoing'].filter(req => req.archived)
+      let archived_done = reqs['done'].filter(req => req.archived)
+      let archived_delivered = reqs['delivered'].filter(req => req.archived)
       state.reqs_archived = archived_backlog.concat(archived_pending, archived_ongoing, archived_done, archived_delivered)
     },
     SET_ANALYSIS(state, reqs) {
-      let analysis_backlog = state.reqs['backlog'].filter(req => req.analysis)
-      let analysis_pending = state.reqs['pending'].filter(req => req.analysis)
-      let analysis_ongoing = state.reqs['ongoing'].filter(req => req.analysis)
-      let analysis_done = state.reqs['done'].filter(req => req.done.analysis)
-      let analysis_delivered = state.reqs['delivered'].filter(req => req.analysis)
+      let analysis_backlog = reqs['backlog'].filter(req => req.analysis)
+      let analysis_pending = reqs['pending'].filter(req => req.analysis)
+      let analysis_ongoing = reqs['ongoing'].filter(req => req.analysis)
+      let analysis_done = reqs['done'].filter(req => req.done.analysis)
+      let analysis_delivered = reqs['delivered'].filter(req => req.analysis)
       state.reqs_analysis = analysis_backlog.concat(analysis_pending, analysis_ongoing, analysis_done, analysis_delivered)
     },
     ADD_REQ(state, req) {
-      
       state.reqs[req.status].push({
          title: req.title,
          archived: req.archived,
@@ -60,17 +59,39 @@ const store = () => new Vuex.Store({
          description: req.description
       })
     },
-    SET_ARCHIVED_REQ(state, status, id, archived) {
-      req = state.reqs[status].get(id=id)
-      req.archived = archived
+    ARCHIVE_REQ(state, status, id) {
+      req = state.reqs_board[status].filter(r => r.id===id)[0]
+      req.archived = true
+      reqs_archived.push(req)
+      reqs_board[status] = reqs_board[status].filter(r => r.id !== id)
     },
-    SET_ANALYSIS_REQ(state, status, id, analysis) {
-      req = state.reqs[status].get(id=id)
-      req.analysis = analysis
+    UNARCHIVE_REQ(state, id) {
+      req = state.reqs_archived.filter(r => r.id === id)[0]
+      req.archived = false
+      if (req.status === null || req.status === '') {
+        req.status = 'backlog'
+      }
+      reqs_board[req.status].push(req)
+      reqs_archived = reqs_archived.filter(r => r.id !== id)
     },
-    DELETE_REQ(state, status, id) {
-      req = state.reqs[status].get(id=id)
+    ANALYZE_REQ(state, id) {
+      req = state.reqs_analysis.filter(r => r.id === id)[0]
+      req.analysis = false
+      req.status = 'backlog'
+      reqs_board.backlog.push(req)
+    },
+    DELETE_REQ(state, id) {
+      req = state.reqs_analysis.filter(r => r.id === id)[0]
       req.is_trash = true
+      reqs_analysis = reqs_analysis.filter(r => r.id !== id)
+    },
+    CHANGE_REQ_STATUS(id, status) {
+      req = state.reqs_board[status].filter(r => r.id===id)[0]
+      req.status = status
+    },
+    UPDATE_REQ_INDEX(id, index) {
+      req = state.reqs_board[req.status].filter(r => r.id===id)[0]
+      req.index = index
     }
   },
   getters: {
@@ -105,12 +126,17 @@ const store = () => new Vuex.Store({
     },
     archiveReq(store, id) {
       return AppApi.archive_req(id).then(R => {
-          store.commit('SET_ARCHIVED_REQ', R.data)
+          store.commit('ARCHIVE_REQ', R.data)
+      })
+    },
+    unarchiveReq(store, id) {
+      return AppApi.unarchive_req(id).then(R => {
+          store.commit('UNARCHIVE_REQ', R.data)
       })
     },
     analyzeReq(store, id) {
       return AppApi.analyze_req(id).then(R => {
-          store.commit('SET_ANALYSIS_REQ', R.data)
+          store.commit('ANALYZE_REQ', R.data)
       })
     },
     deleteReq(store, id) {
@@ -118,6 +144,21 @@ const store = () => new Vuex.Store({
           store.commit('DELETE_REQ', R.data)
       })
     },
+    moveReq(store, id, new_status) {
+      return AppApi.change_status(id, new_status).then(R => {
+        store.commit('CHANGE_REQ_STATUS', R.data)
+      })
+    },
+    updateListIndex(store, list) {
+      for (req in list) {
+        let index_certo = state.reqs_board[list].indexOf(req)
+        if (req.index !== index_certo) {
+          return AppApi.update_req_index(req.id, index).then(R => {
+            store.commit('UPDATE_REQ_INDEX', R.data)
+          })
+        }
+      }
+    }
   }
 })
 
