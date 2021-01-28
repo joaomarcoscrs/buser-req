@@ -45,7 +45,16 @@ class Requisition(models.Model):
         ('manutenção', 'manutenção'),
         ('obra', 'obra'),
     )
+    TEAMS = (
+        ('operações', 'operações'),
+        ('tecnologia', 'tecnologia'),
+        ('marketing', 'marketing'),
+        ('people', 'people'),
+        ('finance', 'finance'),
+        ('suporte', 'suporte'),
+    )
     title = models.TextField(blank=True)
+    team = models.CharField(blank=True,max_length=20,choices=TEAMS)
     status = models.CharField(null=True, max_length=20,  choices=STATUSES)
     archived = models.BooleanField(default=False)
     analysis = models.BooleanField(default=False)

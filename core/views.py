@@ -8,6 +8,7 @@ from core.service import log_svc, req_svc
 from django.views.decorators.csrf import csrf_exempt
 from core.service import *
 
+
 def dapau(request):
     raise Exception('break on purpose')
 
@@ -42,6 +43,7 @@ def whoami(request):
     } if request.user.is_authenticated() else {'authenticated': False}
     return JsonResponse(i_am)
 
+
 @ajax_login_required
 def list_users(request):
     User = auth.get_user_model()
@@ -55,22 +57,39 @@ def list_users(request):
 @ajax_login_required
 def list_reqs(request):
     reqs = req_svc.list_reqs(request.user)
-    return JsonResponse(reqs)
+    statuses = ['backlog', 'pending', 'ongoing', 'done', 'delivered']
+    req_list = {
+        'backlog': [],
+        'pending': [],
+        'ongoing': [],
+        'done': [],
+        'delivered': []
+    }
+    for req in reqs:
+        req = _req2dict(req)
+        for valor in statuses:
+            if req['status'] == valor:
+                req_list[valor].append(req)
+    return JsonResponse(req_list, safe=False)
+
 
 @ajax_login_required
 def list_reqs_analysis(request):
     reqs = req_svc.list_reqs(request.user, analysis=True)
-    return JsonResponse(reqs)
+    return JsonResponse(reqs, safe=False)
+
 
 @ajax_login_required
 def list_archived_reqs(request):
     reqs = req_svc.list_reqs(request.user, archived=True)
     return JsonResponse(reqs)
 
+
 @ajax_login_required
 def update_reqs(request):
     req_svc.update_reqs()
     return JsonResponse({})
+
 
 @ajax_login_required
 def create_req(request):
@@ -80,8 +99,30 @@ def create_req(request):
     category = request.POST['category']
     link = request.POST['link']
     description = request.POST['description']
-    req_svc.create_req(request.user, title, status, priority, category, link, description)
-    return JsonResponse({})
+    archived = request.POST['archived']
+    analysis = request.POST['analysis']
+    is_trash = request.POST['is_trash']
+    team = request.POST['team']
+
+    if archived == 'f':
+        archived = False
+    else:
+        archived = True
+
+    if analysis == 'f':
+        analysis = False
+    else:
+        analysis = True
+
+    if is_trash == 'f':
+        is_trash = False
+    else:
+        is_trash = True
+
+    req = req_svc.create_req(request.user, status, title, archived, analysis, is_trash, team, priority, category, link,
+                             description)
+    return JsonResponse(_req2dict(req))
+
 
 def _user2dict(user):
     d = {
@@ -97,5 +138,25 @@ def _user2dict(user):
             'ADMIN': user.is_superuser,
             'STAFF': user.is_staff,
         }
+    }
+    return d
+
+
+def _req2dict(req):
+    d = {
+        'id': req.id,
+        'title': req.title,
+        'team': req.team,
+        'status': req.status,
+        'archived': req.archived,
+        'analysis': req.analysis,
+        'creator': req.creator.username,
+        'created_at': req.created_at,
+        'updated_at': req.updated_at,
+        'priority': req.priority,
+        'category': req.category,
+        'link': req.link,
+        'description': req.description,
+        'is_trash': req.is_trash
     }
     return d

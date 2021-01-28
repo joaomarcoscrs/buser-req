@@ -25,12 +25,12 @@ const api = {
     list_archived_reqs(){
         return get('/api/list_archived_reqs');
     },
-    update_reqs(){
-        return post('/api/update_reqs');
+    update_reqs(reqs){
+        return post('/api/update_reqs', {reqs});
     },
-    create_req(title, status, priority, category, link, description){
+    create_req(status, title, archived, analysis, is_trash, team, priority, category, link, description){
         return post('/api/create_req', 
-        {title, status, priority, category, link, description
+        {status, title, archived, analysis, is_trash, team, priority, category, link, description
             })
     }
 }
