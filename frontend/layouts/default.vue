@@ -22,7 +22,6 @@
   import toolbar from '~/components/toolbar.vue'
   import sidenavLeft from '~/components/sidenav-left.vue'
   import footer from '~/components/footer.vue'
-  let self = this;
   export default {
     components: {
       toolbar,
@@ -38,10 +37,15 @@
       snack () {
         return this.$store.getters.snack
       },
-      reqs () {
-        self.$store.dispatch('fetchReqs')
-        return self.$store.getters.reqs
-      }
+      reqs_board () {
+        return this.$store.getters.reqs_board
+      },
+      reqs_archived () {
+        return this.$store.getters.reqs_archived
+      },
+      reqs_analysis () {
+        return this.$store.getters.reqs_analysis
+      },
     },
     created() {
       this.$store.dispatch('fetchReqs')

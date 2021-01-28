@@ -1,7 +1,7 @@
 <template>
   <div class="caixa-archived">
     <div class="flexbox-archived">
-        <reqcard class="margem-arquivados" v-for="req in reqs" :key="req.id" :req = req :status ="{name: 'arquivados'}"></reqcard>
+        <reqcard class="margem-arquivados" v-for="req in reqs_archived" :key="req.id" :req = req :status ="{name: 'arquivados'}"></reqcard>
     </div>
   </div>
 </template>
@@ -14,8 +14,8 @@ export default {
         reqcard
     },
   computed: {
-    reqs() {
-      return this.$store.getters.reqs
+    reqs_archived() {
+      return this.$store.getters.reqs_archived
     }
   },
 }

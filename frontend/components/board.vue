@@ -26,7 +26,7 @@
                      v-bind="dragOptions"
                      @start="drag = true"
                      @end="drag = false">
-                     <reqcard v-for="req in reqs.backlog" :key="req" :req="req"></reqcard>
+                     <reqcard v-for="req in reqs_board.backlog" :key="req" :req="req"></reqcard>
                 </draggable>
                 <div key="footer" slot="footer" role="group" class="flex-add">
                   <v-btn text raised block depressed color="#ECECEC" class="teste-botao" @click="add('backlog')">Adicionar card</v-btn>
@@ -60,7 +60,7 @@
                      v-bind="dragOptions"
                      @start="drag = true"
                      @end="drag = false">
-                     <reqcard v-for="req in reqs.pending" :key="req" :req="req"></reqcard>
+                     <reqcard v-for="req in reqs_board.pending" :key="req" :req="req"></reqcard>
                 </draggable>
                      <div key="footer" slot="footer" role="group" class="flex-add">
                            <v-btn text raised block depressed color="#ECECEC" class="teste-botao" @click="add('pending')">Adicionar card</v-btn>
@@ -94,7 +94,7 @@
                      v-bind="dragOptions"
                      @start="drag = true"
                      @end="drag = false">
-                     <reqcard v-for="req in reqs.ongoing" :key="req" :req="req"></reqcard>
+                     <reqcard v-for="req in reqs_board.ongoing" :key="req" :req="req"></reqcard>
                 </draggable>
                      <div key="footer" slot="footer" role="group">
                            <v-btn text raised block depressed color="#ECECEC" class="teste-botao" @click="add('ongoing')">Adicionar card</v-btn>
@@ -128,7 +128,7 @@
                      v-bind="dragOptions"
                      @start="drag = true"
                      @end="drag = false">
-                     <reqcard v-for="req in reqs.done" :key="req" :req="req"></reqcard>
+                     <reqcard v-for="req in reqs_board.done" :key="req" :req="req"></reqcard>
                 </draggable>
                      <div key="footer" slot="footer" role="group" class="flex-add">
                            <v-btn text raised block depressed color="#ECECEC" class="teste-botao" @click="add('done')">Adicionar card</v-btn>
@@ -162,7 +162,7 @@
                      v-bind="dragOptions"
                      @start="drag = true"
                      @end="drag = false">
-                     <reqcard v-for="req in reqs.delivered" :key="req" :req="req"></reqcard>
+                     <reqcard v-for="req in reqs_board.delivered" :key="req" :req="req"></reqcard>
                 </draggable>
                      <div key="footer" slot="footer" role="group" class="flex-add">
                            <v-btn text raised block depressed color="#ECECEC" class="teste-botao" @click="add('delivered')">Adicionar card</v-btn>
@@ -197,9 +197,9 @@ export default {
             fallbackTolerance: 5
         };
         },
-    reqs() {
-      return this.$store.getters.reqs
-    }
+      reqs_board () {
+        return this.$store.getters.reqs_board
+      },
     },
       dragging: false,
       componentData: {

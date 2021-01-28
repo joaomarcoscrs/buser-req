@@ -13,9 +13,6 @@ export default {
     board
   },
   computed: {
-    reqs() {
-      return this.$store.getters.reqs
-    }
   },
   data () {
     return {

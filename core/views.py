@@ -68,21 +68,9 @@ def list_reqs(request):
     for req in reqs:
         req = _req2dict(req)
         for valor in statuses:
-            if req['status'] == valor:
+            if req['status'] == valor and not req['is_trash']:
                 req_list[valor].append(req)
     return JsonResponse(req_list, safe=False)
-
-
-@ajax_login_required
-def list_reqs_analysis(request):
-    reqs = req_svc.list_reqs(request.user, analysis=True)
-    return JsonResponse(reqs, safe=False)
-
-
-@ajax_login_required
-def list_archived_reqs(request):
-    reqs = req_svc.list_reqs(request.user, archived=True)
-    return JsonResponse(reqs)
 
 
 @ajax_login_required

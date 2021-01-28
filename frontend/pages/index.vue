@@ -11,14 +11,14 @@ export default {
     home
   },
   computed: {
-    reqs() {
-      return this.$store.getters.reqs
-    }
-  },
+      reqs_board () {
+        return this.$store.getters.reqs_board
+      },
   data () {
     return {
     }
   }
+}
 }
 </script>
 
