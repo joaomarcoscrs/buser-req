@@ -1,7 +1,7 @@
 <template>
   <div class="caixa-de-fora">
     <div class="flexbox-analise">
-        <card_analysis v-for="req in reqs_analysis" :key="req.id" :req = req></card_analysis>
+        <card_analysis v-for="req in reqs" :key="req.id" :req = req></card_analysis>
     </div>
   </div>
 </template>
@@ -13,7 +13,11 @@ export default {
     components: {
         card_analysis
     },
-    props: ['reqs_analysis']
+  computed: {
+    reqs() {
+      return this.$store.getters.reqs
+    }
+  },
 }
 </script>
 

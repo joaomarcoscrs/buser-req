@@ -1,22 +1,19 @@
 <template>
-  <home :reqs="reqs"></home>
+  <home></home>
 </template>
 
 <script>
 
 import home from '~/components/home.vue'
-import AppApi from '~apijs'
 
 export default {
   components: {
     home
   },
-  asyncData() {
-      return AppApi.list_reqs().then(reqsResult => {
-        return {
-          reqs: reqsResult.data
-          }
-      })
+  computed: {
+    reqs() {
+      return this.$store.getters.reqs
+    }
   },
   data () {
     return {

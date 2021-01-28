@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils import timezone
 
 class ActivityLog(models.Model):
     type = models.CharField(max_length=64)
@@ -18,14 +19,45 @@ class ActivityLog(models.Model):
             self.created_at,
         )
 
-
-class Todo(models.Model):
-    description = models.CharField(max_length=512)
-    done = models.BooleanField(default=False)
-
     def to_dict_json(self):
         return {
             'id': self.id,
             'description': self.description,
             'done': self.done,
         }
+
+class Requisition(models.Model):
+    PRIORITIES = (
+        (0, 'prioridade 0'),
+        (1, 'prioridade 1'),
+        (2, 'prioridade 2'),
+        (3, 'prioridade 3'),
+    )
+    STATUSES = (
+        ('backlog', 'backlog'),
+        ('pending', 'pending'),
+        ('ongoing', 'ongoing'),
+        ('done', 'done'),
+        ('delivered', 'delivered'),
+    )
+    CATEGORIES = (
+        ('compra', 'compra'),
+        ('manutenção', 'manutenção'),
+        ('obra', 'obra'),
+    )
+    title = models.TextField(blank=True)
+    status = models.CharField(null=True, max_length=20,  choices=STATUSES)
+    archived = models.BooleanField(default=False)
+    analysis = models.BooleanField(default=False)
+    creator = models.ForeignKey(User)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    priority = models.IntegerField(blank=True, choices=PRIORITIES)
+    category = models.CharField(blank=True, max_length=20, choices=CATEGORIES)
+    link = models.URLField(blank=True, max_length=400)
+    description = models.TextField(blank=True)
+    is_trash = models.BooleanField(default=False)
+
+    def delete(self):
+        self.is_trash = True
+        self.save()

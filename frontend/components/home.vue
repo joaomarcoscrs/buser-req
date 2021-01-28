@@ -1,6 +1,6 @@
 <template>
   <no-ssr>
-    <board :reqs="reqs"></board>
+    <board></board>
   </no-ssr>
 </template>
 
@@ -9,9 +9,13 @@
 import board from '~/components/board.vue'
 
 export default {
-  props: ['reqs'],
   components: {
     board
+  },
+  computed: {
+    reqs() {
+      return this.$store.getters.reqs
+    }
   },
   data () {
     return {

@@ -18,11 +18,11 @@
     </v-snackbar>
   </v-app>
 </template>
-
 <script>
   import toolbar from '~/components/toolbar.vue'
   import sidenavLeft from '~/components/sidenav-left.vue'
   import footer from '~/components/footer.vue'
+  let self = this;
   export default {
     components: {
       toolbar,
@@ -37,7 +37,14 @@
     computed: {
       snack () {
         return this.$store.getters.snack
+      },
+      reqs () {
+        self.$store.dispatch('fetchReqs')
+        return self.$store.getters.reqs
       }
+    },
+    created() {
+      this.$store.dispatch('fetchReqs')
     }
   }
 </script>

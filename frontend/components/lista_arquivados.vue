@@ -13,7 +13,11 @@ export default {
     components: {
         reqcard
     },
-    props: ['reqs']
+  computed: {
+    reqs() {
+      return this.$store.getters.reqs
+    }
+  },
 }
 </script>
 

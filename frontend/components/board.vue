@@ -187,7 +187,6 @@ export default {
         reqcard,
         draggable
     },
-    props: ['reqs'],
     computed: {
         dragOptions() {
         return {
@@ -197,7 +196,10 @@ export default {
             touchStartThreshold: 5,
             fallbackTolerance: 5
         };
-        }
+        },
+    reqs() {
+      return this.$store.getters.reqs
+    }
     },
       dragging: false,
       componentData: {

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from core.models import ActivityLog, Todo
+from core.models import ActivityLog
 
 
 class ActivityLogAdmin(admin.ModelAdmin):
@@ -11,4 +11,3 @@ class TodoAdmin(admin.ModelAdmin):
 
 
 admin.site.register(ActivityLog, ActivityLogAdmin)
-admin.site.register(Todo, TodoAdmin)

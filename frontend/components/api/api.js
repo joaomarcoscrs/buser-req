@@ -13,12 +13,6 @@ const api = {
     whoami(){
         return get('/api/whoami');
     },
-    add_todo(newtask){
-        return post('/api/add_todo', {new_task: newtask});
-    },
-    list_todos(){
-        return get('/api/list_todos');
-    },
     list_users(){
         return get('/api/list_users');
     },
@@ -29,7 +23,15 @@ const api = {
         return get('/api/list_reqs_analysis');
     },
     list_archived_reqs(){
-        return get('/api/list_reqs_analysis');
+        return get('/api/list_archived_reqs');
+    },
+    update_reqs(){
+        return post('/api/update_reqs');
+    },
+    create_req(title, status, priority, category, link, description){
+        return post('/api/create_req', 
+        {title, status, priority, category, link, description
+            })
     }
 }
 export default api;
