@@ -26,30 +26,30 @@ const api = {
         return get('/api/list_archived_reqs');
     },
     update_reqs(reqs){
-        return post('/api/update_reqs', {reqs});
+        return post('/api/update_reqs', {reqs: reqs});
     },
     archive_req(id) {
-        return post('/api/archive_req', {id})
+        return post('/api/archive_req', {id: id})
     },
     unarchive_req(id) {
-        return post('/api/unarchive_req', {id})
+        return post('/api/unarchive_req', {id: id})
     },
     analyze_req(id) {
-        return post('/api/analyze_req', {id})
+        return post('/api/analyze_req', {id: id})
     },
     delete_req(id) {
-        return post('/api/delete_req', {id})
+        return post('/api/delete_req', {id: id})
     },
     create_req(status, title, archived, analysis, is_trash, team, priority, category, link, description){
         return post('/api/create_req', 
-        {status, title, archived, analysis, is_trash, team, priority, category, link, description
+        {status: status, title: title, archived: archived, analysis: analysis, is_trash: is_trash, team: team, priority: priority, category: category, link: link, description: description
             })
     },
     change_status(id, status) {
-        return post('/api/change_status', {id, status})
+        return post('/api/change_status', {id: id, status: status})
     },
     update_req_index(id, index) {
-        return post('/api/update_req_index', {id, index})
+        return post('/api/update_req_index', {id: id, index: index})
     },
 }
 export default api;

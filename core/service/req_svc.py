@@ -12,41 +12,41 @@ def create_req(user, status, title, archived, analysis, is_trash, team, priority
     return Requisition.objects.latest('id')
 
 
-def archive_req(id):
-    r = Requisition.objects.get(id=id)
+def archive_req(id_2):
+    r = Requisition.objects.get(id=id_2)
     r.archived = True
     r.save()
     return {'status': r.status, 'id': r.id}
 
 
-def unarchive_req(id):
-    r = Requisition.objects.get(id=id)
+def unarchive_req(id_2):
+    r = Requisition.objects.get(id=id_2)
     r.archived = False
     r.save()
     return {'id': r.id}
 
 
-def analyze_req(id):
-    r = Requisition.objects.get(id=id)
+def analyze_req(id_2):
+    r = Requisition.objects.get(id=id_2)
     r.analysis = False
     r.status = 'backlog'
     r.save()
     return {'id': r.id}
 
 
-def delete_req(id):
-    r = Requisition.objects.get(id=id)
+def delete_req(id_2):
+    r = Requisition.objects.get(id=id_2)
     r.delete()
     return {'id': r.id}
 
 
-def change_status(id, status):
-    r = Requisition.objects.get(id=id)
+def change_status(id_2, status):
+    r = Requisition.objects.get(id=id_2)
     r.status = status
     return {'id': r.id, 'status': r.status}
 
 
-def update_req_index(id, index):
-    r = Requisition.objects.get(id=id)
+def update_req_index(id_2, index):
+    r = Requisition.objects.get(id=id_2)
     r.index = index
     return {'id': r.id, 'index': r.index}

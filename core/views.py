@@ -74,38 +74,46 @@ def list_reqs(request):
 
 
 @ajax_login_required
-def delete_req(request, id):
-    r = req_svc.delete_req(id)
+def delete_req(request):
+    id_2 = request.POST['id']
+    r = req_svc.delete_req(id_2)
     return JsonResponse(r)
 
 
 @ajax_login_required
-def archive_req(request, id):
-    r = req_svc.archive_req(id)
+def archive_req(request):
+    id_2 = request.POST['id']
+    r = req_svc.archive_req(id_2)
     return JsonResponse(r)
 
 
 @ajax_login_required
-def analyze_req(request, id):
-    r = req_svc.analyze_req(id)
+def analyze_req(request):
+    id_2 = request.POST['id']
+    r = req_svc.analyze_req(id_2)
     return JsonResponse(r)
 
 
 @ajax_login_required
-def unarchive_req(request, id):
-    r = req_svc.unarchive_req(id)
+def unarchive_req(request):
+    id_2 = request.POST['id']
+    r = req_svc.unarchive_req(id_2)
     return JsonResponse(r)
 
 
 @ajax_login_required
-def change_status(request, id, status):
-    r = req_svc.change_status(id, status)
+def change_status(request):
+    id_2 = request.POST['id']
+    status = request.POST['status']
+    r = req_svc.change_status(id_2, status)
     return JsonResponse(r)
 
 
 @ajax_login_required
-def update_req_index(request, id, index):
-    r = req_svc.update_req_index(id, index)
+def update_req_index(request):
+    id_2 = request.POST['id']
+    index = request.POST['index']
+    r = req_svc.update_req_index(id_2, index)
     return JsonResponse(r)
 
 
@@ -175,6 +183,7 @@ def _req2dict(req):
         'category': req.category,
         'link': req.link,
         'description': req.description,
-        'is_trash': req.is_trash
+        'is_trash': req.is_trash,
+        'index': req.index
     }
     return d

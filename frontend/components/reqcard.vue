@@ -87,11 +87,20 @@
                                     </template>
                                 </div>
       <v-btn
+        v-if="!req.archived"
         icon
         style="margin: 0px 0px 10px 0px;"
+        @click="archive(req.id)"
       >
-        <v-icon color="#969696" v-if="!req.archived">mdi-delete</v-icon>
-        <v-icon color="#367CDD" v-else>mdi-delete-restore</v-icon>
+        <v-icon color="#969696">mdi-delete</v-icon>
+     </v-btn>
+     <v-btn
+        v-else
+        icon
+        style="margin: 0px 0px 10px 0px;"
+        @click="unarchive(req.id)"
+      >
+        <v-icon color="#367CDD">mdi-delete-restore</v-icon>
       </v-btn>
                             </div>
                         </div>
@@ -101,11 +110,9 @@
         <span>{{req.description}}</span>
         </v-tooltip>
         </div>
-        </template>
+</template>
 
 <script>
-
-import botaoeditarcard from '~/components/botaoeditarcard.vue'
 
 export default {
       props: ['req'],
@@ -120,24 +127,22 @@ export default {
       bottom: true,
       left: false,
       transition: 'slide-y-reverse-transition',
-      items: [0, 1, 2, 3],
     }),
     methods:{
-        onEdit(evt, campo){
-            var src = evt.target.innerText
-            if (src.length > 0){
-                if (campo == 'link'){
-                    this.req[campo]= 'http://' + src
-                }
-                else {
-                    this.req[campo] = src
-                }
-            }
-            else{
-                this.req[campo]='-'
-            }
-            
-        }
+    archive (id) {
+       this.$store.dispatch('archiveReq', {id: id})
+    },
+    unarchive (id) {
+       this.$store.dispatch('unarchiveReq', {id: id})
+    },
+    },
+    computed: {
+      reqs_board () {
+        return this.$store.getters.reqs_board
+      },
+      reqs_archived () {
+        return this.$store.getters.reqs_archived
+      },
     }
 }
 </script>
