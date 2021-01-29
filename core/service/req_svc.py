@@ -42,8 +42,12 @@ def delete_req(id_2):
 
 def update_req_status(id_2, status):
     r = Requisition.objects.get(id=id_2)
+    print(r.id)
+    print("status anterior:" + r.status)
     r.status = status
+    print("status novo:" + status)
     r.save()
+    print(r.save())
     return {'id': r.id, 'status': r.status}
 
 

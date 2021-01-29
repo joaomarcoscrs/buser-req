@@ -222,23 +222,24 @@ export default {
        this.$store.dispatch('updateListStatus', {list: list})
        this.$store.dispatch('updateListIndex', {list: list})
     },
+    update_removed (list) {
+       this.$store.dispatch('updateListIndex', {list: list})
+    },
     handle(evt, status) {
+        self = this
         if ("added" in evt) {
             let req = evt.added.element
-            this.update(status)
+            self.$store.dispatch('updateReqStatus',{id: req.id, list: status})
+            self.$store.dispatch('updateListIndex', {list: status})
         }
-        else if ("removed" in evt) {
-            let req = evt.removed.element
-            this.update(status)
+        if ("moved" in evt) {
+            let self = this
+            setTimeout(self.update_removed(status), 100)
         }
-        else if ("moved" in evt) {
-            let req = evt.moved.element
-            this.update(status)
+        if ("removed" in evt) {
+            setTimeout(self.update_removed(status), 100)
         }
     },
-    printar(coisa) {
-        console.log(coisa)
-    }
   }
 }
 </script>

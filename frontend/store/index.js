@@ -223,6 +223,13 @@ const store = () => new Vuex.Store({
           })
         }
       },
+    updateReqStatus(store, params) {
+      let status = params.list
+      let id = params.id
+      AppApi.update_req_status(id, status).then(R => {
+          store.commit('UPDATE_REQ_STATUS', R.data)
+        })
+      },
     updateReq(store, params) {
       let id = params.id
       let value = params.input
@@ -230,8 +237,8 @@ const store = () => new Vuex.Store({
       return AppApi.update_req_prop(id, prop, value).then(R => {
         store.commit('UPDATE_REQ', R.data)
       })
-    }
-    }
+    },
+  },
 })
 
 export default store
