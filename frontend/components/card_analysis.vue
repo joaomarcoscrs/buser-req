@@ -85,8 +85,8 @@
             </div>
             <v-divider></v-divider>
             <div class="flex-box-botoes" style="background-color: #ECECEC">
-            <v-btn icon fab class="padding-dentro-card-analise"><v-icon medium color="#64A338">mdi-check</v-icon></v-btn>
-            <v-btn icon fab class="padding-dentro-card-analise"><v-icon medium color="#E03B24">mdi-window-close</v-icon></v-btn>
+            <v-btn @click="handler(req.id); " icon fab class="padding-dentro-card-analise"><v-icon medium color="#64A338">mdi-check</v-icon></v-btn>
+            <v-btn @click="delete_req(req.id)" icon fab class="padding-dentro-card-analise"><v-icon medium color="#E03B24">mdi-window-close</v-icon></v-btn>
             </div>
         </div>
         </v-card>
@@ -95,7 +95,30 @@
 
 <script>
 export default {
-    props:['req']
+  props:['req'],
+  computed: {
+    reqs_analysis() {
+      return this.$store.getters.reqs_analysis
+    },
+    reqs_board() {
+      return this.$store.getters.reqs_board
+    }
+  },
+  methods: {
+   pass_to_board (id) {
+      this.$store.dispatch('analyzeReq', {id: id})
+   },
+   delete_req (id) {
+      this.$store.dispatch('deleteReq', {id: id})
+   },
+   update_backlog() {
+      this.$store.dispatch('updateListIndex', {list: 'backlog'})
+   },
+   handler(id) {
+      this.pass_to_board(id);
+      this.update_backlog();
+   }
+  }
 }
 </script>
 

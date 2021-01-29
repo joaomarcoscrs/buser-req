@@ -85,6 +85,7 @@ const store = () => new Vuex.Store({
       req.analysis = false
       req.status = 'backlog'
       state.reqs_board.backlog.push(req)
+      state.reqs_analysis = state.reqs_analysis.filter(r => r.id !== id)
     },
     DELETE_REQ(state, params) {
       let id = params.id
@@ -103,7 +104,7 @@ const store = () => new Vuex.Store({
       let id = params.id
       let req = state.reqs_board[req.status].filter(r => r.id===id)[0]
       req.index = index
-    }
+    },
   },
   getters: {
     logged_user(state) {
@@ -135,47 +136,47 @@ const store = () => new Vuex.Store({
         store.commit('ADD_REQ', R.data)
       })
     },
-    archiveReq(store, id) {
-      id = id.id
+    archiveReq(store, params) {
+      let id = params.id
       return AppApi.archive_req(id).then(R => {
           store.commit('ARCHIVE_REQ', R.data)
       })
     },
-    unarchiveReq(store, id) {
-      id = id.id
+    unarchiveReq(store, params) {
+      let id = params.id
       return AppApi.unarchive_req(id).then(R => {
           store.commit('UNARCHIVE_REQ', R.data)
       })
     },
-    analyzeReq(store, id) {
-      id = id.id
+    analyzeReq(store, params) {
+      let id = params.id
       return AppApi.analyze_req(id).then(R => {
           store.commit('ANALYZE_REQ', R.data)
       })
     },
-    deleteReq(store, id) {
-      id = id.id
+    deleteReq(store, params) {
+      let id = params.id
       return AppApi.delete_req(id).then(R => {
           store.commit('DELETE_REQ', R.data)
       })
     },
-    moveReq(store, id, new_status) {
+    moveReq(store, params) {
+      let id = params.id
+      let new_status = params.new_status
       return AppApi.change_status(id, new_status).then(R => {
         store.commit('CHANGE_REQ_STATUS', R.data)
       })
     },
-    updateListIndex(store, list) {
-      list = list.list
-      for (req in list) {
-        let index_certo = state.reqs_board[list].indexOf(req)
-        if (req.index !== index_certo) {
-          return AppApi.update_req_index(req.id, index).then(R => {
+    updateListIndex(store, params) {
+      let list = store.state.reqs_board[params.list]
+      for (let j = 0; j<list.length; j++) {
+        let req = list[j]
+          return AppApi.update_req_index(req.id, j).then(R => {
             store.commit('UPDATE_REQ_INDEX', R.data)
           })
         }
       }
     }
-  }
 })
 
 export default store

@@ -24,6 +24,7 @@
                      :empty-insert-threshold="80"
                      group="board"
                      v-bind="dragOptions"
+                     @change="handle($event, 'backlog')"
                      @start="drag = true"
                      @end="drag = false">
                      <reqcard v-for="req in reqs_board.backlog" :key="req.id" :req="req"></reqcard>
@@ -58,6 +59,7 @@
                      :empty-insert-threshold="80"
                      group="board"
                      v-bind="dragOptions"
+                     @change="handle($event, 'pending')"
                      @start="drag = true"
                      @end="drag = false">
                      <reqcard v-for="req in reqs_board.pending" :key="req.id" :req="req"></reqcard>
@@ -92,6 +94,7 @@
                      :empty-insert-threshold="80"
                      group="board"
                      v-bind="dragOptions"
+                     @change="handle($event, 'ongoing')"
                      @start="drag = true"
                      @end="drag = false">
                      <reqcard v-for="req in reqs_board.ongoing" :key="req.id" :req="req"></reqcard>
@@ -126,6 +129,7 @@
                      :empty-insert-threshold="80"
                      group="board"
                      v-bind="dragOptions"
+                     @change="handle($event, 'done')"
                      @start="drag = true"
                      @end="drag = false">
                      <reqcard v-for="req in reqs_board.done" :key="req.id" :req="req"></reqcard>
@@ -160,6 +164,7 @@
                      :empty-insert-threshold="80"
                      group="board"
                      v-bind="dragOptions"
+                     @change="handle($event, 'delivered')"
                      @start="drag = true"
                      @end="drag = false">
                      <reqcard v-for="req in reqs_board.delivered" :key="req.id" :req="req"></reqcard>
@@ -181,7 +186,7 @@ import draggable from 'vuedraggable'
 
 export default {
     data: () => ({
-      cardedit: false,
+      teste: {},
       componentData:{}
     }),
     components: {
@@ -210,15 +215,33 @@ export default {
         }
       },
   methods: {
-   add (status) {
+    add (status) {
        this.$store.dispatch('addReq', {status: status})
     },
-   move (id, new_status) {
+    move (id, new_status) {
        this.$store.dispatch('moveReq', {id: id, new_status: new_status})
     },
-   update (list) {
+    update (list) {
        this.$store.dispatch('updateListIndex', {list: list})
     },
+    handle(evt, status) {
+        if ("added" in evt) {
+            let req = evt.added.element
+            this.move(req.id, req.status)
+            this.update(req.status)
+        }
+        else if ("removed" in evt) {
+            let req = evt.removed.element
+            this.update(status)
+        }
+        else if ("moved" in evt) {
+            let req = evt.moved.element
+            this.update(status)
+        }
+    },
+    printar(coisa) {
+        console.log(coisa)
+    }
   }
 }
 </script>
