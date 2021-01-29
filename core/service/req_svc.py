@@ -40,13 +40,37 @@ def delete_req(id_2):
     return {'id': r.id}
 
 
-def change_status(id_2, status):
+def update_req_status(id_2, status):
     r = Requisition.objects.get(id=id_2)
     r.status = status
+    r.save()
     return {'id': r.id, 'status': r.status}
 
 
 def update_req_index(id_2, index):
     r = Requisition.objects.get(id=id_2)
     r.index = index
-    return {'id': r.id, 'index': r.index}
+    r.save()
+    return {'id': r.id, 'index': r.index, 'status': r.status}
+
+
+def update_req_prop(id_2, prop, value):
+    r = Requisition.objects.get(id=id_2)
+    if prop == 'title':
+        r.title = value
+    elif prop == 'priority':
+        r.priority = value
+    elif prop == 'team':
+        r.team = value
+    elif prop == 'category':
+        r.category = value
+    elif prop == 'description':
+        r.description = value
+    elif prop == 'link':
+        r.link = value
+    r.save()
+    if r.archived:
+        _type = 'archived'
+    else:
+        _type = 'board'
+    return {'id': r.id, 'prop': prop, 'value': value, 'status': r.status, 'type': _type}

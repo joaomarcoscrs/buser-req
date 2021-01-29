@@ -1,7 +1,6 @@
 <template>
    <div class="overflow">
     <v-card 
-        v-model="cardedit"
         width="400"
         class="rounded-card boards-todos"
         color="#ECECEC"
@@ -217,18 +216,16 @@ export default {
   methods: {
     add (status) {
        this.$store.dispatch('addReq', {status: status})
-    },
-    move (id, new_status) {
-       this.$store.dispatch('moveReq', {id: id, new_status: new_status})
+       this.$store.dispatch('updateListIndex', {list: status})
     },
     update (list) {
+       this.$store.dispatch('updateListStatus', {list: list})
        this.$store.dispatch('updateListIndex', {list: list})
     },
     handle(evt, status) {
         if ("added" in evt) {
             let req = evt.added.element
-            this.move(req.id, req.status)
-            this.update(req.status)
+            this.update(status)
         }
         else if ("removed" in evt) {
             let req = evt.removed.element

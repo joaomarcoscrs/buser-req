@@ -3,7 +3,7 @@
         <v-tooltip bottom>
             <template v-slot:activator="{ on, attrs }">
                 <v-card v-bind="attrs" v-on="on" class="margin-card rounded-task-card" elevation="4">
-                    <v-card-title style="color: #5B5B5B" contenteditable v-text="req.title" @blur="onEdit($event,'title')"
+                    <v-card-title style="color: #5B5B5B" contenteditable v-text="req.title" @blur="onEdit($event,'title', req.id)"
                         class="headline titulo-tasks font-weight-regular"
                         ></v-card-title>
                     <div class="flex-box-content-card">
@@ -11,49 +11,49 @@
                         <div class="esquerda">
                             <template v-if="req.team == 'operações'">
                                 <v-icon color="#49CB57" class="padding-dentro-card">mdi-account-group</v-icon>
-                                <span class="texto-card-content padding-dentro-card" style="color: #49CB57"></span><div style="color: #49CB57" contenteditable v-text="req.team" @blur="onEdit($event,'team')"></div>
+                                <span class="texto-card-content padding-dentro-card" style="color: #49CB57"></span><div style="color: #49CB57" contenteditable v-text="req.team" @blur="onEdit($event,'team', req.id)"></div>
                             </template>
                             <template v-else-if="req.team == 'tecnologia'">
                                 <v-icon color="#49B4CB" class="padding-dentro-card">mdi-account-group</v-icon>
-                                <span class="texto-card-content padding-dentro-card" style="color: #49B4CB"></span><div style="color: #49B4CB" contenteditable v-text="req.team" @blur="onEdit($event,'team')"></div>
+                                <span class="texto-card-content padding-dentro-card" style="color: #49B4CB"></span><div style="color: #49B4CB" contenteditable v-text="req.team" @blur="onEdit($event,'team', req.id)"></div>
                             </template>
                             <template v-else-if="req.team == 'marketing'">
                                 <v-icon color="#FF7A00" class="padding-dentro-card">mdi-account-group</v-icon>
-                                <span class="texto-card-content padding-dentro-card" style="color: #FF7A00"></span><div style="color: #FF7A00" contenteditable v-text="req.team" @blur="onEdit($event,'team')"></div>
+                                <span class="texto-card-content padding-dentro-card" style="color: #FF7A00"></span><div style="color: #FF7A00" contenteditable v-text="req.team" @blur="onEdit($event,'team', req.id)"></div>
                             </template>
                             <template v-else-if="req.team == 'people'">
                                 <v-icon color="#B80F74" class="padding-dentro-card">mdi-account-group</v-icon>
-                                <span class="texto-card-content padding-dentro-card" style="color: #B80F74"></span><div style="color: #B80F74" contenteditable v-text="req.team" @blur="onEdit($event,'team')"></div>
+                                <span class="texto-card-content padding-dentro-card" style="color: #B80F74"></span><div style="color: #B80F74" contenteditable v-text="req.team" @blur="onEdit($event,'team', req.id)"></div>
                             </template>
                             <template v-else-if="req.team == '-'">
                                 <v-icon color="#DCDCDC" class="padding-dentro-card">mdi-account-group</v-icon>
-                                <span class="texto-card-content padding-dentro-card" style="color: #DCDCDC"></span><div style="color: #DCDCDC" contenteditable v-text="req.team" @blur="onEdit($event,'team')"></div>
+                                <span class="texto-card-content padding-dentro-card" style="color: #DCDCDC"></span><div style="color: #DCDCDC" contenteditable v-text="req.team" @blur="onEdit($event,'team', req.id)"></div>
                             </template>
                             <template v-else>
                                 <v-icon color="#5B5B5B" class="padding-dentro-card">mdi-account-group</v-icon>
-                                <span class="texto-card-content padding-dentro-card" style="color: #5B5B5B"></span><div style="color: #5B5B5B" contenteditable v-text="req.team" @blur="onEdit($event,'team')"></div>
+                                <span class="texto-card-content padding-dentro-card" style="color: #5B5B5B"></span><div style="color: #5B5B5B" contenteditable v-text="req.team" @blur="onEdit($event,'team', req.id)"></div>
                             </template>
                         </div>
                             <div class="direita">
                                 <template v-if="req.priority == 0">
                                     <v-icon  color="#E03B24" class="padding-dentro-card">mdi-flag-variant</v-icon>
-                                    <span class="texto-card-content padding-dentro-card" style="color: #E03B24">prioridade</span><div style="color: #E03B24" contenteditable v-text="req.priority" @blur="onEdit($event,'priority')"></div>
+                                    <span class="texto-card-content padding-dentro-card" style="color: #E03B24">prioridade</span><div style="color: #E03B24" contenteditable v-text="req.priority" @blur="onEdit($event,'priority', req.id)"></div>
                                 </template>
                                 <template v-else-if="req.priority == 1">
                                     <v-icon  color="#F16500" class="padding-dentro-card">mdi-flag-variant</v-icon>
-                                    <span class="texto-card-content padding-dentro-card" style="color: #F16500">prioridade</span><div style="color: #F16500" contenteditable v-text="req.priority" @blur="onEdit($event,'priority')"></div>
+                                    <span class="texto-card-content padding-dentro-card" style="color: #F16500">prioridade</span><div style="color: #F16500" contenteditable v-text="req.priority" @blur="onEdit($event,'priority', req.id)"></div>
                                 </template>
                                 <template v-else-if="req.priority == 2">
                                     <v-icon  color="#FDCB01" class="padding-dentro-card">mdi-flag-variant</v-icon>
-                                    <span class="texto-card-content padding-dentro-card" style="color: #FDCB01">prioridade</span><div style="color: #FDCB01" contenteditable v-text="req.priority" @blur="onEdit($event,'priority')"></div>
+                                    <span class="texto-card-content padding-dentro-card" style="color: #FDCB01">prioridade</span><div style="color: #FDCB01" contenteditable v-text="req.priority" @blur="onEdit($event,'priority', req.id)"></div>
                                 </template>
                                 <template v-else-if="req.priority == 3">
                                     <v-icon  color="#57D71B" class="padding-dentro-card">mdi-flag-variant</v-icon>
-                                    <span class="texto-card-content padding-dentro-card" style="color: #57D71B">prioridade</span><div style="color: #57D71B" contenteditable v-text="req.priority" @blur="onEdit($event,'priority')"></div>
+                                    <span class="texto-card-content padding-dentro-card" style="color: #57D71B">prioridade</span><div style="color: #57D71B" contenteditable v-text="req.priority" @blur="onEdit($event,'priority', req.id)"></div>
                                 </template>
                                 <template v-else>
                                     <v-icon  color="#DCDCDC" class="padding-dentro-card">mdi-flag-variant</v-icon>
-                                    <span class="texto-card-content padding-dentro-card" style="color: #DCDCDC">prioridade</span><div style="color: #DCDCDC" contenteditable v-text="req.priority" @blur="onEdit($event,'priority')"></div>
+                                    <span class="texto-card-content padding-dentro-card" style="color: #DCDCDC">prioridade</span><div style="color: #DCDCDC" contenteditable v-text="req.priority" @blur="onEdit($event,'priority', req.id)"></div>
                                 </template>
                             </div>
                         </div>
@@ -71,7 +71,7 @@
                                 <template v-else>
                                     <v-icon  color="#FF3677" class="padding-dentro-card">mdi-new-box</v-icon>
                                 </template>
-                                <span class="texto-card-content padding-dentro-card" style="color: #FF3677"></span><div style="color: #FF3677" contenteditable v-text="req.category" @blur="onEdit($event,'category')"></div>
+                                <span class="texto-card-content padding-dentro-card" style="color: #FF3677"></span><div style="color: #FF3677" contenteditable v-text="req.category" @blur="onEdit($event,'category', req.id)"></div>
                             </div>
                             <div class="container-link">
                                 <div class="direita">
@@ -90,7 +90,7 @@
         v-if="!req.archived"
         icon
         style="margin: 0px 0px 10px 0px;"
-        @click="archive(req.id)"
+        @click="archive(req.id, req.status)"
       >
         <v-icon color="#969696">mdi-delete</v-icon>
      </v-btn>
@@ -98,7 +98,7 @@
         v-else
         icon
         style="margin: 0px 0px 10px 0px;"
-        @click="unarchive(req.id)"
+        @click="unarchive(req.id, req.status)"
       >
         <v-icon color="#367CDD">mdi-delete-restore</v-icon>
       </v-btn>
@@ -129,12 +129,19 @@ export default {
       transition: 'slide-y-reverse-transition',
     }),
     methods:{
-    archive (id) {
+    archive (id, list) {
        this.$store.dispatch('archiveReq', {id: id})
+       this.$store.getters.reqs_board
+       this.$store.dispatch('updateListIndex', {list: list})
     },
-    unarchive (id) {
+    unarchive (id, list) {
        this.$store.dispatch('unarchiveReq', {id: id})
+       this.$store.dispatch('updateListIndex', {list: list})
     },
+    onEdit(evt, prop, id) {
+        let input = evt.target.innerText
+        this.$store.dispatch('updateReq', {id: id, prop: prop, input: input})
+    }
     },
     computed: {
       reqs_board () {

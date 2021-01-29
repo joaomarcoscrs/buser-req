@@ -102,10 +102,19 @@ def unarchive_req(request):
 
 
 @ajax_login_required
-def change_status(request):
+def update_req_status(request):
     id_2 = request.POST['id']
     status = request.POST['status']
-    r = req_svc.change_status(id_2, status)
+    r = req_svc.update_req_status(id_2, status)
+    return JsonResponse(r)
+
+
+@ajax_login_required
+def update_req_prop(request):
+    id_2 = request.POST['id']
+    prop = request.POST['prop']
+    value = request.POST['value']
+    r = req_svc.update_req_prop(id_2, prop, value)
     return JsonResponse(r)
 
 

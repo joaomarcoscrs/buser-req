@@ -19,11 +19,25 @@ const store = () => new Vuex.Store({
       state.snack = newstate
     },
     SET_REQS_BOARD(state, reqs) {
+      function compare( a, b ) {
+        if ( a.index < b.index ){
+          return -1;
+        }
+        if ( a.index > b.index ){
+          return 1;
+        }
+        return 0;
+      }
       let board_backlog = reqs['backlog'].filter(req => !req.archived && !req.analysis)
+      board_backlog.sort(compare);
       let board_pending = reqs['pending'].filter(req => !req.archived && !req.analysis)
+      board_pending.sort(compare);
       let board_ongoing = reqs['ongoing'].filter(req => !req.archived && !req.analysis)
+      board_ongoing.sort(compare);
       let board_done = reqs['done'].filter(req => !req.archived && !req.analysis)
+      board_done.sort(compare);
       let board_delivered = reqs['delivered'].filter(req => !req.archived && !req.analysis)
+      board_delivered.sort(compare);
       state.reqs_board = {backlog: board_backlog,
               pending: board_pending,
               ongoing: board_ongoing,
@@ -93,7 +107,7 @@ const store = () => new Vuex.Store({
       req.is_trash = true
       state.reqs_analysis = state.reqs_analysis.filter(r => r.id !== id)
     },
-    CHANGE_REQ_STATUS(state, params) {
+    UPDATE_REQ_STATUS(state, params) {
       let status = params.status
       let id = params.id
       let req = state.reqs_board[status].filter(r => r.id===id)[0]
@@ -102,9 +116,27 @@ const store = () => new Vuex.Store({
     UPDATE_REQ_INDEX(state, params) {
       let index = params.index
       let id = params.id
-      let req = state.reqs_board[req.status].filter(r => r.id===id)[0]
-      req.index = index
+      let status = params.status
+      let req = state.reqs_board[status].filter(r => r.id===id)[0]
+      if (req !== undefined) {
+        req.index = index
+      }
     },
+    UPDATE_REQ(state, params) {
+      let id = params.id
+      let status = params.status
+      let prop = params.prop
+      let value = params.value
+      let type = params.type
+      if(type === 'board') {
+        let req = state.reqs_board[status].filter(r => r.id===id)[0]
+        req[prop] = value
+      }
+      else if(type === 'archived') {
+        let req = state.reqs_archived.filter(r => r.id===id)[0]
+        req[prop] = value
+      }
+    }
   },
   getters: {
     logged_user(state) {
@@ -129,6 +161,18 @@ const store = () => new Vuex.Store({
           store.commit('SET_REQS_BOARD', R.data)
           store.commit('SET_ARCHIVE', R.data)
           store.commit('SET_ANALYSIS', R.data)
+          let statuses = ['backlog','pending','ongoing','done','delivered']
+          for (let j = 0; j < statuses.length; j++) {
+            let status = statuses[j]
+            let list = store.state.reqs_board[status]
+            for (let i = 0; i < list.length; i++) {
+              let id = list[i].id
+              let index = i 
+              return AppApi.update_req_index(id, index).then(R => {
+                store.commit('UPDATE_REQ_INDEX', R.data)
+              })
+            }
+          }
       })
     },
     addReq(store, status, title='Card novo', archived='f', analysis='f', is_trash='f', team='-', priority=3, category='-', link='-', description='Sem descrição') {
@@ -160,22 +204,33 @@ const store = () => new Vuex.Store({
           store.commit('DELETE_REQ', R.data)
       })
     },
-    moveReq(store, params) {
-      let id = params.id
-      let new_status = params.new_status
-      return AppApi.change_status(id, new_status).then(R => {
-        store.commit('CHANGE_REQ_STATUS', R.data)
-      })
-    },
     updateListIndex(store, params) {
       let list = store.state.reqs_board[params.list]
       for (let j = 0; j<list.length; j++) {
         let req = list[j]
-          return AppApi.update_req_index(req.id, j).then(R => {
+        AppApi.update_req_index(req.id, j).then(R => {
             store.commit('UPDATE_REQ_INDEX', R.data)
           })
         }
-      }
+      },
+    updateListStatus(store, params) {
+      let status = params.list
+      let list = store.state.reqs_board[status]
+      for (let j = 0; j<list.length; j++) {
+        let req = list[j]
+        AppApi.update_req_status(req.id, status).then(R => {
+            store.commit('UPDATE_REQ_STATUS', R.data)
+          })
+        }
+      },
+    updateReq(store, params) {
+      let id = params.id
+      let value = params.input
+      let prop = params.prop
+      return AppApi.update_req_prop(id, prop, value).then(R => {
+        store.commit('UPDATE_REQ', R.data)
+      })
+    }
     }
 })
 
