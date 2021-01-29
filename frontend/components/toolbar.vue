@@ -1,27 +1,6 @@
 <template>
   <v-toolbar color="white" dark fixed app clipped-right>
     <v-toolbar-side-icon class="cinza-escuro" @click.stop="state.drawer = !state.drawer"></v-toolbar-side-icon>
-    <v-flex class="search-box">
-      <v-text-field class="search-box"
-          light
-          solo
-          background-color="#ECECEC"
-          color="#969696"
-          clearable
-          prepend-inner-icon="search"
-          placeholder="busca textual">
-      </v-text-field>
-    </v-flex>
-    <v-spacer></v-spacer>
-    <v-spacer></v-spacer>
-    <v-spacer></v-spacer>
-    <v-spacer></v-spacer>
-    <v-spacer></v-spacer>
-    <v-spacer></v-spacer>
-    <v-spacer></v-spacer>
-    <v-spacer></v-spacer>
-    <v-spacer></v-spacer>
-    <v-spacer></v-spacer>
     <v-spacer></v-spacer>
     <v-btn v-if="!logged_user" flat dark ripple class="ma-0 ml-5 cinza-escuro"  @click="open_login_dialog($event)"><v-icon>mdi-account-arrow-right</v-icon></v-btn>
     <span v-if="logged_user" class="texto-bem-vindo font-weight-regular">olá {{logged_user.first_name}}, tudo bem?</span>
@@ -72,7 +51,10 @@
     computed: Object.assign(
       {},
       Vuex.mapGetters([
-        'logged_user'
+        'logged_user',
+        'reqs_board',
+        'filtered_board',
+        'search'
       ])
     ),
     props: ['state'],
@@ -86,7 +68,7 @@
           this.$store.commit('SET_LOGGED_USER', null);
           Snacks.show(this.$store, {text: 'Até logo!', color:"#5B5B5B"})
         });
-      }
+      },
     }
   }
 </script>

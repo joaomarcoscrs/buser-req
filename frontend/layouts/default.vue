@@ -40,6 +40,9 @@
       reqs_board () {
         return this.$store.getters.reqs_board
       },
+      filtered_board () {
+        return this.$store.getters.reqs_board
+      },
       reqs_archived () {
         return this.$store.getters.reqs_archived
       },

@@ -8,7 +8,9 @@ const store = () => new Vuex.Store({
     snack: {},
     reqs_board: {},
     reqs_analysis: {},
-    reqs_archived: {}
+    reqs_archived: {},
+    filtered_board: {},
+    search: ''
   },
   mutations: {
     SET_LOGGED_USER(state, logged_user) {
@@ -153,8 +155,11 @@ const store = () => new Vuex.Store({
     },
     reqs_board (state) {
       return state.reqs_board
+    },
+    search (state) {
+      return state.search
     }
-  },
+},
   actions: {
     fetchReqs(store) {
       return AppApi.list_reqs().then(R => {
