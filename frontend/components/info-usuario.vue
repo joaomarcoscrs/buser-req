@@ -36,9 +36,11 @@
             </div>
 
             <div class="infos_linhas">
-              <div v-if="user.role == 'admin'" class="user-key"><v-icon large class="texto-rosa">mdi-shield-account</v-icon>&nbsp;&nbsp;</div>
-              <div v-else class="user-key"><v-icon large class="texto-rosa">mdi-eye</v-icon>&nbsp;&nbsp;</div>
-              <div class="user-value">{{user.role}}</div>
+              <div v-if="user.is_admin" class="user-key"><v-icon large class="texto-rosa">mdi-shield-account</v-icon>&nbsp;&nbsp;</div>
+              <div v-if="!user.is_admin" class="user-key"><v-icon large class="texto-rosa">mdi-eye</v-icon>&nbsp;&nbsp;</div>
+              <div v-if="user.is_admin" class="user-value">admin</div>
+              <div v-if="!user.is_admin" class="user-value">viewer</div>
+
             </div>
           </v-container>
         </v-card-text>

@@ -2,8 +2,8 @@
 import json
 from django.http.response import HttpResponse, JsonResponse
 from django.contrib import auth
-from commons.django_model_utils import get_or_none
 from commons.django_views_utils import ajax_login_required
+from commons.utils import gravatar_url
 from core.service import log_svc, req_svc
 from django.views.decorators.csrf import csrf_exempt
 from core.models import Requisition
@@ -169,10 +169,9 @@ def _user2dict(user):
         'last_login': user.last_login,
         'date_joined': user.date_joined,
         'email': user.email,
-        'permissions': {
-            'ADMIN': user.is_superuser,
-            'STAFF': user.is_staff,
-        }
+        'profile_picture': gravatar_url(user.email),
+        'is_admin': user.is_superuser,
+        'team': user.profile.team
     }
     return d
 

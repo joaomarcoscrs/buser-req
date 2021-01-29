@@ -1,6 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
 
 class ActivityLog(models.Model):
     type = models.CharField(max_length=64)
@@ -25,6 +28,7 @@ class ActivityLog(models.Model):
             'description': self.description,
             'done': self.done,
         }
+
 
 class Requisition(models.Model):
     PRIORITIES = (
@@ -54,14 +58,14 @@ class Requisition(models.Model):
         ('suporte', 'suporte'),
     )
     title = models.TextField(blank=True)
-    team = models.CharField(blank=True,max_length=20,choices=TEAMS)
-    status = models.CharField(null=True, blank=True, max_length=20,  choices=STATUSES)
+    team = models.CharField(blank=True, max_length=20, choices=TEAMS)
+    status = models.CharField(null=True, blank=True, max_length=20, choices=STATUSES)
     archived = models.BooleanField(default=False)
     analysis = models.BooleanField(default=False)
     creator = models.ForeignKey(User)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    priority = models.IntegerField(null=True,blank=True, choices=PRIORITIES)
+    priority = models.IntegerField(null=True, blank=True, choices=PRIORITIES)
     category = models.CharField(blank=True, max_length=20, choices=CATEGORIES)
     link = models.URLField(blank=True, max_length=400)
     description = models.TextField(blank=True)
@@ -73,3 +77,20 @@ class Requisition(models.Model):
     def delete(self):
         self.is_trash = True
         self.save()
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    username = User.username
+    team = models.CharField(max_length=20, blank=True)
+
+
+@receiver(post_save, sender=User)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()

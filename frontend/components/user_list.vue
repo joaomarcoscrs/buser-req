@@ -20,9 +20,10 @@
           </v-list-tile-content>
 
           <v-list-tile-content class="box flex-linha">
-            <v-icon large v-if="user.role == 'admin'" class="role margin-divider">mdi-shield-account</v-icon>
-            <v-icon large v-if="user.role == 'viewer'" class="role margin-divider">mdi-eye</v-icon>
-            <h1 class="role">{{user.role}}</h1>
+            <v-icon large v-if="user.is_admin" class="role margin-divider">mdi-shield-account</v-icon>
+            <v-icon large v-if="!user.is_admin" class="role margin-divider">mdi-eye</v-icon>
+            <h1 v-if="user.is_admin" class="role">admin</h1>
+            <h1 v-if="!user.is_admin" class="role">viewer</h1>
           </v-list-tile-content>
 
         </v-list-tile>
