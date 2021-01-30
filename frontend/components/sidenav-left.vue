@@ -1,5 +1,4 @@
 <template>
-<link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
   <v-navigation-drawer class="fundo-rosa" fixed v-model="state.drawer" app>
     <v-list two-line rounded class="texto-branco">
       <v-list-tile>
@@ -47,6 +46,7 @@
     </v-list>
   </v-navigation-drawer>
 </template>
+<script src="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet"></script>
 
 <script>
   export default {
