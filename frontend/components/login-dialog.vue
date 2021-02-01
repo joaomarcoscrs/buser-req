@@ -49,8 +49,10 @@ export default {
         var user = result.data;
         if(user){
           this.$store.commit('SET_LOGGED_USER', user);
+          this.$store.dispatch('fetchReqs')
           this.visible = false;
           console.log('logged')
+          
         } else {
           this.error = true;
         }
@@ -58,6 +60,17 @@ export default {
       });
     },
   },
+  computed: {
+      reqs_board () {
+        return this.$store.getters.reqs_board
+      },
+      reqs_archived () {
+        return this.$store.getters.reqs_archived
+      },
+      reqs_analysis () {
+        return this.$store.getters.reqs_analysis
+      },
+  }
 }
 </script>
 
