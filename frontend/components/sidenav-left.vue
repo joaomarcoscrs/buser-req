@@ -46,9 +46,9 @@
     </v-list>
   </v-navigation-drawer>
 </template>
+<script src="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet"></script>
 
 <script>
-  import '@mdi/font/css/materialdesignicons.css' 
   export default {
     props: ['state'],
     icons: {
