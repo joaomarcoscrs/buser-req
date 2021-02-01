@@ -126,8 +126,8 @@ function dkrun_prod {
 
 function deploy_prod {
   ssh ubuntu@buserreq.busercamp.com.br "
-    cd ~/buser-req
     sudo su
+    cd /home/ubuntu/buser-req
     git reset --hard
     git pull
     source dev.sh
