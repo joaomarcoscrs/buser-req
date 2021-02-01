@@ -125,7 +125,7 @@ function dkrun_prod {
 }
 
 function deploy_prod {
-  ssh ubuntu@buserreq.busercamp.com.br "cd buser-req && dkrunprod.sh"
+  ssh ubuntu@buserreq.busercamp.com.br "cd /home/ubuntu/buser-req && ./dkrunprod.sh"
 }
 
 function dk {
