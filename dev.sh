@@ -131,7 +131,6 @@ function deploy_prod {
     git reset --hard
     git pull
     source dev.sh
-    dkbuild
     dkrun_prod
   "
 }
