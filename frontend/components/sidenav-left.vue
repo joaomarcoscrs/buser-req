@@ -1,6 +1,6 @@
 <template>
   <v-navigation-drawer class="fundo-rosa" fixed v-model="state.drawer" app>
-    <v-list two-line rounded class="texto-branco">
+<link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">    <v-list two-line rounded class="texto-branco">
       <v-list-tile>
         <v-list-tile-content class="margem-topo">
           <span><img class="tamanho-buser-req" src="~/static/buser-req-logo.png"></span>
@@ -46,7 +46,6 @@
     </v-list>
   </v-navigation-drawer>
 </template>
-<script src="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet"></script>
 
 <script>
   export default {
