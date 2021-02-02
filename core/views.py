@@ -126,6 +126,7 @@ def update_req_index(request):
     return JsonResponse(r)
 
 
+@csrf_exempt
 def create_req(request):
     if 'type' in request.POST:
         _type = request.POST['type']
