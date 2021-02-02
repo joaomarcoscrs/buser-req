@@ -52,7 +52,12 @@
     },
     created() {
       this.$store.dispatch('fetchReqs')
-    }
+    },
+    head() {
+      return {
+        title: "buser-req [facilities]"
+      };
+  }
   }
 </script>
 
