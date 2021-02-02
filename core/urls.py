@@ -17,6 +17,4 @@ urlpatterns = [
     url(r'^api/update_req_status$', views.update_req_status),
     url(r'^api/update_req_index$', views.update_req_index),
     url(r'^api/update_req_prop$', views.update_req_prop),
-    url(r'^api/interactive$', views.interactive),
-    url(r'^api/slashcommand$', views.slashcommand),
 ]
