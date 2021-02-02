@@ -128,9 +128,10 @@ def update_req_index(request):
 
 @ajax_login_required
 def create_req(request):
-    if request.POST.get('type', '0') == '1':
-        if request.POST['type']=='url_verification':
-            return JsonResponse({'challenge': request.POST['challenge']})
+    if 'type' in request.POST:
+        _type = request.POST['type']
+        if _type == 'url_verification':
+            return JsonResponse({'challenge': _type})
     else:
         title = request.POST['title']
         status = request.POST['status']
