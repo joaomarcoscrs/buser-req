@@ -126,7 +126,6 @@ def update_req_index(request):
     return JsonResponse(r)
 
 
-@ajax_login_required
 def create_req(request):
     if 'type' in request.POST:
         _type = request.POST['type']
