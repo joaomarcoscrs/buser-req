@@ -201,6 +201,39 @@ def create_req(request):
         return HttpResponse(Status=403)
 
 
+def create_req_app(request):
+        title = request.POST['title']
+        status = request.POST['status']
+        priority = request.POST['priority']
+        category = request.POST['category']
+        link = request.POST['link']
+        description = request.POST['description']
+        archived = request.POST['archived']
+        analysis = request.POST['analysis']
+        is_trash = request.POST['is_trash']
+        team = request.POST['team']
+
+        if archived == 'f':
+            archived = False
+        else:
+            archived = True
+
+        if analysis == 'f':
+            analysis = False
+        else:
+            analysis = True
+
+        if is_trash == 'f':
+            is_trash = False
+        else:
+            is_trash = True
+
+        req = req_svc.create_req(request.user, status, title, archived, analysis, is_trash, team, priority, category,
+                                 link,
+                                 description)
+        return JsonResponse(_req2dict(req))
+
+
 def _user2dict(user):
     d = {
         'id': user.id,

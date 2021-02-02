@@ -181,7 +181,7 @@ const store = () => new Vuex.Store({
       })
     },
     addReq(store, status, title='Card novo', archived='f', analysis='f', is_trash='f', team='-', priority=3, category='-', link='-', description='Sem descrição') {
-      return AppApi.create_req(status.status, title, archived, analysis, is_trash, team, priority, category, link, description).then(R => {
+      return AppApi.create_req_app(status.status, title, archived, analysis, is_trash, team, priority, category, link, description).then(R => {
         store.commit('ADD_REQ', R.data)
       })
     },

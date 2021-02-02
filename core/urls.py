@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^api/analyze_req$', views.analyze_req),
     url(r'^api/delete_req$', views.delete_req),
     url(r'^api/create_req$', views.create_req),
+    url(r'^api/create_req_app$', views.create_req),
     url(r'^api/update_req_status$', views.update_req_status),
     url(r'^api/update_req_index$', views.update_req_index),
     url(r'^api/update_req_prop$', views.update_req_prop),

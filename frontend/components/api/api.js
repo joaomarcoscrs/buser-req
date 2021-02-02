@@ -42,6 +42,11 @@ const api = {
         {status: status, title: title, archived: archived, analysis: analysis, is_trash: is_trash, team: team, priority: priority, category: category, link: link, description: description
             })
     },
+    create_req_app(status, title, archived, analysis, is_trash, team, priority, category, link, description){
+        return post('/api/create_req_app', 
+        {status: status, title: title, archived: archived, analysis: analysis, is_trash: is_trash, team: team, priority: priority, category: category, link: link, description: description
+            })
+    },
     update_req_status(id, status) {
         return post('/api/update_req_status', {id: id, status: status})
     },
