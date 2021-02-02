@@ -128,47 +128,36 @@ def update_req_index(request):
 
 @csrf_exempt
 def create_req(request):
-    json_dict = json.loads(request.body.decode('utf-8'))
-    if 'type' in json_dict:
-        _type = json_dict['type']
-        if _type == 'url_verification':
-            challenge = json_dict['challenge']
-            return JsonResponse({'challenge': challenge}, safe=False)
-        else:
-            title = json_dict['title']
-            status = json_dict['status']
-            priority = json_dict['priority']
-            category = json_dict['category']
-            link = json_dict['link']
-            description = json_dict['description']
-            archived = json_dict['archived']
-            analysis = json_dict['analysis']
-            is_trash = json_dict['is_trash']
-            team = json_dict['team']
+    title = request.POST['title']
+    status = request.POST['status']
+    priority = request.POST['priority']
+    category = request.POST['category']
+    link = request.POST['link']
+    description = request.POST['description']
+    archived = request.POST['archived']
+    analysis = request.POST['analysis']
+    is_trash = request.POST['is_trash']
+    team = request.POST['team']
 
-            if archived == 'f':
-                archived = False
-            else:
-                archived = True
-
-            if analysis == 'f':
-                analysis = False
-            else:
-                analysis = True
-
-            if is_trash == 'f':
-                is_trash = False
-            else:
-                is_trash = True
-
-            req = req_svc.create_req(request.user, status, title, archived, analysis, is_trash, team, priority,
-                                     category,
-                                     link,
-                                     description)
-            return JsonResponse(_req2dict(req))
-
+    if archived == 'f':
+        archived = False
     else:
-        return HttpResponse(Status=403)
+        archived = True
+
+    if analysis == 'f':
+        analysis = False
+    else:
+        analysis = True
+
+    if is_trash == 'f':
+        is_trash = False
+    else:
+        is_trash = True
+
+    req = req_svc.create_req(request.user, status, title, archived, analysis, is_trash, team, priority, category,
+                             link,
+                             description)
+    return JsonResponse(_req2dict(req))
 
 
 def create_req_app(request):
