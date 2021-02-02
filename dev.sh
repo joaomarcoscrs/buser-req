@@ -122,6 +122,7 @@ function dkrun_prod {
         -p 3000:3000 -p 8000:8000 \
         -v /home/ubuntu/dkdata/buser-req:/dkdata \
         buser-req start_web.sh
+    ./run_slack_app.sh
 }
 
 function deploy_prod {
