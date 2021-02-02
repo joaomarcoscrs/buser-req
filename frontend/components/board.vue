@@ -230,7 +230,7 @@ export default {
         if ("added" in evt) {
             let req = evt.added.element
             self.$store.dispatch('updateReqStatus',{id: req.id, list: status})
-            self.$store.dispatch('updateListIndex', {list: status})
+            setTimeout(self.$store.dispatch('updateListIndex', {list: status}), 100)
         }
         if ("moved" in evt) {
             let self = this

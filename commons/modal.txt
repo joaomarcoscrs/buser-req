@@ -1,0 +1,191 @@
+{
+	"title": {
+		"type": "plain_text",
+		"text": "#facilities, me ajuda!"
+	},
+	"submit": {
+		"type": "plain_text",
+		"text": "mandar!"
+	},
+	"close": {
+		"type": "plain_text",
+		"text": "fechar"
+	},
+	"blocks": [
+		{
+			"type": "input",
+      "block_id": "block_title",
+			"element": {
+				"type": "plain_text_input",
+				"action_id": "action_title",
+				"placeholder": {
+					"type": "plain_text",
+					"text": "o que precisa ser resolvido?"
+				}
+			},
+			"label": {
+				"type": "plain_text",
+				"text": "título"
+			}
+		},
+		{
+			"type": "section",
+      "block_id": "block_category",
+			"text": {
+				"type": "mrkdwn",
+				"text": "qual a *categoria* da solicitação?"
+			},
+			"accessory": {
+				"type": "static_select",
+				"placeholder": {
+					"type": "plain_text",
+					"text": "categoria",
+					"emoji": true
+				},
+				"options": [
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "compra",
+							"emoji": true
+						},
+						"value": "value-0"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "manutenção",
+							"emoji": true
+						},
+						"value": "value-1"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "obra",
+							"emoji": true
+						},
+						"value": "value-2"
+					}
+				],
+				"action_id": "action_category"
+			}
+		},
+		{
+			"type": "section",
+      "block_id": "block_team",
+			"text": {
+				"type": "mrkdwn",
+				"text": "qual o seu *time*?"
+			},
+			"accessory": {
+				"type": "static_select",
+				"placeholder": {
+					"type": "plain_text",
+					"text": "time",
+					"emoji": true
+				},
+				"options": [
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "busercamp",
+							"emoji": true
+						},
+						"value": "value-0"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "comercial",
+							"emoji": true
+						},
+						"value": "value-1"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "finance",
+							"emoji": true
+						},
+						"value": "value-2"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "marketing",
+							"emoji": true
+						},
+						"value": "value-3"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "operações",
+							"emoji": true
+						},
+						"value": "value-4"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "people",
+							"emoji": true
+						},
+						"value": "value-5"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "suporte",
+							"emoji": true
+						},
+						"value": "value-6"
+					},
+					{
+						"text": {
+							"type": "plain_text",
+							"text": "tecnologia",
+							"emoji": true
+						},
+						"value": "value-7"
+					}
+				],
+				"action_id": "action_team"
+			}
+		},
+		{
+			"type": "input",
+      "block_id": "block_link",
+			"element": {
+				"type": "plain_text_input",
+				"action_id": "action_link",
+				"placeholder": {
+					"type": "plain_text",
+					"text": "existe algum link que possa ajudar?"
+				}
+			},
+			"label": {
+				"type": "plain_text",
+				"text": "link"
+			}
+		},
+		{
+			"type": "input",
+      "block_id": "block_description",
+			"element": {
+				"type": "plain_text_input",
+				"action_id": "action_description",
+				"placeholder": {
+					"type": "plain_text",
+					"text": "fale mais sobre o problema :)"
+				}
+			},
+			"label": {
+				"type": "plain_text",
+				"text": "descrição"
+			}
+		}
+	],
+	"type": "modal"
+}
