@@ -131,7 +131,8 @@ def create_req(request):
     if 'type' in request.POST:
         _type = request.POST['type']
         if _type == 'url_verification':
-            return JsonResponse({'challenge': _type})
+            challenge = request.POST['challenge']
+            return JsonResponse({'challenge': challenge})
     else:
         title = request.POST['title']
         status = request.POST['status']
