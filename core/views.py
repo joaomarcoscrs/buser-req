@@ -128,11 +128,12 @@ def update_req_index(request):
 
 @csrf_exempt
 def create_req(request):
-    if 'type' in request.POST:
-        _type = request.POST['type']
+    json_dict = json.loads(request.body.decode('utf-8'))
+    if 'type' in json_dict:
+        _type = json_dict['type']
         if _type == 'url_verification':
-            challenge = request.POST['challenge']
-            return JsonResponse({'challenge': challenge})
+            challenge = json_dict['challenge']
+            return JsonResponse({'challenge': challenge}, safe=False)
     else:
         title = request.POST['title']
         status = request.POST['status']
