@@ -1,5 +1,7 @@
 # coding: utf-8
 import json
+
+from django.contrib.auth.models import User
 from django.http.response import HttpResponse, JsonResponse
 from django.contrib import auth
 from commons.django_views_utils import ajax_login_required
@@ -138,6 +140,7 @@ def create_req(request):
     analysis = request.POST['analysis']
     is_trash = request.POST['is_trash']
     team = request.POST['team']
+    user = User.objects.get(username='slack')
 
     if archived == 'f':
         archived = False
@@ -154,7 +157,7 @@ def create_req(request):
     else:
         is_trash = True
 
-    req = req_svc.create_req(request.user, status, title, archived, analysis, is_trash, team, priority, category,
+    req = req_svc.create_req(user, status, title, archived, analysis, is_trash, team, priority, category,
                              link,
                              description)
     return JsonResponse(_req2dict(req))
