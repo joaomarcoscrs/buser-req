@@ -7,7 +7,6 @@ from commons.utils import gravatar_url
 from core.service import log_svc, req_svc
 from django.views.decorators.csrf import csrf_exempt
 from core.models import Requisition
-from slack import WebClient
 
 
 def dapau(request):
