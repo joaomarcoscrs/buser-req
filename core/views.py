@@ -129,12 +129,7 @@ def update_req_index(request):
 @csrf_exempt
 def create_req(request):
     json_dict = json.loads(request.body.decode('utf-8'))
-    if 'type' in json_dict:
-        _type = json_dict['type']
-        if _type == 'url_verification':
-            challenge = json_dict['challenge']
-            return JsonResponse({'challenge': challenge}, safe=False)
-    else:
+    if 'title in json_dict' and 'status' in json_dict and 'priority' in json_dict and 'archived' in json_dict:
         title = request.POST['title']
         status = request.POST['status']
         priority = request.POST['priority']
@@ -161,9 +156,17 @@ def create_req(request):
         else:
             is_trash = True
 
-        req = req_svc.create_req(request.user, status, title, archived, analysis, is_trash, team, priority, category, link,
+        req = req_svc.create_req(request.user, status, title, archived, analysis, is_trash, team, priority, category,
+                                 link,
                                  description)
         return JsonResponse(_req2dict(req))
+    elif 'type' in json_dict:
+        _type = json_dict['type']
+        if _type == 'url_verification':
+            challenge = json_dict['challenge']
+            return JsonResponse({'challenge': challenge}, safe=False)
+    else:
+        return HttpResponse(Status=403)
 
 
 def _user2dict(user):
