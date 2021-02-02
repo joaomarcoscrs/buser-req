@@ -129,7 +129,7 @@ def update_req_index(request):
 @csrf_exempt
 def create_req(request):
     json_dict = json.loads(request.body.decode('utf-8'))
-    if 'title in json_dict' and 'status' in json_dict and 'priority' in json_dict and 'archived' in json_dict:
+    if 'title' in json_dict and 'status' in json_dict and 'priority' in json_dict and 'archived' in json_dict:
         title = request.POST['title']
         status = request.POST['status']
         priority = request.POST['priority']
