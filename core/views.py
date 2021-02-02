@@ -130,16 +130,16 @@ def update_req_index(request):
 def create_req(request):
     json_dict = json.loads(request.body.decode('utf-8'))
     if 'title' in json_dict and 'status' in json_dict and 'priority' in json_dict and 'archived' in json_dict:
-        title = request.POST['title']
-        status = request.POST['status']
-        priority = request.POST['priority']
-        category = request.POST['category']
-        link = request.POST['link']
-        description = request.POST['description']
-        archived = request.POST['archived']
-        analysis = request.POST['analysis']
-        is_trash = request.POST['is_trash']
-        team = request.POST['team']
+        title = json_dict['title']
+        status = json_dict['status']
+        priority = json_dict['priority']
+        category = json_dict['category']
+        link = json_dict['link']
+        description = json_dict['description']
+        archived = json_dict['archived']
+        analysis = json_dict['analysis']
+        is_trash = json_dict['is_trash']
+        team = json_dict['team']
 
         if archived == 'f':
             archived = False
