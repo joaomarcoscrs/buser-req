@@ -67,7 +67,7 @@ class Requisition(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     priority = models.IntegerField(null=True, blank=True, choices=PRIORITIES)
     category = models.CharField(blank=True, max_length=30, choices=CATEGORIES)
-    link = models.URLField(blank=True, null=True, max_length=400)
+    link = models.TextField(blank=True, null=True, max_length=400)
     description = models.TextField(blank=True, null=True)
     is_trash = models.BooleanField(default=False)
     index = models.IntegerField(null=True, blank=True)
