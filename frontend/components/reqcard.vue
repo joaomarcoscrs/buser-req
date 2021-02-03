@@ -2,7 +2,7 @@
     <div>
         <v-tooltip bottom>
             <template v-slot:activator="{ on, attrs }">
-                <v-card v-bind="attrs" v-on="on" class="margin-card rounded-task-card" elevation="4">
+                <v-card id="card" v-bind="attrs" v-on="on" class="margin-card rounded-task-card" elevation="4">
                     <v-card-title style="color: #5B5B5B" contenteditable v-text="req.title" @blur="onEdit($event,'title', req.id)"
                         class="headline titulo-tasks font-weight-regular"
                         ></v-card-title>
@@ -155,18 +155,23 @@ export default {
 </script>
 
 <style scoped>
-    [contenteditable]:active, [contenteditable]:focus {
+    [contenteditable]:active{
         border: none;
         outline: none;
+        cursor: text !important;
     }
-    [contenteditable]:focus {
+    [contenteditable]:hover, [contenteditable]:focus {
+        color: #FF3677 !important;
         font-weight: 700 !important;
+        border: none;
+        outline: none;
+        cursor: text !important;
     }
    .tirar-margem-botao {
      margin: 0px;
      margin-right:10px;
    }
-   .rounded-task-card{ 
+   .rounded-task-card { 
    border-radius:6px;
    }
    .margin-card {
