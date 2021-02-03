@@ -54,7 +54,7 @@
                 <template v-else>
                     <div class="flex-box-nome-icone">
                         <v-icon medium color="#5B5B5B" class="padding-dentro-card-analise">mdi-account-group</v-icon>
-                        <span class="texto-icone padding-dentro-card font-weight-medium" style="color: #5B5B5B">todos</span>
+                        <span class="texto-icone padding-dentro-card font-weight-medium" style="color: #5B5B5B">{{req.team}}</span>
                     </div>
                 </template>
 
