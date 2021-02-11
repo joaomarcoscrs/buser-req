@@ -1,6 +1,7 @@
 <template>
   <v-navigation-drawer class="fundo-rosa" fixed v-model="state.drawer" app>
-<link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">    <v-list two-line rounded class="texto-branco">
+<link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">    
+<v-list two-line rounded class="texto-branco">
       <v-list-tile>
         <v-list-tile-content class="margem-topo">
           <span><img class="tamanho-buser-req" src="~/static/buser-req-logo.png"></span>
@@ -9,7 +10,7 @@
 
       <v-list-tile :to="{name: 'index'}">
         <v-list-tile-action>
-          <v-icon medium class="texto-branco">home</v-icon>
+          <v-icon medium color="white">home</v-icon>
         </v-list-tile-action>
         <v-list-tile-content>
           <v-list-tile-title><h1 class="font-weight-thin fonte-maior texto-branco">solicitações</h1></v-list-tile-title>

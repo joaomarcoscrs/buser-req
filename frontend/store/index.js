@@ -10,11 +10,14 @@ const store = () => new Vuex.Store({
     reqs_analysis: {},
     reqs_archived: {},
     filtered_board: {},
-    search: ''
+    search: '',
+    page: ''
   },
   mutations: {
+    SET_PAGE(state, actual_page) {
+      state.page = actual_page
+    },
     SET_LOGGED_USER(state, logged_user) {
-      console.log('set logged user: '+JSON.stringify(logged_user))
       state.logged_user = logged_user
     },
     SET_SNACK_STATE(state, newstate) {
@@ -158,6 +161,9 @@ const store = () => new Vuex.Store({
     },
     search (state) {
       return state.search
+    },
+    page (state) {
+      return state.page
     }
 },
   actions: {

@@ -49,6 +49,9 @@
       reqs_analysis () {
         return this.$store.getters.reqs_analysis
       },
+      page () {
+        return this.$store.getters.page
+      }
     },
     created() {
       this.$store.dispatch('fetchReqs')
