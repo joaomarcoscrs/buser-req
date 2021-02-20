@@ -14,3 +14,15 @@ Vue.filter('json', value => {
 Vue.filter('timeago', value => {
   return moment(value).fromNow()
 })
+
+Vue.filter('filtro_card', (cards, key, value) => {
+  if (key === '' || key === null || key === undefined || value === '' || value === null || value === undefined){
+    return cards
+  }
+  let statuses = Object.keys(cards)
+  let res = {}
+  for (status in statuses) {
+    res[status] = cards[status].filter(c => c[key] === value)
+  }
+  return res
+})

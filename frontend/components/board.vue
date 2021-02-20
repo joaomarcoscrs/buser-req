@@ -205,6 +205,9 @@ export default {
       reqs_board () {
         return this.$store.getters.reqs_board
       },
+      statuses () {
+        return Object.keys(this.reqs_board)
+      }
     },
       dragging: false,
       componentData: {
