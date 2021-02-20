@@ -15,14 +15,9 @@ Vue.filter('timeago', value => {
   return moment(value).fromNow()
 })
 
-Vue.filter('filtro_card', (cards, key, value) => {
+Vue.filter('filtro_card', (cards_de_um_status, key, value) => {
   if (key === '' || key === null || key === undefined || value === '' || value === null || value === undefined){
-    return cards
+    return cards_de_um_status
   }
-  let statuses = Object.keys(cards)
-  let res = {}
-  for (status in statuses) {
-    res[status] = cards[status].filter(c => c[key] === value)
-  }
-  return res
+  return cards_de_um_status.filter(c => c[key] === value)
 })
