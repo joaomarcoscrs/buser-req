@@ -141,6 +141,7 @@ def create_req(request):
     is_trash = request.POST['is_trash']
     team = request.POST['team']
     user = User.objects.get(username='slack')
+    slack_user = request.POST['slack_user']
 
     if archived == 'f':
         archived = False
@@ -159,7 +160,7 @@ def create_req(request):
 
     req = req_svc.create_req(user, status, title, archived, analysis, is_trash, team, priority, category,
                              link,
-                             description)
+                             description, slack_user)
     return JsonResponse(_req2dict(req))
 
 
@@ -174,6 +175,7 @@ def create_req_app(request):
     analysis = request.POST['analysis']
     is_trash = request.POST['is_trash']
     team = request.POST['team']
+    slack_user = ''
 
     if archived == 'f':
         archived = False
@@ -192,7 +194,7 @@ def create_req_app(request):
 
     req = req_svc.create_req(request.user, status, title, archived, analysis, is_trash, team, priority, category,
                              link,
-                             description)
+                             description, slack_user)
     return JsonResponse(_req2dict(req))
 
 
