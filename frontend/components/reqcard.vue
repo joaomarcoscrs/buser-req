@@ -43,7 +43,7 @@
                     >mdi-flag-variant</v-icon
                   >
                   <h1
-                    class="texto-card-content padding-dentro-card"
+                    class="texto-card-content padding-dentro-card cursor-setinha"
                     :class="'prioridade-' + req.priority"
                   >
                     prioridade
@@ -280,11 +280,15 @@ h1 {
 }
 .card-creator {
   color: #797979;
+  cursor: default;
   font-size: 12px;
   font-weight: 400;
   margin-left: 15px;
   margin-top: -12px;
   padding-bottom: 5px;
+}
+.cursor-setinha {
+  cursor: default;
 }
 .people {
   color: #b80f74;
