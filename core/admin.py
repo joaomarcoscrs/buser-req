@@ -8,7 +8,7 @@ class ActivityLogAdmin(admin.ModelAdmin):
 
 
 class ReqAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'status', 'team', 'priority', 'category', 'description', 'link')
+    list_display = ('id', 'creator', 'slack_user', 'title', 'status', 'team', 'priority', 'category', 'description', 'link', 'archived', 'analysis', 'is_trash')
 
 
 class ProfileAdmin(admin.ModelAdmin):
