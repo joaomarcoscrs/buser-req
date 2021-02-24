@@ -132,6 +132,7 @@
                 </v-btn>
               </div>
             </div>
+            <h1 class="card-creator">{{ req.creator }}</h1>
           </div>
         </v-card>
       </template>
@@ -276,6 +277,14 @@ h1 {
   height: 10px;
   content: ".";
   visibility: hidden;
+}
+.card-creator {
+  color: #797979;
+  font-size: 12px;
+  font-weight: 400;
+  margin-left: 15px;
+  margin-top: -12px;
+  padding-bottom: 5px;
 }
 .people {
   color: #b80f74;

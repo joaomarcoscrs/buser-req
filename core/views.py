@@ -216,6 +216,10 @@ def _user2dict(user):
 
 
 def _req2dict(req):
+    if req.slack_user == '':
+        criador = req.creator.username
+    else:
+        criador = req.slack_user
     d = {
         'id': req.id,
         'title': req.title,
@@ -223,7 +227,7 @@ def _req2dict(req):
         'status': req.status,
         'archived': req.archived,
         'analysis': req.analysis,
-        'creator': req.creator.username,
+        'creator': criador,
         'created_at': req.created_at,
         'updated_at': req.updated_at,
         'priority': req.priority,

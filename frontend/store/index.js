@@ -77,7 +77,8 @@ const store = () => new Vuex.Store({
          priority: req.priority,
          category: req.category,
          link: req.link,
-         description: req.description
+         description: req.description,
+         creator: req.creator
       })
     },
     ARCHIVE_REQ(state, params) {
