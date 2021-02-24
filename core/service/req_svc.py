@@ -5,10 +5,10 @@ def list_reqs(user):
     return Requisition.objects.all()
 
 
-def create_req(user, status, title, archived, analysis, is_trash, team, priority, category, link, description):
+def create_req(user, status, title, archived, analysis, is_trash, team, priority, category, link, description, slack_user=''):
     Requisition.objects.create(creator=user, title=title, status=status, priority=priority, category=category,
                                link=link, description=description, archived=archived, analysis=analysis,
-                               is_trash=is_trash, team=team)
+                               is_trash=is_trash, team=team, slack_user=slack_user)
     return Requisition.objects.latest('id')
 
 

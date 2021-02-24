@@ -56,6 +56,8 @@ class Requisition(models.Model):
         ('people', 'people'),
         ('finance', 'finance'),
         ('suporte', 'suporte'),
+        ('legal', 'legal'),
+        ('newbiz', 'newbiz'),
     )
     title = models.TextField(blank=True)
     team = models.CharField(blank=True, max_length=30, choices=TEAMS)
@@ -63,11 +65,12 @@ class Requisition(models.Model):
     archived = models.BooleanField(default=False)
     analysis = models.BooleanField(default=False)
     creator = models.ForeignKey(User)
+    slack_user = models.CharField(blank=True, default='', max_length=50)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     priority = models.IntegerField(null=True, blank=True, choices=PRIORITIES)
     category = models.CharField(blank=True, max_length=30, choices=CATEGORIES)
-    link = models.TextField(blank=True, null=True, max_length=400)
+    link = models.TextField(blank=True, null=True, max_length=2000)
     description = models.TextField(blank=True, null=True)
     is_trash = models.BooleanField(default=False)
     index = models.IntegerField(null=True, blank=True)
