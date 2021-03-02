@@ -2,8 +2,7 @@
   <v-dialog v-model="visible" max-width="800px">
     <v-card elevation="4" outlined shaped>
       <v-card-title
-        ><h1 class="font-weight-thin texto-rosa ml-2">detalhes do card</h1>
-        &nbsp;&nbsp;&nbsp;
+        ><h1 class="font-weight-thin texto-rosa ml-2 mr-1">detalhes do card</h1>
         <h1
           class="font-weight-thin"
           style="color: #424242"
@@ -18,10 +17,13 @@
           <v-container fluid class="flex-texto ma-0 pa-0">
             <div class="infos_linhas my-2">
               <div class="req-key"></div>
-              &nbsp;&nbsp;
-              <div class="req-value" style="font-size: 18px">criado por</div>
-              &nbsp;&nbsp;
-              <div class="req-value" style="font-weight: 300; font-size: 18px">
+              <div class="req-value cursor-setinha" style="font-size: 18px">
+                criado por &nbsp;
+              </div>
+              <div
+                class="req-value cursor-setinha"
+                style="font-weight: 300; font-size: 18px"
+              >
                 {{ req.creator }}
               </div>
             </div>
@@ -32,10 +34,12 @@
                   >mdi-flag-variant</v-icon
                 >
               </div>
-              <div class="req-value" :class="'prioridade-' + req.priority">
+              <div
+                class="req-value mr-1 cursor-setinha"
+                :class="'prioridade-' + req.priority"
+              >
                 prioridade:
               </div>
-              &nbsp;&nbsp;
               <div
                 contenteditable
                 @blur="onEdit($event, 'priority', req.id)"
@@ -68,8 +72,7 @@
                 >
                 <v-icon v-else size="30" class="texto-rosa">mdi-new-box</v-icon>
               </div>
-              <div class="req-value texto-rosa">categoria:</div>
-              &nbsp;&nbsp;
+              <div class="req-value texto-rosa mr-1">categoria:</div>
               <div
                 contenteditable
                 @blur="onEdit($event, 'category', req.id)"
@@ -83,8 +86,7 @@
               <div class="req-key" style="width: 40px">
                 <v-icon size="30" :class="req.team">mdi-account-group</v-icon>
               </div>
-              <div class="req-value" :class="req.team">time:</div>
-              &nbsp;&nbsp;
+              <div class="req-value mr-1" :class="req.team">time:</div>
               <div
                 contenteditable
                 @blur="onEdit($event, 'team', req.id)"
@@ -99,8 +101,7 @@
               <div class="req-key" style="width: 40px">
                 <v-icon size="30" color="#367CDD">mdi-link</v-icon>
               </div>
-              <div class="req-value" style="color: #367cdd">link:</div>
-              &nbsp;&nbsp;
+              <div class="req-value mr-1" style="color: #367cdd">link:</div>
               <div
                 contenteditable
                 @blur="onEdit($event, 'link', req.id)"
@@ -115,8 +116,7 @@
               <div class="req-key" style="width: 40px">
                 <v-icon size="30">mdi-text</v-icon>
               </div>
-              <div class="req-value">descrição:</div>
-              &nbsp;&nbsp;
+              <div class="req-value mr-1">descrição:</div>
               <div
                 contenteditable
                 @blur="onEdit($event, 'description', req.id)"
@@ -163,17 +163,19 @@ export default {
 </script>
 
 <style scoped>
-[contenteditable],
-h1 {
+[contenteditable] {
   color: #5b5b5b;
+  white-space: nowrap;
 }
 [contenteditable]:active {
   border: none;
   outline: none;
   cursor: text !important;
+  white-space: nowrap;
 }
 [contenteditable]:hover,
 [contenteditable]:focus {
+  white-space: nowrap;
   color: #ff3677 !important;
   font-weight: 500 !important;
   border: none;

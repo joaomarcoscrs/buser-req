@@ -10,6 +10,14 @@
           elevation="4"
           @click="openCardDetails($event, req)"
         >
+          <!-- <v-card
+          id="card"
+          v-bind="attrs"
+          v-on="on"
+          class="margin-card rounded-task-card"
+          elevation="4"
+          @click="openCardDetails($event, req)"
+        > -->
           <v-card-title
             style="color: #5b5b5b"
             contenteditable
