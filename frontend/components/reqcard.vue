@@ -8,6 +8,7 @@
           v-on="on"
           class="margin-card rounded-task-card"
           elevation="4"
+          @click="openCardDetails(req)"
         >
           <v-card-title
             style="color: #5b5b5b"
@@ -91,27 +92,33 @@
                 ></div>
               </div>
               <div class="container-link">
-                <div class="direita">
+                <div class="direita overflow-link">
                   <template v-if="req.link !== '-'">
-                    <v-icon color="#367CDD" class="padding-dentro-card"
+                    <v-icon
+                      @click="openInNewTab(req.link)"
+                      color="#367CDD"
+                      class="padding-dentro-card"
                       >mdi-open-in-new</v-icon
                     >
-                    <span
-                      class="texto-card-content padding-dentro-card"
-                      style="color: #367cdd"
+                    <h1
+                      contenteditable
+                      @blur="onEdit($event, 'link', req.id)"
+                      class="texto-card-content padding-dentro-card elipsar-texto linkeditavel ma-0 pa-0"
                     >
-                      <a target="_blank" :href="req.link">link</a>
-                    </span>
+                      {{ req.link }}
+                    </h1>
                   </template>
                   <template v-else>
                     <v-icon color="#DCDCDC" class="padding-dentro-card"
                       >mdi-open-in-new</v-icon
                     >
-                    <span
-                      class="texto-card-content padding-dentro-card"
-                      style="color: #dcdcdc"
-                      >-</span
+                    <h1
+                      contenteditable
+                      @blur="onEdit($event, 'link', req.id)"
+                      class="texto-card-content padding-dentro-card elipsar-texto linkeditavel ma-0 pa-0"
                     >
+                      -
+                    </h1>
                   </template>
                 </div>
                 <v-btn
@@ -155,6 +162,7 @@ export default {
     bottom: true,
     left: false,
     transition: "slide-y-reverse-transition",
+    editing_link: false,
   }),
   methods: {
     archive(id, list) {
@@ -169,6 +177,13 @@ export default {
     onEdit(evt, prop, id) {
       let input = evt.target.innerText;
       this.$store.dispatch("updateReq", { id: id, prop: prop, input: input });
+    },
+    openInNewTab(url) {
+      var win = window.open(url, "_blank");
+      win.focus();
+    },
+    openCardDetails(req) {
+      console.log("tamirona");
     },
   },
   computed: {
@@ -199,6 +214,14 @@ h1 {
   border: none;
   outline: none;
   cursor: text !important;
+}
+[contenteditable]:focus {
+  overflow: visible;
+  text-overflow: clip;
+}
+.overflow-link:focus-within {
+  width: 200px !important;
+  overflow-x: auto;
 }
 .tirar-margem-botao {
   margin: 0px;
@@ -247,6 +270,7 @@ h1 {
   width: 50%;
 }
 .direita {
+  position: relative;
   display: flex;
   margin-right: 10px;
   margin-bottom: 10px;
@@ -259,7 +283,7 @@ h1 {
 }
 .container-link {
   display: flex;
-  margin-right: 10px;
+  margin-right: 0px;
   justify-content: space-between;
   width: 50%;
   align-items: flex-center;
@@ -286,6 +310,14 @@ h1 {
   margin-left: 15px;
   margin-top: -12px;
   padding-bottom: 5px;
+}
+.elipsar-texto {
+  min-width: 90px;
+  max-width: 90px;
+  color: "#5B5B5B";
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .cursor-setinha {
   cursor: default;

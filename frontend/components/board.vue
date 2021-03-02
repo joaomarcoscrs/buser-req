@@ -5,7 +5,7 @@
         class="caixinhas-filtro"
         :items="options"
         v-model="key_to_filter"
-        clearable="true"
+        clearable
         placeholder="filtrar por"
       >
       </v-select>
