@@ -8,7 +8,7 @@
           v-on="on"
           class="margin-card rounded-task-card"
           elevation="4"
-          @click="openCardDetails(req)"
+          @click="openCardDetails($event, req)"
         >
           <v-card-title
             style="color: #5b5b5b"
@@ -145,12 +145,16 @@
       </template>
       <span>{{ req.description }}</span>
     </v-tooltip>
+    <cardDetails ref="cardDetails" />
   </div>
 </template>
 
 <script>
+import cardDetails from "~/components/cardDetails.vue";
+
 export default {
   props: ["req"],
+  components: { cardDetails },
   data: () => ({
     direction: "top",
     fab: false,
@@ -182,8 +186,9 @@ export default {
       var win = window.open(url, "_blank");
       win.focus();
     },
-    openCardDetails(req) {
-      console.log("tamirona");
+    openCardDetails(evt, req) {
+      this.$refs.cardDetails.open(req);
+      evt.stopPropagation();
     },
   },
   computed: {
