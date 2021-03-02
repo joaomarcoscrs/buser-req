@@ -2,58 +2,99 @@
   <v-dialog v-model="visible" max-width="800px">
     <v-card elevation="4" outlined shaped>
       <v-card-title
-        ><h1 class="font-weight-thin texto-rosa">
-          detalhes do card
+        ><h1 class="font-weight-thin texto-rosa ml-2">detalhes do card</h1>
+        <h1 class="font-weight-thin" style="color: #424242">
+          &nbsp;{{ req.title }}
         </h1></v-card-title
       >
-      <v-container class="flex-linha">
-        <v-card-text>
-          <v-container fluid class="flex-texto">
-            <div class="infos_linhas">
-              <div class="req-key">
-                <v-icon large class="texto-rosa">mdi-account</v-icon
-                >&nbsp;&nbsp;
+      <v-container class="flex-linha ma-0 pa-0">
+        <v-card-text class="mx-4 pa-0">
+          <v-container fluid class="flex-texto ma-0 pa-0">
+            <div class="infos_linhas my-2">
+              <div class="req-key"></div>
+              &nbsp;&nbsp;
+              <div class="req-value" style="font-size: 18px">criado por</div>
+              &nbsp;&nbsp;
+              <div class="req-value" style="font-weight: 400; font-size: 18px">
+                {{ req.creator }}
               </div>
-              <div class="req-value">{{ req.title }}</div>
             </div>
 
-            <div class="infos_linhas">
-              <div class="req-key">
-                <v-icon large class="texto-rosa">mdi-format-letter-case</v-icon
-                >&nbsp;&nbsp;
+            <div class="infos_linhas my-1">
+              <div class="req-key" style="width: 40px">
+                <v-icon size="30" :class="'prioridade-' + req.priority"
+                  >mdi-flag-variant</v-icon
+                >
               </div>
-              <div class="req-value">prioridade &nbsp; {{ req.priority }}</div>
+              <div class="req-value" :class="'prioridade-' + req.priority">
+                prioridade:
+              </div>
+              &nbsp;&nbsp;
+              <div class="req-value" :class="'prioridade-' + req.priority">
+                {{ req.priority }}
+              </div>
             </div>
 
-            <div class="infos_linhas">
-              <div class="req-key">
-                <v-icon large class="texto-rosa">mdi-at</v-icon>&nbsp;&nbsp;
+            <div class="infos_linhas my-1">
+              <div class="req-key" style="width: 40px">
+                <v-icon
+                  v-if="req.category == 'compra'"
+                  size="30"
+                  class="texto-rosa"
+                  >mdi-cart</v-icon
+                >
+                <v-icon
+                  v-else-if="req.category == 'obra'"
+                  size="30"
+                  class="texto-rosa"
+                  >mdi-account-hard-hat</v-icon
+                >
+                <v-icon
+                  v-else-if="req.category == 'manutenção'"
+                  size="30"
+                  class="texto-rosa"
+                  >mdi-hammer-wrench</v-icon
+                >
+                <v-icon v-else size="30" class="texto-rosa">mdi-new-box</v-icon>
               </div>
-              <div class="req-value">{{ req.link }}</div>
+              <div class="req-value texto-rosa">categoria:</div>
+              &nbsp;&nbsp;
+              <div class="req-value texto-rosa">
+                {{ req.category }}
+              </div>
             </div>
 
-            <div class="infos_linhas">
-              <div class="req-key">
-                <v-icon large class="texto-rosa">mdi-calendar</v-icon
-                >&nbsp;&nbsp;
+            <div class="infos_linhas my-1">
+              <div class="req-key" style="width: 40px">
+                <v-icon size="30" :class="req.team">mdi-account-group</v-icon>
               </div>
-              <div class="req-value">último login {{ req.category }}</div>
+              <div class="req-value" :class="req.team">time:</div>
+              &nbsp;&nbsp;
+              <div class="req-value" :class="req.team">
+                {{ req.team }}
+              </div>
             </div>
 
-            <div class="infos_linhas">
-              <div class="req-key">
-                <v-icon large class="texto-rosa">mdi-account-group</v-icon
-                >&nbsp;&nbsp;
+            <div class="infos_linhas my-1">
+              <div class="req-key" style="width: 40px">
+                <v-icon size="30" color="#367CDD">mdi-link</v-icon>
               </div>
-              <div class="req-value">{{ req.team }}</div>
+              <div class="req-value" style="color: #367cdd">link:</div>
+              &nbsp;&nbsp;
+              <div class="req-value" style="color: #367cdd">
+                {{ req.link }}
+              </div>
             </div>
 
-            <div class="infos_linhas">
-              <div class="req-key">
-                <v-icon large class="texto-rosa">mdi-account-group</v-icon
-                >&nbsp;&nbsp;
+            <div class="infos_linhas my-1">
+              <div class="req-key" style="width: 40px">
+                <v-icon size="30">mdi-text</v-icon>
               </div>
-              <div class="req-value">{{ req.description }}</div>
+              <div class="req-value">descrição:</div>
+              &nbsp;&nbsp;
+              <div class="req-value">
+                {{ req.description }}
+              </div>
             </div>
           </v-container>
         </v-card-text>
@@ -103,9 +144,8 @@ export default {
 }
 .infos_linhas {
   display: flex;
-  margin: 10px;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   width: 100%;
 }
 .flex-linha {
@@ -124,14 +164,6 @@ export default {
 }
 .rounded-card {
   border-radius: 30px;
-}
-.elipsar-texto {
-  min-width: 90px;
-  max-width: 90px;
-  color: "#5B5B5B";
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 .cursor-setinha {
   cursor: default;
