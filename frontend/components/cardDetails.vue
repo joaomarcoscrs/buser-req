@@ -3,8 +3,14 @@
     <v-card elevation="4" outlined shaped>
       <v-card-title
         ><h1 class="font-weight-thin texto-rosa ml-2">detalhes do card</h1>
-        <h1 class="font-weight-thin" style="color: #424242">
-          &nbsp;{{ req.title }}
+        &nbsp;&nbsp;&nbsp;
+        <h1
+          class="font-weight-thin"
+          style="color: #424242"
+          contenteditable
+          @blur="onEdit($event, 'title', req.id)"
+        >
+          {{ req.title }}
         </h1></v-card-title
       >
       <v-container class="flex-linha ma-0 pa-0">
@@ -15,7 +21,7 @@
               &nbsp;&nbsp;
               <div class="req-value" style="font-size: 18px">criado por</div>
               &nbsp;&nbsp;
-              <div class="req-value" style="font-weight: 400; font-size: 18px">
+              <div class="req-value" style="font-weight: 300; font-size: 18px">
                 {{ req.creator }}
               </div>
             </div>
@@ -30,7 +36,12 @@
                 prioridade:
               </div>
               &nbsp;&nbsp;
-              <div class="req-value" :class="'prioridade-' + req.priority">
+              <div
+                contenteditable
+                @blur="onEdit($event, 'priority', req.id)"
+                class="req-value"
+                :class="'prioridade-' + req.priority"
+              >
                 {{ req.priority }}
               </div>
             </div>
@@ -59,7 +70,11 @@
               </div>
               <div class="req-value texto-rosa">categoria:</div>
               &nbsp;&nbsp;
-              <div class="req-value texto-rosa">
+              <div
+                contenteditable
+                @blur="onEdit($event, 'category', req.id)"
+                class="req-value texto-rosa"
+              >
                 {{ req.category }}
               </div>
             </div>
@@ -70,7 +85,12 @@
               </div>
               <div class="req-value" :class="req.team">time:</div>
               &nbsp;&nbsp;
-              <div class="req-value" :class="req.team">
+              <div
+                contenteditable
+                @blur="onEdit($event, 'team', req.id)"
+                class="req-value"
+                :class="req.team"
+              >
                 {{ req.team }}
               </div>
             </div>
@@ -81,7 +101,12 @@
               </div>
               <div class="req-value" style="color: #367cdd">link:</div>
               &nbsp;&nbsp;
-              <div class="req-value" style="color: #367cdd">
+              <div
+                contenteditable
+                @blur="onEdit($event, 'link', req.id)"
+                class="req-value"
+                style="color: #367cdd"
+              >
                 {{ req.link }}
               </div>
             </div>
@@ -92,7 +117,11 @@
               </div>
               <div class="req-value">descrição:</div>
               &nbsp;&nbsp;
-              <div class="req-value">
+              <div
+                contenteditable
+                @blur="onEdit($event, 'description', req.id)"
+                class="req-value"
+              >
                 {{ req.description }}
               </div>
             </div>
@@ -124,7 +153,7 @@ export default {
     onEdit(evt, prop) {
       let input = evt.target.innerText;
       this.$store.dispatch("updateReq", {
-        id: req.id,
+        id: this.req.id,
         prop: prop,
         input: input,
       });
@@ -134,6 +163,23 @@ export default {
 </script>
 
 <style scoped>
+[contenteditable],
+h1 {
+  color: #5b5b5b;
+}
+[contenteditable]:active {
+  border: none;
+  outline: none;
+  cursor: text !important;
+}
+[contenteditable]:hover,
+[contenteditable]:focus {
+  color: #ff3677 !important;
+  font-weight: 500 !important;
+  border: none;
+  outline: none;
+  cursor: text !important;
+}
 .req-value {
   color: #5b5b5b;
   font-weight: 200;
