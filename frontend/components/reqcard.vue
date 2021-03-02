@@ -8,7 +8,6 @@
           v-on="on"
           class="margin-card rounded-task-card"
           elevation="4"
-          @click="openCardDetails($event, req)"
         >
           <!-- <v-card
           id="card"
@@ -18,13 +17,18 @@
           elevation="4"
           @click="openCardDetails($event, req)"
         > -->
-          <v-card-title
-            style="color: #5b5b5b"
-            contenteditable
-            v-text="req.title"
-            @blur="onEdit($event, 'title', req.id)"
-            class="headline titulo-tasks font-weight-regular"
-          ></v-card-title>
+          <div class="flex-titulo">
+            <div
+              style="color: #5b5b5b"
+              contenteditable
+              v-text="req.title"
+              @blur="onEdit($event, 'title', req.id)"
+              class="titulo-tasks font-weight-regular"
+            ></div>
+            <v-icon @click="openCardDetails($event, req)" class="icon-dots"
+              >mdi-dots-horizontal</v-icon
+            >
+          </div>
           <div class="flex-box-content-card">
             <div class="flex-box-content-linha">
               <div class="esquerda">
@@ -250,12 +254,19 @@ h1 {
   justify-content: center;
 }
 .titulo-tasks {
-  color: #5b5b5b;
+  color: #fce7e7;
   font-size: 18px !important;
-  padding: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 15px;
+  padding-bottom: 0px;
   margin-left: 15px;
   overflow: auto;
-  height: 60px;
+  height: 50px;
+}
+.flex-titulo {
+  display: flex;
+  justify-content: space-between;
 }
 .flex-box-content-card {
   display: flex;
@@ -331,6 +342,10 @@ h1 {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.icon-dots {
+  position: relative;
+  margin-right: 10px;
 }
 .cursor-setinha {
   cursor: default;

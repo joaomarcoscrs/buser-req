@@ -17,8 +17,11 @@
           <v-container fluid class="flex-texto ma-0 pa-0">
             <div class="infos_linhas my-2">
               <div class="req-key"></div>
-              <div class="req-value cursor-setinha" style="font-size: 18px">
-                criado por &nbsp;
+              <div
+                class="req-value cursor-setinha mr-1"
+                style="font-size: 18px"
+              >
+                criado por
               </div>
               <div
                 class="req-value cursor-setinha"
